@@ -20,6 +20,7 @@ A **build-ready spec** (PRD plus a sequenced list of implementation slices) for 
 
 - [Restaurant experiment design practice](issues/05-restaurant-experiment-design-research.md): switchback precision depends on time blocks not covers; menu/portion evidence is weak; small lifts at one restaurant need ~30 weeks, so feasibility must feature in ranking; guardrail thresholds are policy choices. Some claims unverified (see ticket).
 - [Elasticity benchmarks for restaurant menu items](issues/04-elasticity-benchmarks-research.md): pooled FAFH about -0.81 (range -0.23 to -1.76) but strongly service-level dependent (limited-service about -0.13 to -0.7, full-service about -1.0 to -1.96); item-level and within-menu substitution evidence is thin, so substitution stays a user assumption. Bands not yet decided.
+- [Synthetic restaurant design and hidden ground truth](issues/01-synthetic-restaurant-design.md): casual American bistro, 30 items in 6 categories (7 with beef); five-file CSV schema with weekly price; modest noisy price history; hidden authored ground truth (elasticity by category about -0.4 to -1.4, within-category substitution) in a validation-only file; seed 42, committed under `data/synthetic/`.
 - Destination, scope and priorities were settled in the charting grill (no ticket): spec as the endpoint, parser out of scope, audience = DS/analytics hiring managers, all six features with the priority order above.
 
 ## Not yet specified

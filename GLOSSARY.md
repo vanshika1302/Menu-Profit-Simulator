@@ -15,3 +15,5 @@
 **Guardrail metric**: a measure that an experiment must not harm (e.g. covers, average check), watched alongside the target metric.
 
 **Stop rule**: a predefined condition under which an experiment is ended early.
+
+**Ground truth**: the true elasticities and substitution patterns the synthetic restaurant's generator used to produce its sales. Kept apart from the user-facing data and never seen by the simulator or dashboard; used only to score whether the simulator's bands and simulated experiments recover it.
