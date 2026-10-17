@@ -37,3 +37,7 @@ Seven items contain beef, so the beef cost shock moves several quadrants. Volume
 **Location:** CSVs are committed under `data/synthetic/` (including `ground_truth.csv`, labelled validation-only). `.gitignore` is unchanged: `data/raw/` and `*.duckdb` stay ignored.
 
 Left to the build (generator-owned detail, not a decision): the exact ingredient list (~35 ingredients with units), per-item volumes and cost percentages, and the specific promo and price-change dates.
+
+## Comments
+
+- Following the simulation model ticket: the global bands (-0.5 / -1.0 / -1.8) mean about five items (mostly drinks and sides) fall outside the band, rather than the "two or three" stated above. Accepted as honest misses.

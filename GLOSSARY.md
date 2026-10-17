@@ -17,3 +17,9 @@
 **Stop rule**: a predefined condition under which an experiment is ended early.
 
 **Ground truth**: the true elasticities and substitution patterns the synthetic restaurant's generator used to produce its sales. Kept apart from the user-facing data and never seen by the simulator or dashboard; used only to score whether the simulator's bands and simulated experiments recover it.
+
+**Break-even elasticity**: for a given price change, the elasticity at which profit is unchanged. Demand less elastic than this makes the change pay off; more elastic makes it lose money.
+
+**Baseline**: the reference weekly units, prices and costs a scenario is compared against: the trailing 12 weeks of the synthetic sales.
+
+**Scenario**: a set of ingredient-cost shocks, per-item price changes and a substitution share, evaluated against the baseline under each elasticity band.
