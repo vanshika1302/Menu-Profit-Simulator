@@ -23,3 +23,9 @@
 **Baseline**: the reference weekly units, prices and costs a scenario is compared against: the trailing 12 weeks of the synthetic sales.
 
 **Scenario**: a set of ingredient-cost shocks, per-item price changes and a substitution share, evaluated against the baseline under each elasticity band.
+
+**Popularity threshold**: the unit share an item must reach within its scope (a category, or the whole menu) to count as popular: 70% of an equal share by default.
+
+**Margin threshold**: the unit-weighted average contribution margin of the scope; an item at or above it counts as high margin.
+
+**Class uncertain**: a flag on an item whose menu engineering class differs between the low, medium and high elasticity bands.
