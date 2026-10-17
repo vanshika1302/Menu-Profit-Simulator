@@ -29,3 +29,5 @@
 **Margin threshold**: the unit-weighted average contribution margin of the scope; an item at or above it counts as high margin.
 
 **Class uncertain**: a flag on an item whose menu engineering class differs between the low, medium and high elasticity bands.
+
+**Validation scorecard**: the aggregate measures, computed against the ground truth, of how well the simulator's bands, ranges and verdicts hold up on the synthetic restaurant.
