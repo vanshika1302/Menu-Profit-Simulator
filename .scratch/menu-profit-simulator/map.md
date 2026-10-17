@@ -23,6 +23,7 @@ A **build-ready spec** (PRD plus a sequenced list of implementation slices) for 
 - [Synthetic restaurant design and hidden ground truth](issues/01-synthetic-restaurant-design.md): casual American bistro, 30 items in 6 categories (7 with beef); five-file CSV schema with weekly price; modest noisy price history; hidden authored ground truth (elasticity by category about -0.4 to -1.4, within-category substitution) in a validation-only file; seed 42, committed under `data/synthetic/`.
 - [Simulation model: elasticity, cost shock, substitution, uncertainty](issues/03-simulation-model.md): constant-elasticity demand within about +/-15%; global bands -0.5/-1.0/-1.8 (not centred on the ground truth); cost shock and price are composable levers; trailing-12-week baseline; same-category substitution by popularity (25% default); uncertainty shown as a band range plus break-even elasticity and verdict, no probability; break-even drop shown with and without substitution.
 - [Repo and pipeline architecture](issues/06-repo-and-pipeline-architecture.md): Python `sim/` is the reference model with a JS port and golden-fixture parity tests; SQL holds the descriptive layer, ground truth in a separate `validation` schema read only by `sim/validation.py`; one inlined root `index.html` on GitHub Pages; folder layout, run order, pytest and `requirements.txt` fixed.
+- [Experiment backlog ranking, guardrails and stop rules](issues/08-experiment-backlog-ranking.md): three experiment types with evidence-strength labels, candidates from item class and scenario; score = stake x decision uncertainty x feasibility / risk cost (uncertainty = whether break-even elasticity sits inside the band); one-day blocks, whole weeks, 12-week cap, m = 1; guardrails on total units and profit (policy defaults); harm/cap stops, no early success stop; live re-ranking via a JS port of the scoring.
 - Destination, scope and priorities were settled in the charting grill (no ticket): spec as the endpoint, parser out of scope, audience = DS/analytics hiring managers, all six features with the priority order above.
 
 ## Not yet specified
@@ -34,4 +35,5 @@ A **build-ready spec** (PRD plus a sequenced list of implementation slices) for 
 ## Out of scope
 
 - **Stretch: LLM invoice/recipe-to-cost parser with eval set** (feature 7): ruled out of this effort; revisit as a fresh effort after the MVP ships. The only MVP obligation is a stable recipe/ingredient-cost schema it could target later.
+- **Closing the loop on experiment results** (ingesting a measured elasticity and updating the model automatically): out of scope; the per-item elasticity override covers manual entry.
 - Real or downloaded datasets, multi-location restaurants, live POS integration.
