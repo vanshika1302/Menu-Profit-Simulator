@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PROTOTYPE: Menu Profit dashboard variants</title>
+</head>
+<body>
+<!-- PROTOTYPE (throwaway), ticket 07. Open this file directly; pick a variant with ?variant=A|B|C or the bottom bar (arrow keys too).
+     Fake data, no persistence, no backend. Variants B and C are optional: a missing file just shows a note. -->
+<div id="app"></div>
+<script src="model.js"></script>
+<script src="shared.js"></script>
+<script src="variant-a.js"></script>
+<script src="variant-b.js" onerror="void 0"></script>
+<script src="variant-c.js" onerror="void 0"></script>
+<script>
+  (function () {
+    const V = window.VARIANTS || {};
+    const keys = ['A', 'B', 'C'];
+    const names = {};
+    keys.forEach((k) => { names[k] = V[k] ? V[k].name : 'not built yet'; });
+    let cur = (new URLSearchParams(location.search).get('variant') || 'A').toUpperCase();
+    if (keys.indexOf(cur) < 0) cur = 'A';
+    const app = document.getElementById('app');
+    if (V[cur]) V[cur].mount(app);
+    else app.innerHTML = '<p style="padding:40px;font:16px system-ui">Variant ' + cur + ' is not built yet.</p>';
+    P.mountSwitcher(keys, names, cur);
+  })();
+</script>
+</body>
+</html>

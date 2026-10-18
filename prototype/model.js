@@ -27,7 +27,7 @@
   ];
   const ITEMS = RAW.map(([name, cat, price, cost, units, beef]) => ({ name, cat, price, cost, units, beef }));
 
-  const DEFAULTS = { shock: 20, price: 5, scope: 'Entrees', s: 25, popPct: 70, minUnits: 50,
+  const DEFAULTS = { shock: 20, price: 5, scope: 'item:Classic Burger', s: 25, popPct: 70, minUnits: 50,
     bands: { low: -0.5, med: -1.0, high: -1.8 } };
 
   const ACTIONS = {
@@ -138,7 +138,7 @@
         const risk = Math.max(0, -Math.min(...dps));
         const rise = it.p1 > it.p0, pct = Math.abs((it.p1 / it.p0 - 1) * 100).toFixed(0);
         list.push({ name: it.name, type: 'Price switchback', evidence: 'method-backed', stake, unc, feas, risk, weeks,
-          score: (stake * unc * feas) / (1 + risk),
+          score: (stake * unc * feas) / (1 + risk / Math.max(1, p0)),
           hypothesis: 'Demand for ' + it.name + ' is ' + (rise ? 'less' : 'more') + ' elastic than ' + it.epsStar.toFixed(2) +
             ', so a ' + (rise ? '+' : '-') + pct + '% price change raises profit.',
           decision: 'If measured elasticity is ' + (rise ? 'above' : 'below') + ' ' + it.epsStar.toFixed(2) + ', roll out; otherwise revert.' });
@@ -147,7 +147,7 @@
         const stake = 0.05 * p0 * 52, risk = 0.02 * p0, weeks = 8, feas = 0.3, unc = 0.5;
         const pz = it.baseCls === 'Puzzle';
         list.push({ name: it.name, type: pz ? 'Menu-design test' : 'Portion test', evidence: 'weak prior', stake, unc, feas, risk, weeks,
-          score: (stake * unc * feas) / (1 + risk),
+          score: (stake * unc * feas) / (1 + risk / Math.max(1, p0)),
           hypothesis: pz ? it.name + ' is a Puzzle: a label or position change could lift its volume.'
             : it.name + ' is a Plowhorse: a slightly smaller portion could lift margin without losing buyers.',
           decision: 'Effect unknown; test to measure it.' });
