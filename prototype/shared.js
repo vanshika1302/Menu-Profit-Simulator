@@ -117,7 +117,8 @@
       s += `<g data-tip="${esc(tip)}">`;
       if (it.uncertain) s += `<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="3 2"/>`;
       s += marker(it.scenCls, x, y, 6) + `<circle cx="${x}" cy="${y}" r="13" fill="transparent"/></g>`;
-      if (o.labels === 'all' || it.moved || it.uncertain) s += `<text x="${x + 10}" y="${y - 8}" font-size="11" fill="var(--text-2)">${esc(it.name)}</text>`;
+      if (o.labels === 'all' || it.moved || it.uncertain) { const flip = x > W - 120;
+        s += `<text x="${flip ? x - 10 : x + 10}" y="${y - 8}" text-anchor="${flip ? 'end' : 'start'}" font-size="11" fill="var(--text-2)">${esc(it.name)}</text>`; }
     });
     return s + '</svg>';
   }
@@ -140,7 +141,7 @@
     [['low', 'low elasticity'], ['med', 'medium'], ['high', 'high elasticity']].forEach(([k, lab], i) => {
       const x = X(v[k]);
       s += `<g data-tip="${esc(lab + ': ' + M.fmt.sgn(v[k]) + ' per week (assumed band ' + S.bands[k] + ')')}"><circle cx="${x}" cy="49" r="7" fill="${k === 'med' ? 'var(--accent)' : 'var(--surface)'}" stroke="var(--accent)" stroke-width="2.5"/>
-        <text x="${x}" y="${i % 2 ? 90 : 28}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text)">${M.fmt.sgn(v[k])}</text></g>`;
+        <text x="${x}" y="${[28, 90, 14][i]}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text)">${M.fmt.sgn(v[k])}</text></g>`;
     });
     return s + '</svg>';
   }
