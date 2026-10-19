@@ -19,6 +19,7 @@ A **build-ready spec** (PRD plus ordered implementation slices) for the LLM invo
 ## Decisions so far
 
 - Destination, reader, scope, runtime, review step and evaluation approach were settled in the charting grill (no ticket): spec as the endpoint; same reader; both invoices and recipes as text; Python tool calling Claude with a stub-able model function; staged rows with human approval; synthetic eval set with downstream CM scoring.
+- [What do real supplier invoices and written recipes look like?](issues/01-invoice-and-recipe-formats.md): pack notation (`6/#10`, `4/5 LB`), catch weight billed on received lb, case-vs-unit prices, fee and credit lines to exclude, inconsistent names, compound recipe quantities and AP/EP yield; no real invoice sample or distributor docs found, so prevalence is judgment, and a suggested scope is recorded.
 
 ## Not yet specified
 
