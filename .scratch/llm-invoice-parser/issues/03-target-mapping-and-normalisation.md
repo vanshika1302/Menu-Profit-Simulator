@@ -1,7 +1,7 @@
 # How are extracted lines mapped onto the existing ingredient schema?
 
 Type: grilling
-Status: open
+Status: claimed
 Blocked by: 01
 
 ## Question
