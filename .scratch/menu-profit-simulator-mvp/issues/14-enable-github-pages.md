@@ -1,6 +1,6 @@
 # Enable GitHub Pages (needs a person)
 
-Status: ready-for-human
+Status: done
 Blocked by: 13
 
 ## What to build
@@ -13,3 +13,7 @@ Spec: `../spec.md`.
 
 - Live URL opens the dashboard.
 - README link updated.
+
+## Comments
+
+- Pages enabled from `main` at `/` via the GitHub API on 2026-10-19; the live URL serves a page byte-identical to the committed `index.html`. The README link already pointed at it.
