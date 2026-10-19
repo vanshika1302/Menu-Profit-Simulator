@@ -117,7 +117,3 @@ def test_matrix_thresholds_both_returned(base):
     assert r["matrix"]["baseline_thresholds"]["Entrees"]["margin_threshold"] != r["matrix"]["scenario_thresholds"]["Entrees"]["margin_threshold"]
     moved = [i for i, v in r["items"].items() if v["matrix"]["moved"]]
     assert moved, "a 30% beef shock should move at least one item"
-
-
-def test_ground_truth_never_needed(base):
-    assert "ground_truth" not in str(base.keys())

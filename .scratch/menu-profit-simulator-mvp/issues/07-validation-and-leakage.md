@@ -1,6 +1,6 @@
 # Validation scorecard, leakage tests, result snapshots
 
-Status: ready-for-agent
+Status: done
 Blocked by: 05, 06
 
 ## What to build

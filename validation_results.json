@@ -1,0 +1,149 @@
+{
+  "band_hit_rate": {
+    "by_category": {
+      "Burgers and sandwiches": {
+        "inside": 5,
+        "of": 5
+      },
+      "Desserts": {
+        "inside": 4,
+        "of": 4
+      },
+      "Drinks and sides": {
+        "inside": 1,
+        "of": 5
+      },
+      "Entrees": {
+        "inside": 7,
+        "of": 7
+      },
+      "Pasta and bowls": {
+        "inside": 4,
+        "of": 4
+      },
+      "Starters": {
+        "inside": 5,
+        "of": 5
+      }
+    },
+    "inside_band": 26,
+    "items": 30,
+    "rate": 0.866666667
+  },
+  "bands": {
+    "high": -1.8,
+    "low": -0.5,
+    "medium": -1.0
+  },
+  "naive_history": {
+    "detail": [
+      {
+        "error": -0.080157174,
+        "item": "beer",
+        "naive": -0.557157174,
+        "price_change_pct": 7.142857143,
+        "true": -0.477,
+        "week": 27
+      },
+      {
+        "error": -0.644118985,
+        "item": "cheesecake",
+        "naive": -1.634118985,
+        "price_change_pct": -20.0,
+        "true": -0.99,
+        "week": 38
+      },
+      {
+        "error": -0.354894758,
+        "item": "cheesecake",
+        "naive": -1.344894758,
+        "price_change_pct": 25.0,
+        "true": -0.99,
+        "week": 40
+      },
+      {
+        "error": 0.629940753,
+        "item": "chicken_parm",
+        "naive": -0.851059247,
+        "price_change_pct": 6.818181818,
+        "true": -1.481,
+        "week": 24
+      },
+      {
+        "error": 2.122921205,
+        "item": "classic_burger",
+        "naive": 1.394921205,
+        "price_change_pct": 6.666666667,
+        "true": -0.728,
+        "week": 26
+      },
+      {
+        "error": 0.282060595,
+        "item": "fries",
+        "naive": -0.040939405,
+        "price_change_pct": 8.333333333,
+        "true": -0.323,
+        "week": 30
+      },
+      {
+        "error": 2.03100522,
+        "item": "salmon",
+        "naive": 0.69600522,
+        "price_change_pct": 5.555555556,
+        "true": -1.335,
+        "week": 28
+      },
+      {
+        "error": -2.595432125,
+        "item": "wings",
+        "naive": -3.523432125,
+        "price_change_pct": -15.0,
+        "true": -0.928,
+        "week": 14
+      },
+      {
+        "error": -1.609758393,
+        "item": "wings",
+        "naive": -2.537758393,
+        "price_change_pct": 17.647058824,
+        "true": -0.928,
+        "week": 16
+      }
+    ],
+    "events": 9,
+    "mean_abs_error": 1.150032134,
+    "median_abs_error": 0.644118985,
+    "outside_band_share": 0.555555556,
+    "wrong_sign_share": 0.222222222
+  },
+  "note": "Synthetic data and authored ground truth: shows where the method works and fails, not real-world accuracy.",
+  "scenario_scorecard": {
+    "profit_range_coverage": {
+      "by_category": {
+        "Burgers and sandwiches": 0.7,
+        "Desserts": 1.0,
+        "Drinks and sides": 0.0,
+        "Entrees": 1.0,
+        "Pasta and bowls": 0.75,
+        "Starters": 0.8
+      },
+      "rate": 0.716666667,
+      "truth_above_range": 0.283333333,
+      "truth_below_range": 0.0
+    },
+    "scenarios": 60,
+    "verdicts": {
+      "costly_errors_pays_when_truth_loses": 0,
+      "decisive_accuracy": null,
+      "depends_on_elasticity": 60,
+      "loses_under_all_bands": 0,
+      "medium_band_says_loses_when_truth_pays": 0,
+      "medium_band_says_pays_when_truth_loses": 6,
+      "medium_band_sign_accuracy": 0.9,
+      "missed_wins_loses_when_truth_pays": 0,
+      "pays_off_under_all_bands": 0,
+      "total": 60,
+      "truth_pays_share": 0.9
+    }
+  }
+}

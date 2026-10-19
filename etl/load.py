@@ -26,6 +26,7 @@ def load_all(con: duckdb.DuckDBPyConnection, data_dir: Path = DATA_DIR) -> None:
     for t in RAW_TABLES:
         path = (data_dir / f"{t}.csv").as_posix()
         con.execute(f"INSERT INTO raw_{t} BY NAME SELECT * FROM read_csv('{path}', header = true)")
-    gt = (data_dir / "ground_truth.csv").as_posix()
-    con.execute(f"INSERT INTO validation.ground_truth BY NAME SELECT * FROM read_csv('{gt}', header = true)")
+    gt = data_dir / "ground_truth.csv"
+    if gt.exists():  # the simulator never needs it; validation tables stay empty without it
+        con.execute(f"INSERT INTO validation.ground_truth BY NAME SELECT * FROM read_csv('{gt.as_posix()}', header = true)")
     con.execute((SQL_DIR / "views.sql").read_text())
