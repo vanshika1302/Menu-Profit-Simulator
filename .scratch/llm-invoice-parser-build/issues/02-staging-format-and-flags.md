@@ -1,6 +1,6 @@
 # Staging file, flag vocabulary and sidecar
 
-Status: ready-for-agent
+Status: done
 Blocked by: 01
 
 ## What to build

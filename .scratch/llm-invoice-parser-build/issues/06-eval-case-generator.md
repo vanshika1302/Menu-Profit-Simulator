@@ -1,6 +1,6 @@
 # Evaluation case generator and committed cases
 
-Status: ready-for-agent
+Status: claimed
 Blocked by: 01
 
 ## What to build
