@@ -150,7 +150,7 @@ def _price_entry(it, test, weekly_profit, sigma, band_low, band_high, cap, m, as
     risk = max(0.0, -min(changes)) * EXPOSED_SHARE
     delta = (max(changes) - min(changes)) / 7
     name = it.get("name") or it["item_id"]
-    return _entry(
+    entry = _entry(
         target=it["item_id"], target_name=name, etype="Price switchback test", evidence="method-backed",
         stake=max(abs(c) for c in changes) * model.WEEKS_PER_YEAR,
         unc=decision_uncertainty(p), risk_norm=risk / weekly_profit if weekly_profit else 0.0,
@@ -164,6 +164,9 @@ def _price_entry(it, test, weekly_profit, sigma, band_low, band_high, cap, m, as
         ),
         assumptions=assumptions, cap=cap, m=m,
     )
+    entry["price_change"] = {"p0": test["p0"], "p1": test["p1"], "ratio": test["p1"] / test["p0"],
+                             "rise": rise, "break_even_elasticity": eps}
+    return entry
 
 
 def build_backlog(baseline: Mapping, result: Mapping, params: Mapping | None = None) -> dict:

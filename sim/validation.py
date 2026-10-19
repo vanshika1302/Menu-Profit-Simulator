@@ -15,6 +15,8 @@ import statistics
 from pathlib import Path
 from typing import Mapping
 
+import numpy as np
+
 from sim import model
 from sim.scenarios import DEFAULT_BANDS, run_scenario
 
@@ -185,3 +187,82 @@ def run_scorecard(baseline: Mapping, truth: Mapping[str, dict], sales: list[dict
         "scenario_scorecard": scenario_scorecard(baseline, truth),
         "naive_history": naive_history_estimates(sales, truth),
     }
+
+
+# ---------------------------------------------------------------------------
+# Experiment-recovery Monte Carlo (slow; run with scripts/run_validation.py --full)
+# ---------------------------------------------------------------------------
+
+RECOVERY_REPS = 200
+RECOVERY_SEED = 42
+
+
+def simulate_switchback(
+    rng, base_daily: float, ratio: float, eps_true: float, weeks: int, eps_star: float, rise: bool, n_perm: int = 199
+) -> dict:
+    """One simulated switchback test on one item: one-day blocks, whole weeks, random arms.
+
+    Only clean blocks (same arm as the previous day) are analysed, matching the design's
+    carryover assumption. Returns the measured elasticity, the roll-out decision, and a
+    randomization-test p-value for a difference in units between arms.
+    """
+    from etl.generate import counterfactual_daily_units  # generator-owned truth
+
+    days = 7 * weeks
+    arm = rng.integers(0, 2, size=days)
+    r_today = np.where(arm == 1, ratio, 1.0)
+    r_prev = np.concatenate([[1.0], r_today[:-1]])
+    units = counterfactual_daily_units(rng, base_daily, r_today, r_prev, eps_true)
+    clean = np.concatenate([[False], arm[1:] == arm[:-1]])
+    t, c = units[clean & (arm == 1)], units[clean & (arm == 0)]
+    if len(t) < 2 or len(c) < 2 or c.mean() == 0 or t.mean() == 0:
+        return {"eps_hat": None, "roll_out": None, "p_value": None}
+    eps_hat = math.log(t.mean() / c.mean()) / math.log(ratio)
+    obs = abs(t.mean() - c.mean())
+    pool, labels = units[clean], arm[clean]
+    exceed = 0
+    for _ in range(n_perm):
+        perm = rng.permutation(labels)
+        exceed += abs(pool[perm == 1].mean() - pool[perm == 0].mean()) >= obs
+    return {
+        "eps_hat": eps_hat,
+        "roll_out": eps_hat > eps_star if rise else eps_hat < eps_star,
+        "p_value": (exceed + 1) / (n_perm + 1),
+    }
+
+
+def experiment_recovery(baseline: Mapping, truth: Mapping[str, dict], entries: list[dict],
+                        reps: int = RECOVERY_REPS, seed: int = RECOVERY_SEED, cap_weeks: int = 12) -> dict:
+    """For each backlog price entry, run `reps` simulated tests at the planned duration and at the cap.
+
+    Decision accuracy = share of replications whose roll-out decision matches the truth
+    (true elasticity above the break-even elasticity for a rise, below for a cut).
+    """
+    items = {i["item_id"]: i for i in baseline["items"]}
+    out = []
+    for k, e in enumerate(entries):
+        it = items[e["target"]]
+        eps_star, rise = e["break_even_elasticity"], e["price_rise"]
+        eps_true = truth[it["item_id"]]["true_elasticity"]
+        truth_roll_out = eps_true > eps_star if rise else eps_true < eps_star
+        row = {"item": it["item_id"], "rank": e["rank"], "break_even_elasticity": eps_star,
+               "truth_says_roll_out": truth_roll_out, "planned_weeks": e["duration_weeks"], "runs": {}}
+        for label, weeks in (("planned_duration", e["duration_weeks"]), ("at_cap", cap_weeks)):
+            rng = np.random.default_rng(seed + 1000 * k + (0 if label == "at_cap" else 1))
+            sims = [simulate_switchback(rng, it["units"] / 7, e["ratio"], eps_true, weeks, eps_star, rise)
+                    for _ in range(reps)]
+            sims = [s for s in sims if s["eps_hat"] is not None]
+            est = np.array([s["eps_hat"] for s in sims])
+            lo, hi = np.percentile(est, [5, 95])
+            row["runs"][label] = {
+                "weeks": weeks,
+                "decision_accuracy": float(np.mean([s["roll_out"] == truth_roll_out for s in sims])),
+                "estimate_interval_90": [float(lo), float(hi)],
+                "estimate_interval_width": float(hi - lo),
+                "estimate_mean_error": float(est.mean() - eps_true),
+                "conclusive_share": float(np.mean([s["p_value"] < 0.05 for s in sims])),
+            }
+        out.append(row)
+    accs = {lab: float(np.mean([r["runs"][lab]["decision_accuracy"] for r in out])) for lab in ("planned_duration", "at_cap")}
+    return {"reps": reps, "seed": seed, "entries": out, "mean_decision_accuracy": accs,
+            "note": "Top price-switchback entries; weak-evidence entries have no elasticity decision to recover."}

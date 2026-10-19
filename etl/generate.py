@@ -250,6 +250,27 @@ def build_weekly_sales(rng: np.random.Generator, weeks: pd.DatetimeIndex, truth:
     return pd.DataFrame(rows, columns=["week_start", "item_id", "units_sold", "avg_selling_price"])
 
 
+def counterfactual_daily_units(
+    rng: np.random.Generator,
+    base_daily: float,
+    ratio_today: np.ndarray,
+    ratio_yesterday: np.ndarray,
+    elasticity: float,
+    carryover: float = 0.5,
+    dispersion: float = NB_DISPERSION / 7,
+) -> np.ndarray:
+    """Authored counterfactual demand for simulated switchback tests (validation only).
+
+    Daily units for one item given its price ratio today and yesterday: the price effect is
+    a mix of today's price (weight 1 - carryover) and yesterday's (weight `carryover`), so a
+    block right after a switch is only partly clean. Daily noise is negative binomial with
+    dispersion NB_DISPERSION / 7, so seven days sum to the weekly noise the generator uses.
+    """
+    log_r = (1 - carryover) * np.log(ratio_today) + carryover * np.log(ratio_yesterday)
+    mu = base_daily * np.exp(elasticity * log_r)
+    return rng.negative_binomial(dispersion, dispersion / (dispersion + mu))
+
+
 def generate(out_dir: Path = OUT_DIR, seed: int = SEED) -> dict[str, pd.DataFrame]:
     rng = np.random.default_rng(seed)
     weeks = week_starts()

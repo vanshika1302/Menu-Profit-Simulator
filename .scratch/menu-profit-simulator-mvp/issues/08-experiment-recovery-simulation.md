@@ -1,6 +1,6 @@
 # Experiment-recovery Monte Carlo
 
-Status: ready-for-agent
+Status: done
 Blocked by: 06, 07
 
 ## What to build

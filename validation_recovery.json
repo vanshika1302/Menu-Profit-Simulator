@@ -1,0 +1,166 @@
+{
+  "entries": [
+    {
+      "break_even_elasticity": -1.618055176,
+      "item": "classic_burger",
+      "planned_weeks": 758,
+      "rank": 1,
+      "runs": {
+        "at_cap": {
+          "conclusive_share": 0.065,
+          "decision_accuracy": 0.595,
+          "estimate_interval_90": [
+            -6.105133554,
+            4.728014046
+          ],
+          "estimate_interval_width": 10.8331476,
+          "estimate_mean_error": -0.215703942,
+          "weeks": 12
+        },
+        "planned_duration": {
+          "conclusive_share": 0.47,
+          "decision_accuracy": 1.0,
+          "estimate_interval_90": [
+            -1.345246073,
+            0.026656471
+          ],
+          "estimate_interval_width": 1.371902544,
+          "estimate_mean_error": 0.030372061,
+          "weeks": 758
+        }
+      },
+      "truth_says_roll_out": true
+    },
+    {
+      "break_even_elasticity": -1.338670609,
+      "item": "bolognese",
+      "planned_weeks": 1376,
+      "rank": 2,
+      "runs": {
+        "at_cap": {
+          "conclusive_share": 0.04,
+          "decision_accuracy": 0.53,
+          "estimate_interval_90": [
+            -5.999237845,
+            3.905336625
+          ],
+          "estimate_interval_width": 9.904574471,
+          "estimate_mean_error": 0.074338634,
+          "weeks": 12
+        },
+        "planned_duration": {
+          "conclusive_share": 0.945,
+          "decision_accuracy": 0.795,
+          "estimate_interval_90": [
+            -1.725898169,
+            -0.648135152
+          ],
+          "estimate_interval_width": 1.077763017,
+          "estimate_mean_error": -0.007037844,
+          "weeks": 1376
+        }
+      },
+      "truth_says_roll_out": true
+    },
+    {
+      "break_even_elasticity": -1.442260294,
+      "item": "fish_chips",
+      "planned_weeks": 1630,
+      "rank": 3,
+      "runs": {
+        "at_cap": {
+          "conclusive_share": 0.065,
+          "decision_accuracy": 0.505,
+          "estimate_interval_90": [
+            -6.605481073,
+            4.133666403
+          ],
+          "estimate_interval_width": 10.739147476,
+          "estimate_mean_error": -0.046166012,
+          "weeks": 12
+        },
+        "planned_duration": {
+          "conclusive_share": 1.0,
+          "decision_accuracy": 0.605,
+          "estimate_interval_90": [
+            -1.869081096,
+            -0.927831929
+          ],
+          "estimate_interval_width": 0.941249167,
+          "estimate_mean_error": -0.010699352,
+          "weeks": 1630
+        }
+      },
+      "truth_says_roll_out": true
+    },
+    {
+      "break_even_elasticity": -1.625779051,
+      "item": "sirloin",
+      "planned_weeks": 1625,
+      "rank": 4,
+      "runs": {
+        "at_cap": {
+          "conclusive_share": 0.035,
+          "decision_accuracy": 0.53,
+          "estimate_interval_90": [
+            -6.853186874,
+            4.305413444
+          ],
+          "estimate_interval_width": 11.158600318,
+          "estimate_mean_error": 0.101245145,
+          "weeks": 12
+        },
+        "planned_duration": {
+          "conclusive_share": 0.99,
+          "decision_accuracy": 0.74,
+          "estimate_interval_90": [
+            -2.003378685,
+            -0.863590034
+          ],
+          "estimate_interval_width": 1.139788651,
+          "estimate_mean_error": 0.01214037,
+          "weeks": 1625
+        }
+      },
+      "truth_says_roll_out": true
+    },
+    {
+      "break_even_elasticity": -1.7173098,
+      "item": "bacon_burger",
+      "planned_weeks": 1685,
+      "rank": 5,
+      "runs": {
+        "at_cap": {
+          "conclusive_share": 0.06,
+          "decision_accuracy": 0.625,
+          "estimate_interval_90": [
+            -6.049207352,
+            4.060311172
+          ],
+          "estimate_interval_width": 10.109518525,
+          "estimate_mean_error": 0.050514065,
+          "weeks": 12
+        },
+        "planned_duration": {
+          "conclusive_share": 0.805,
+          "decision_accuracy": 1.0,
+          "estimate_interval_90": [
+            -1.187335136,
+            -0.316715369
+          ],
+          "estimate_interval_width": 0.870619768,
+          "estimate_mean_error": 0.0090817,
+          "weeks": 1685
+        }
+      },
+      "truth_says_roll_out": true
+    }
+  ],
+  "mean_decision_accuracy": {
+    "at_cap": 0.557,
+    "planned_duration": 0.828
+  },
+  "note": "Top price-switchback entries; weak-evidence entries have no elasticity decision to recover.",
+  "reps": 200,
+  "seed": 42
+}
