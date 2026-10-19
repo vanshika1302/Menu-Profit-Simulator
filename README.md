@@ -98,6 +98,8 @@ data/processed/             DuckDB file and saved query results (generated, igno
 etl/                        generate, load, warehouse, baseline, run_pipeline, run_queries
 sql/                        schema.sql, views.sql, analysis_queries.sql
 sim/                        model, matrix, scenarios, experiments, validation
+ingest/                     the invoice and recipe parser extension (see below)
+eval/                       generator for the parser's evaluation set (data/eval/)
 notebooks/                  menu_profit_analysis.ipynb (executed, with outputs)
 scripts/                    export_dashboard, make_golden, run_validation, build_notebook
 tests/                      pytest suite, parity.mjs, fixtures/golden.json
@@ -198,6 +200,60 @@ works and where it fails, not real-world accuracy.
 - **No sequential stopping boundaries are claimed.** Results are read at the planned end with a randomization test; always-valid inference is a possible upgrade.
 - **Experiment results are not ingested back into the model.** A measured elasticity can be entered by hand per item in the dashboard.
 - **Out of scope:** the LLM invoice/recipe-to-cost parser (the recipe and ingredient-cost schema is kept narrow for it), real datasets, multi-location restaurants and POS integration.
+
+## Invoice and recipe parser (extension)
+
+The costs above were typed in as CSVs. A restaurant has **supplier invoices and written recipes**. This extension reads their text into the same three tables (`ingredients`, `recipes`, `ingredient_costs`) so the unchanged simulator can use them, and scores how well it reads. It was planned as a separate effort (`.scratch/llm-invoice-parser/`) and is built as the `ingest/` package beside `sim/`.
+
+```
+invoice or recipe text
+        |  ingest/model_client.py   one function, three clients: live (Claude API), recorded (replay), stub (rules)
+        v                           the model copies raw strings and a verbatim quote of each line: it never
+raw fields + source quotes          converts a unit or does arithmetic
+        |  ingest/parse.py + normalise.py + units.py    code: checks every quote against the document, converts
+        v                           units, computes the cost in the ingredient's own unit, checks line totals
+staged rows (data/staging/*.csv)    flagged first, each with a reason and its source line
+        |  a person edits `decision`, then: scripts/ingest_apply.py --write     (no bulk approval)
+        v
+approved overlay (data/approved/)   merged over the synthetic base only on request: etl/run_pipeline.py --with-approved
+```
+
+Three things keep it honest. **The model reads, code computes**: every conversion and cost is plain code, covered by hand-computed tests, and weight is never converted to volume (there is no density table). **Nothing is silently dropped**: a line that cannot be costed becomes a flagged row with no value, and a fee, credit or discount is listed as skipped, never costed. **A person approves**: the overlay is opt-in and kept apart from the generated data, so approving rows never changes the portfolio's committed results.
+
+```bash
+pip install -r requirements-parser.txt             # only for live runs; the rest needs nothing extra
+python eval/generate_cases.py                      # the evaluation set: 60 synthetic documents with known answers
+python scripts/ingest_eval.py --stub               # the rule-based baseline's scorecard (free, deterministic, no key)
+python scripts/ingest_eval.py                      # replay committed recordings of the model (once recorded)
+export ANTHROPIC_API_KEY=...                       # live runs only; the key is never read from a file
+python scripts/ingest_parse.py data/demo/invoice_beef_spike.txt --kind invoice --live --record data/recordings
+python scripts/ingest_apply.py data/staging/invoice_beef_spike.csv           # dry run: edit `decision` first
+python scripts/ingest_apply.py data/staging/invoice_beef_spike.csv --write   # apply
+python etl/run_pipeline.py --with-approved         # rebuild the warehouse on the approved rows
+python scripts/build_parser_notebook.py            # the executed demo notebook
+```
+
+`notebooks/invoice_parser_demo.ipynb` follows one constructed invoice end to end: beef prices up about 30%, a catch-weight line, a vague cheese line the reviewer corrects to mozzarella, a lettuce line priced per bunch that is refused, and a fuel surcharge that is listed but never costed. Approving the rows moves Short Rib from Puzzle to Dog, and two untouched burgers change class because their category's thresholds moved.
+
+**Scoring.** Sixty documents are rendered from the synthetic restaurant with the answers known (40 invoices in four difficulty tiers, 14 recipes, 6 hand-written adversarial cases including an injected instruction, a credit memo, a missing serving count and a price per bunch). Rows are matched on keys and every row lands in one bucket: right, right but flagged, wrong but flagged (caught), **wrong and unflagged (a silent error)**, fabricated or omitted. The headline numbers are the silent error rate and the catch rate, and the downstream effect is measured on the simulator: unit cost, margin, weekly profit and menu class flips when the parsed rows are approved, with and without the flagged ones. No finding has a pass/fail bound; snapshots are committed and checked.
+
+| Reader (all 60 cases) | Rows F1 | Silent error rate | Invoices with supplier name variants (tier 3) | Class flips: all rows approved / only unflagged approved |
+|---|---|---|---|---|
+| Rule-based baseline | 0.863 | 0.000 | F1 0.438 | 2 / 5 |
+| Claude (`claude-sonnet-5-5`) | **not yet recorded** | | | |
+
+The baseline is a handful of regular expressions that I wrote **knowing the generator's layouts**, so it is a favourable one: it reads the clean, pack-notation and recipe tiers perfectly, and fails on abbreviated supplier names, which become flagged new ingredients (so its errors are caught, not silent). The model's row is empty until a live run is recorded with an API key (`--live --split dev` to tune on the development set, then `--live --split test --final` once, scored a single time); the notebook and this table fill in from the committed snapshots.
+
+**Parser limitations.**
+- The evaluation invoices are **synthetic and rendered by the project's own generator**, and the baseline was written alongside it, so real invoices will be messier and these scores are not real-world accuracy. The formats research found no real invoice sample and no prevalence data, so "common" and "rare" are judgments.
+- A model can invent or omit a quantity and misread a unit or pack size. That is why every quote is checked against the document, every total is re-checked in code, uncertain rows are flagged, and a person approves.
+- Text only: no OCR, PDFs or images. One call per document, and a document over about 6,000 tokens is refused with a request to split it.
+- No yield or trim model: a recipe line that mentions edible portion or trimming is flagged `no_yield_applied` and recorded as written.
+- No density table, so weight-to-volume conversions are refused. The can-size table is approximate and holds only the #10 can. Beverage ingredients are stocked in fluid ounces in the data but the unit is written `oz`, which the converter reads as weight, so their volume packs are refused and flagged.
+- Defences against instructions hidden in an invoice (a delimited data block, schema and catalogue checks, source quotes beside every row, adversarial cases in the evaluation) reduce the risk and do not remove it.
+- Confidence is a categorical status plus the results of the code's checks, not a probability.
+- Results depend on a model version and a prompt version and must be re-recorded when either changes; the recorded results are replays.
+- Staged rows always need a person, and the approved overlay is opt-in and not part of the portfolio's committed artifacts.
 
 ## Presenting it
 

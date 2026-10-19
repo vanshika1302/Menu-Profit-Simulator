@@ -1,0 +1,8 @@
+run_id,row_id,kind,key,decision,approved_at,source_sha256,original_value,corrected_value,flags
+59ec40cff15f,1bad18e784a2,cost,mozzarella @ 2025-12-15,approve,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,7.000000,ingredient_id=mozzarella,new_ingredient;edited
+59ec40cff15f,8d98466a98ac,ingredient,cheese_shredded,reject,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,,,new_ingredient
+59ec40cff15f,70937f6761d5,cost,romaine @ 2025-12-15,reject,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,,,unconvertible_unit
+59ec40cff15f,9195764441cd,cost,ribeye @ 2025-12-15,approve,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,28.000000,,
+59ec40cff15f,3b8b60aa7abc,cost,sirloin @ 2025-12-15,approve,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,20.100000,,
+59ec40cff15f,2e9d71a24d62,cost,short_rib @ 2025-12-15,approve,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,19.000000,,
+59ec40cff15f,65232b86706a,cost,ground_beef @ 2025-12-15,approve,2025-12-16T12:00:00Z,59ec40cff15f18442be37dfdab6766815eeaa81f4696a0d108346777fab6e5d9,12.200000,,

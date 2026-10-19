@@ -76,6 +76,22 @@ Close with:
 
 > "None of this is real-world accuracy. It shows the method works and where it fails on data where I know the answer."
 
+## 7. Optional: reading an invoice (60 seconds, from the demo notebook)
+
+*Open:* `notebooks/invoice_parser_demo.ipynb` (it runs with no key).
+
+> "Everything so far started from clean cost data. A restaurant has invoices. This extension reads one. The model only reads: it copies raw fields and quotes each line. It never converts a unit or does a sum; plain code does, so the arithmetic is the same every time and tested by hand."
+
+*Show:* the staged rows, flagged first: the vague cheese line, the lettuce priced per bunch (refused, no cost), the fuel surcharge (listed, never costed), and the clean beef rows with their source quotes.
+
+> "A person approves, row by row, with no bulk approve. Here the reviewer corrects the cheese to mozzarella and rejects the lettuce. Rebuild the simulator on those rows and Short Rib drops from Puzzle to Dog. Two burgers change class too, though their own cost did not move, because their category's thresholds shifted."
+
+*Close with the score:*
+
+> "I score it against sixty documents where I know the answers. The number I watch is the silent error rate: a wrong row nobody flagged, the only error a reviewer cannot see. My regex baseline gets zero silent errors but fails on abbreviated supplier names, and it was written knowing my own generator, so I treat it as a favourable baseline, not proof."
+
+If the live model's snapshot is committed (`ingest_eval_live.json`), quote its silent error rate and its score on the supplier-name tier. If it is not, say plainly that the model has not been recorded yet.
+
 ---
 
 ## Likely questions (short answers)
@@ -91,4 +107,4 @@ Close with:
 
 - Page will not load: open `index.html` from disk; it is self-contained. Fonts fall back to system fonts offline.
 - Numbers differ from this script: the data was regenerated. Re-run through steps 2 to 5 and update the numbers; the shape of the story (certain, depends, measure) does not change.
-- Short on time: do steps 0, 2, 3 and 5, then the first two validation numbers.
+- Short on time: do steps 0, 2, 3 and 5, then the first two validation numbers. Step 7 is optional.
