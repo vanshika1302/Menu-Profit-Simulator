@@ -4,7 +4,7 @@ Label: wayfinder:map
 
 ## Destination
 
-A **build-ready spec** (PRD plus ordered implementation slices) for the LLM invoice and recipe parser that extends the finished Menu Profit Simulator, executed later by separate AFK sessions. Done when nothing is left to decide before someone goes and builds it. This effort plans; it does not build.
+**Reached.** A **build-ready spec** (PRD plus ordered implementation slices) for the LLM invoice and recipe parser that extends the finished Menu Profit Simulator, executed later by separate AFK sessions. Done when nothing is left to decide before someone goes and builds it. This effort plans; it does not build.
 
 ## Notes
 
@@ -27,11 +27,11 @@ A **build-ready spec** (PRD plus ordered implementation slices) for the LLM invo
 - [What is in the evaluation set and how is it built?](issues/05-eval-set-design.md): a seeded generator renders about 60 documents (40 invoices in four difficulty tiers, 14 recipes, 6 hand-written adversarial) from the synthetic CSVs with generator-written truth; a 70/30 development and test split with the test set scored once and regenerated with a new seed if the prompt changes afterwards; a full live run is about 60 to 80 calls; committed under `data/eval/`, under 1 MB.
 - [Where does the parser live in the repo and how does it fit the existing pipeline?](issues/08-repo-architecture.md): a new `ingest/` package beside the untouched `sim/`, three plain scripts for parse, apply and evaluate, only `etl/load.py` and `etl/run_pipeline.py` changed for the opt-in overlay, tests on stub and recorded clients, `anthropic` imported only inside the live client, CI unchanged.
 - [How is the parser scored, including the effect on the simulator's answers?](issues/06-metrics-and-downstream-effect.md): rows matched on keys with fabricated and omitted counted; six buckets with the silent error rate and catch rate as headlines and per-flag precision and recall; downstream cost, margin, total profit and class flips from applying all rows and only unflagged rows; a free recorded scorecard checked by pytest and a live snapshot checked by the command; no bounds; the stub as the baseline, with the synthetic-data framing stated.
+- [Spec: LLM invoice and recipe parser](../llm-invoice-parser-build/spec.md): the destination. Gathers every decision above, decides the presentation (a recorded-response demo notebook, a README section, one walkthrough step), lists the Limitations to state, and points at 11 ordered build slices in `../llm-invoice-parser-build/issues/` (one, the live evaluation run with an API key, needs a person).
 
 ## Not yet specified
 
-- **Presentation:** how the parser appears in the notebook, README and walkthrough, and what the Limitations section must say (hallucinated quantities, unit and pack-size errors, no OCR).
-- **Spec assembly:** the PRD and ordered slices, once the decisions above land.
+Nothing. The presentation and Limitations are decided in the spec, and the spec assembly is done. The map is complete.
 
 ## Out of scope
 
