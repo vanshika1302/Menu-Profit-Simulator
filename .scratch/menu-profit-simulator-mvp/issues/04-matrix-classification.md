@@ -1,6 +1,6 @@
 # Menu engineering matrix classification
 
-Status: ready-for-agent
+Status: done
 Blocked by: 02, 03
 
 ## What to build
