@@ -1,6 +1,6 @@
 # Executed analysis notebook
 
-Status: ready-for-agent
+Status: done
 Blocked by: 05, 06, 07, 08
 
 ## What to build
