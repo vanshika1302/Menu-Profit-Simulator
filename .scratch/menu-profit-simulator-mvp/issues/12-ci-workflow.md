@@ -1,6 +1,6 @@
 # GitHub Actions workflow
 
-Status: ready-for-agent
+Status: done
 Blocked by: 09, 10
 
 ## What to build

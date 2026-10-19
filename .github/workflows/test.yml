@@ -1,0 +1,31 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install -r requirements.txt
+      - name: pytest (generator, SQL, model, validation snapshot, leakage, dashboard render)
+        run: pytest -q
+      - name: JS parity with the Python reference
+        run: node tests/parity.mjs
+      - name: Committed index.html matches a fresh export
+        run: |
+          python scripts/export_dashboard.py
+          git diff --exit-code index.html
+      - name: Golden fixtures are current
+        run: |
+          python scripts/make_golden.py
+          git diff --exit-code tests/fixtures/golden.json
