@@ -109,6 +109,17 @@ def _safe_price(text):
     return None if is_refusal(v) else v
 
 
+def _qty(text) -> float | None:
+    """A quantity from the model's string, tolerating a trailing unit or label ("2 CS", "13 QT")."""
+    if text is None or not str(text).strip():
+        return None
+    for candidate in (str(text), str(text).split()[0]):
+        v = parse_number(candidate)
+        if not is_refusal(v):
+            return float(v)
+    return None
+
+
 def _case_word(text: str | None) -> bool:
     return bool(text) and text.strip().lower().rstrip(".") in CASE_WORDS
 
@@ -150,11 +161,16 @@ def compute_line_cost(line: dict, to_unit: str) -> LineCost:
         if not recv_text:
             return LineCost(None, None, ["needs_cost"], "catch-weight line with no received weight")
         unit_name = unit_text if unit_text and not is_refusal(normalise_unit(unit_text)) else price_unit_text
-        amount = amount_in(f"{recv_text} {unit_name or ''}".strip(), to_unit)
+        embedded = parse_amount(recv_text)       # the model may write the unit inside the quantity ("121.6 LB")
+        if not is_refusal(embedded) and len(embedded) == 1:
+            recv_q, recv_unit = embedded[0]
+            amount = convert(recv_q, recv_unit, to_unit)
+        else:
+            amount = amount_in(f"{recv_text} {unit_name or ''}".strip(), to_unit)
+            recv_q = parse_number(recv_text.split()[0]) if recv_text.split() else None
+            recv_unit = normalise_unit(unit_name) if unit_name else None
         if is_refusal(amount):
             return refuse(amount)
-        recv_q = parse_number(recv_text.split()[0]) if recv_text.split() else None
-        recv_unit = normalise_unit(unit_name) if unit_name else None
         if is_refusal(recv_unit) or recv_unit is None or is_refusal(recv_q):
             return LineCost(None, None, ["unconvertible_unit"], f"cannot read the received weight {recv_text!r} {unit_name or ''}")
         if ext is not None:
@@ -184,8 +200,7 @@ def compute_line_cost(line: dict, to_unit: str) -> LineCost:
         if is_refusal(cost):
             return refuse(cost)
         per_case = pack_quantity(pack, to_unit)
-        qty = parse_number(line["qty_ordered"]) if line.get("qty_ordered") else None
-        cases = None if qty is None or is_refusal(qty) else float(qty)
+        cases = _qty(line.get("qty_ordered"))
         check(cases, unit_price, ext, "cases")
         return LineCost(cost, None if cases is None else cases * per_case, flags, "; ".join(checks) or f"case price over {pack_text}")
 
@@ -199,9 +214,7 @@ def compute_line_cost(line: dict, to_unit: str) -> LineCost:
     cost = unit_cost_from_unit_price(unit_price, canon, to_unit)
     if is_refusal(cost):
         return refuse(cost)
-    qty_text = line.get("qty_ordered") or line.get("qty_received")
-    qty = parse_number(qty_text) if qty_text else None
-    qn = None if qty is None or is_refusal(qty) else float(qty)
+    qn = _qty(line.get("qty_ordered") or line.get("qty_received"))
     check(qn, unit_price, ext, "quantity")
     per_unit = convert(1, canon, to_unit)
     return LineCost(cost, None if qn is None else qn * per_unit, flags, "; ".join(checks) or "unit price")

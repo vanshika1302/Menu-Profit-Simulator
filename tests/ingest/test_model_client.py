@@ -269,7 +269,7 @@ def test_the_sdk_is_only_imported_inside_the_live_client():
     offenders = []
     for path in list((ROOT / "ingest").rglob("*.py")) + list((ROOT / "scripts").glob("*.py")) + list((ROOT / "tests").rglob("*.py")):
         rel = path.relative_to(ROOT).as_posix()
-        if rel in ("ingest/model_client.py", "tests/ingest/test_model_client.py"):
+        if rel in ("ingest/model_client.py", "tests/ingest/test_model_client.py", "tests/ingest/test_demo_notebook.py"):
             continue
         if "import anthropic" in path.read_text() or "from anthropic" in path.read_text():
             offenders.append(rel)

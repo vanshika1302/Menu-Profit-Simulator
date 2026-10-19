@@ -35,13 +35,40 @@ def test_the_run_commands_point_at_real_files():
         assert (ROOT / referenced).exists()
 
 
-def test_the_scorecard_table_matches_the_committed_baseline_snapshot():
-    import json
-    snap = json.loads((ROOT / "ingest_eval_stub.json").read_text())
+def _row(prefix):
+    return [l for l in SECTION.splitlines() if l.startswith(prefix)][0]
+
+
+def _check_row(row, snap, cases):
     overall = snap["report"]["scorecard"]["overall"]
     tier3 = snap["report"]["scorecard"]["by_tier"]["invoice 3"]["rows"]["f1"]
     d = snap["report"]["downstream"]
-    row = [l for l in SECTION.splitlines() if l.startswith("| Rule-based baseline")][0]
+    assert f"| {cases} |" in row
     assert f"{overall['rows']['f1']:.3f}" in row and f"{overall['silent_error_rate']:.3f}" in row
     assert f"F1 {tier3:.3f}" in row
     assert f"{d['approve_all']['class_flips']} / {d['approve_unflagged']['class_flips']}" in row
+
+
+def test_every_scorecard_row_matches_its_committed_snapshot():
+    import json
+    _check_row(_row("| Rule-based baseline"), json.loads((ROOT / "ingest_eval_stub.json").read_text()), "all 60")
+    _check_row(_row("| Claude (`claude-sonnet-5-5`), replay"), json.loads((ROOT / "ingest_eval_results.json").read_text()), "all 60")
+    live = json.loads((ROOT / "ingest_eval_live.json").read_text())
+    _check_row(_row("| Claude (`claude-sonnet-5-5`), live"), live, "16 held out")
+    assert live["split"] == "test" and live["backend"] == "claude-code"
+
+
+def test_the_readme_records_that_the_model_ran_through_claude_code_not_the_api():
+    text = SECTION.lower()
+    for phrase in ("claude code", "headless mode", "not through the anthropic api", 'all tools disabled', "not been run against the real api",
+                   "prompt was **not changed**", "variance check", "was **not** done"):
+        assert phrase in text, phrase
+    assert "not yet recorded" not in text
+
+
+def test_the_committed_snapshots_say_how_the_model_ran():
+    import json
+    live = json.loads((ROOT / "ingest_eval_live.json").read_text())
+    assert "not through the Anthropic API" in live["note"] and live["model"] == "claude-code:claude-sonnet-5-5"
+    replay = json.loads((ROOT / "ingest_eval_results.json").read_text())
+    assert replay["backend"] == "claude-code" and replay["report"]["cases"] == 60

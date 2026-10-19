@@ -343,7 +343,8 @@ def gen_adversarial(idx, case_id, cat, rng, doc, style, supplier, week, d, truth
     elif trap == "ambiguous_name":
         price = cents(62)
         ln = doc.add(line_text(style, n, "CHEESE SHREDDED", "4/5 LB", "1", "CS", money(price), money(price)))
-        rows.append({"source_line": ln, "ingredient_id": "cheddar", "unit_cost": float(Fraction(price) / 20), "flags": ["ambiguous_name"], "ext": price,
+        rows.append({"source_line": ln, "ingredient_id": "cheddar", "alternatives": ["cheddar", "mozzarella"],
+                     "unit_cost": float(Fraction(price) / 20), "flags": ["ambiguous_name"], "ext": price,
                      "raw": {"description": "CHEESE SHREDDED", "pack_text": "4/5 LB", "qty": "1", "unit": "CS", "unit_price": money(price), "price_unit": "CS", "extended_price": money(price)}})
         messiness.append({"type": "ambiguous name: shredded cheese could be cheddar or mozzarella", "basis": "guessed"})
     elif trap == "new_ingredient":

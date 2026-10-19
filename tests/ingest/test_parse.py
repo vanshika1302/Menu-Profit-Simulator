@@ -332,3 +332,19 @@ def test_tiers_one_and_two_end_to_end_with_an_oracle_model(truth, cat):
         r = got[(row["ingredient_id"], truth["effective_week"])]
         assert r.unit_cost == pytest.approx(row["unit_cost"], rel=1e-9), (truth["case_id"], row)
         assert r.flags == () and r.source_line == row["source_line"]
+
+
+# ---------------------------------------------------------------- tolerance for how a model writes quantities (found in the first live run)
+@pytest.mark.parametrize("received,unit", [("121.6 LB", "LB"), ("121.6", "LB"), ("121.6 lb", None), ("121.6", None)])
+def test_a_catch_weight_quantity_may_carry_its_unit(received, unit):
+    ln = line(7, "BACON SLICED", "bacon", "q", pack="CW", received=received, unit=unit, price="9.71", price_unit="LB", ext="1,180.74")
+    lc = compute_line_cost(ln, "lb")
+    assert lc.unit_cost == pytest.approx(1180.74 / 121.6) and lc.flags == []
+
+
+def test_a_case_or_unit_quantity_may_carry_its_unit():
+    case = line(5, "FLOUR", "flour", "q", pack="50 LB", ordered="2 CS", unit="CS", price="40.00", ext="99.00")
+    lc = compute_line_cost(case, "lb")
+    assert lc.unit_cost == pytest.approx(0.80) and "check_failed" in lc.flags       # the check still runs on "2 CS"
+    plain = line(5, "CREAM", "cream", "q", ordered="13 QT", unit="QT", price="6.02", price_unit="QT", ext="78.26")
+    assert compute_line_cost(plain, "qt").flags == []

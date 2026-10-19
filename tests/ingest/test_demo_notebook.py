@@ -25,9 +25,9 @@ def test_the_demo_notebook_is_executed_and_error_free():
 
 def test_the_demo_notebook_needs_no_key_and_defines_no_formulas():
     src = "\n".join("".join(c["source"]) for c in cells())
-    assert "anthropic" not in src.lower() and "ANTHROPIC_API_KEY" not in src
+    for banned in ("import anthropic", "from anthropic", "ANTHROPIC_API_KEY", "LiveClient", "ClaudeCodeClient", "make_live_client", "subprocess"):
+        assert banned not in src, banned          # the notebook only replays recordings; it can never call a model
     assert "def " not in src
-    assert "LiveClient" not in src
 
 
 def test_the_demo_notebook_writes_only_the_demo_overlay():
@@ -40,9 +40,11 @@ def test_the_demo_overlay_is_small_and_matches_its_log():
     costs = list(csv.DictReader(open(DEMO / "ingredient_costs.csv")))
     log = list(csv.DictReader(open(DEMO / "approvals.csv")))
     assert {r["ingredient_id"] for r in costs} == {"ribeye", "sirloin", "short_rib", "ground_beef", "mozzarella"}
-    assert sorted(r["decision"] for r in log) == ["approve"] * 5 + ["reject"] * 2
+    assert sorted(r["decision"] for r in log) == ["approve"] * 5 + ["reject"]
     edited = [r for r in log if "edited" in r["flags"]]
-    assert len(edited) == 1 and edited[0]["corrected_value"] == "ingredient_id=mozzarella"
+    # the model could not find a received weight on the catch-weight line: the reviewer costs it from the invoice ($20.10 a lb)
+    assert len(edited) == 1 and edited[0]["key"].startswith("sirloin") and edited[0]["corrected_value"] == "20.1"
+    assert any(r["key"].startswith("romaine") and r["decision"] == "reject" for r in log)
     assert all(r["approved_at"] == "2025-12-16T12:00:00Z" for r in log)       # a fixed time: the committed files are stable
 
 

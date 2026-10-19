@@ -59,10 +59,14 @@ print(text)"""),
 
 md("## 2. Parse\n\nThe parser sends the text to the model behind one interface and gets back raw strings and a source quote for every line. Everything after that is code."),
 code("""catalogue = load_catalogue(SYNTH)          # with the existing cost rows, so an invoice into an existing week is flagged as an update
-recorded = mc.RecordedClient(ROOT / "data" / "recordings", model=mc.DEFAULT_MODEL, prompt_version=mc.PROMPT_VERSIONS["invoice"])
+summary = mc.recordings_summary(ROOT / "data" / "recordings") if (ROOT / "data" / "recordings").is_dir() else {"models": []}
+label = summary["models"][0] if len(summary["models"]) == 1 else mc.DEFAULT_MODEL
+recorded = mc.RecordedClient(ROOT / "data" / "recordings", model=label, prompt_version=mc.PROMPT_VERSIONS["invoice"])
 try:
     result = parse_invoice(text, recorded, catalogue, "invoice_beef_spike.txt")
-    producer = f"recorded responses from {mc.DEFAULT_MODEL}"
+    producer = f"recorded responses from {label}"
+    if label.startswith(mc.CLAUDE_CODE_PREFIX):
+        producer += " (run through Claude Code's headless mode with all tools disabled, not the Anthropic API)"
 except mc.MissingRecording:
     result = parse_invoice(text, mc.StubClient(rule_based_extractor), catalogue, "invoice_beef_spike.txt")
     producer = "the rule-based baseline (there is no recording of the model for this invoice yet)"
@@ -75,22 +79,36 @@ md("Flagged rows come first. Each row carries the quoted source line, so a revie
 code("""quotes = {r.source_line: r.source_quote for r in result.rows if r.source_quote}      # one quote per source line
 pd.DataFrame([{"line": n, "quote": q} for n, q in sorted(quotes.items())])"""),
 
-md("## 3. Review\n\nA person edits the `decision` column and, where needed, `corrected_value`. There is **no bulk approval**: every row needs an explicit decision. Here the reviewer's choices are simulated:\n\n* approve the four beef rows that came out clean;\n* the `CHEESE SHREDDED` line is really mozzarella: approve its cost row with a correction, and reject the proposed new ingredient;\n* reject the lettuce row (a price per bunch cannot become a per-head cost);\n* leave the fuel surcharge alone (it was never costed)."),
+md("""## 3. Review
+
+A person edits the `decision` column and, where needed, `corrected_value`. There is **no bulk approval**: every row needs an explicit decision. Here the reviewer's choices are simulated by code that follows the flags:
+
+* approve the rows that came out clean;
+* a **vague line** (`CHEESE SHREDDED`) is mozzarella: confirm it if the reader already guessed that, or correct it if the reader called it a new ingredient (and reject that proposed new ingredient);
+* a **catch-weight line** whose received weight the reader could not find is costed by the reviewer from the invoice, which bills $20.10 per pound;
+* reject the lettuce row (a price per bunch cannot become a per-head cost);
+* leave the fuel surcharge alone (it was never costed)."""),
 code("""tmp = Path(tempfile.mkdtemp())
 staging_path = tmp / "invoice_beef_spike.csv"
 write_staging(result.rows, staging_path)
 write_meta(result.meta, staging_path)
 recs = list(csv.DictReader(open(staging_path, newline="")))
 for r in recs:
-    ing = r["ingredient_id"]
-    if r["status"] == "proposed":
-        r["decision"] = "approve"
-    elif r["kind"] == "ingredient":
-        r["decision"] = "reject"                                      # not a new ingredient: it is mozzarella
-    elif r["kind"] == "cost" and "new_ingredient" in r["flags"]:
+    flags = r["flags"].split(";") if r["flags"] else []
+    if r["status"] == "skipped":
+        continue                                                       # a fee: nothing to apply, leave it undecided
+    if r["kind"] == "ingredient":
+        r["decision"] = "reject"                                       # a proposed new ingredient: the cheese is not new
+    elif "unconvertible_unit" in flags:
+        r["decision"] = "reject"                                       # priced per bunch: no safe conversion
+    elif "needs_cost" in flags and r["ingredient_id"] == "sirloin":
+        r["decision"], r["corrected_value"] = "approve", "20.1"        # the invoice bills $20.10 per lb
+    elif "new_ingredient" in flags:
         r["decision"], r["corrected_value"] = "approve", "ingredient_id=mozzarella"
-    elif r["kind"] == "cost" and "unconvertible_unit" in r["flags"]:
-        r["decision"] = "reject"
+    elif "ambiguous_name" in flags:
+        r["decision"] = "approve"                                      # the reviewer confirms it is mozzarella
+    elif r["status"] == "proposed":
+        r["decision"] = "approve"
 with open(staging_path, "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(recs[0].keys()), lineterminator="\\n")
     w.writeheader(); w.writerows(recs)
@@ -128,7 +146,7 @@ for i, was, now, name in moved:
     print(f"  {name}: {was} -> {now}" + ("" if name in own else "   (its own cost did not change: its category's thresholds moved)"))
 print(f"Menu weekly contribution profit: ${r0['total']['baseline']['profit']:,.0f} -> ${r1['total']['baseline']['profit']:,.0f}")"""),
 
-md("## 5. How well does the parser read? (synthetic evaluation set)\n\nSixty documents rendered from the synthetic restaurant, with the answers known, scored by `ingest/scorecard.py`. The rule-based baseline was **written knowing the generator's layouts**, so it is a favourable baseline: it reads the regular formats perfectly and fails on supplier name variants. The model's snapshot appears here once a live run has been recorded."),
+md("## 5. How well does the parser read? (synthetic evaluation set)\n\nSixty documents rendered from the synthetic restaurant, with the answers known, scored by `ingest/scorecard.py`. The rule-based baseline was **written knowing the generator's layouts**, so it is a favourable baseline: it reads the regular formats perfectly and fails on supplier name variants. The model's snapshot (scored once on the held-out test set, through Claude Code's headless mode) is shown beside it when it has been recorded."),
 code("""snaps = {"rule-based baseline": json.load(open(ROOT / "ingest_eval_stub.json"))}
 live = ROOT / "ingest_eval_live.json"
 if live.exists():

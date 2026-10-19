@@ -248,3 +248,16 @@ def test_the_scorecard_does_not_touch_sim_or_the_committed_data():
     before = {p.name: p.read_bytes() for p in (ROOT / "data" / "synthetic").glob("*.csv")}
     sc.downstream_effect({"c1": [prow(1, "ribeye", 100.0)]}, one_cost_truth(21.0))
     assert before == {p.name: p.read_bytes() for p in (ROOT / "data" / "synthetic").glob("*.csv")}
+
+
+# ---------------------------------------------------------------- an ambiguous line may be read either way, if the row says it is ambiguous
+def test_an_ambiguous_line_accepts_either_reading_when_flagged_ambiguous():
+    t = truth([dict(trow(1, "cheddar", 3.10, ["ambiguous_name"]), alternatives=["cheddar", "mozzarella"])])
+    for ing in ("cheddar", "mozzarella"):
+        b = buckets([prow(1, ing, 3.10, ["ambiguous_name"])], t)
+        assert b["correct_flagged"] == 1 and not (b.get("fabricated") or b.get("omitted") or b.get("silent_error") or b.get("over_cautious")), (ing, b)
+    # a confident pick of the other reading is a silent error of identity: it does not get the benefit
+    b = buckets([prow(1, "mozzarella", 3.10)], t)
+    assert b["fabricated"] == 1 and b["omitted"] == 1 and b["fabricated_unflagged"] == 1
+    # an unrelated ingredient never matches
+    assert buckets([prow(1, "salmon", 3.10, ["ambiguous_name"])], t)["fabricated"] == 1

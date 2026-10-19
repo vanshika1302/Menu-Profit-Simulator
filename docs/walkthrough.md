@@ -90,7 +90,7 @@ Close with:
 
 > "I score it against sixty documents where I know the answers. The number I watch is the silent error rate: a wrong row nobody flagged, the only error a reviewer cannot see. My regex baseline gets zero silent errors but fails on abbreviated supplier names, and it was written knowing my own generator, so I treat it as a favourable baseline, not proof."
 
-If the live model's snapshot is committed (`ingest_eval_live.json`), quote its silent error rate and its score on the supplier-name tier. If it is not, say plainly that the model has not been recorded yet.
+"On the sixteen held-out test documents the model made no silent errors and scored 0.99 on rows; on invoices with abbreviated supplier names it scored a perfect 1.0 where my regex scored 0.44. Its one miss was a trap it flagged rather than got wrong. I ran it through Claude Code's headless mode with every tool disabled, not the API, because I had no key, and the README says so. It is sixteen small synthetic documents from my own generator, so I read it as 'works on these', not as an accuracy rate."
 
 ---
 

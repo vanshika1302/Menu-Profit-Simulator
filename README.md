@@ -224,9 +224,10 @@ Three things keep it honest. **The model reads, code computes**: every conversio
 pip install -r requirements-parser.txt             # only for live runs; the rest needs nothing extra
 python eval/generate_cases.py                      # the evaluation set: 60 synthetic documents with known answers
 python scripts/ingest_eval.py --stub               # the rule-based baseline's scorecard (free, deterministic, no key)
-python scripts/ingest_eval.py                      # replay committed recordings of the model (once recorded)
-export ANTHROPIC_API_KEY=...                       # live runs only; the key is never read from a file
+python scripts/ingest_eval.py                      # replay the committed recordings of the model: free, no key
+export ANTHROPIC_API_KEY=...                       # live runs through the API only; the key is never read from a file
 python scripts/ingest_parse.py data/demo/invoice_beef_spike.txt --kind invoice --live --record data/recordings
+python scripts/ingest_parse.py data/demo/invoice_beef_spike.txt --kind invoice --live --backend claude-code   # no key: Claude Code's headless mode
 python scripts/ingest_apply.py data/staging/invoice_beef_spike.csv           # dry run: edit `decision` first
 python scripts/ingest_apply.py data/staging/invoice_beef_spike.csv --write   # apply
 python etl/run_pipeline.py --with-approved         # rebuild the warehouse on the approved rows
@@ -237,12 +238,17 @@ python scripts/build_parser_notebook.py            # the executed demo notebook
 
 **Scoring.** Sixty documents are rendered from the synthetic restaurant with the answers known (40 invoices in four difficulty tiers, 14 recipes, 6 hand-written adversarial cases including an injected instruction, a credit memo, a missing serving count and a price per bunch). Rows are matched on keys and every row lands in one bucket: right, right but flagged, wrong but flagged (caught), **wrong and unflagged (a silent error)**, fabricated or omitted. The headline numbers are the silent error rate and the catch rate, and the downstream effect is measured on the simulator: unit cost, margin, weekly profit and menu class flips when the parsed rows are approved, with and without the flagged ones. No finding has a pass/fail bound; snapshots are committed and checked.
 
-| Reader (all 60 cases) | Rows F1 | Silent error rate | Invoices with supplier name variants (tier 3) | Class flips: all rows approved / only unflagged approved |
-|---|---|---|---|---|
-| Rule-based baseline | 0.863 | 0.000 | F1 0.438 | 2 / 5 |
-| Claude (`claude-sonnet-5-5`) | **not yet recorded** | | | |
+| Reader | Cases | Rows F1 | Silent error rate | Invoices with supplier name variants (tier 3) | Class flips: all rows approved / only unflagged approved |
+|---|---|---|---|---|---|
+| Rule-based baseline | all 60 | 0.863 | 0.000 | F1 0.438 | 2 / 5 |
+| Claude (`claude-sonnet-5-5`), replay of the recordings | all 60 | 0.997 | 0.000 | F1 1.000 | 1 / 4 |
+| Claude (`claude-sonnet-5-5`), live, **test set scored once** | 16 held out | 0.990 | 0.000 | F1 1.000 | 1 / 0 |
 
-The baseline is a handful of regular expressions that I wrote **knowing the generator's layouts**, so it is a favourable one: it reads the clean, pack-notation and recipe tiers perfectly, and fails on abbreviated supplier names, which become flagged new ingredients (so its errors are caught, not silent). The model's row is empty until a live run is recorded with an API key (`--live --split dev` to tune on the development set, then `--live --split test --final` once, scored a single time); the notebook and this table fill in from the committed snapshots.
+**How the model was run: through Claude Code, not the API.** The model results above were produced with Claude Code's headless mode (`claude -p`) on a Claude Code subscription, not through the Anthropic API, because no API key was available. Every call ran with **all tools disabled** (`--tools ""`), no skills or MCP servers, no settings or project memory, a fresh empty working directory and no API keys in the environment, so the model could only read the text it was sent and return JSON; it could never run a command or read a file. The Anthropic API path (`--backend api`, the default) is implemented and tested against a stand-in SDK, but it has **not been run against the real API**. Recordings made through Claude Code are keyed `claude-code:claude-sonnet-5-5`, so they never mix with API recordings.
+
+**What the numbers do and do not say.** The development set (44 documents) ran first; the prompt was **not changed** afterwards. It exposed two bugs in my own code, which I fixed before the test set: the cost code failed when the model wrote a received weight with its unit inside the string (`121.6 LB`), and the scorer penalised a genuinely ambiguous line for choosing either plausible reading. The held-out test set (16 documents, 102 rows) was then scored once. The model made **no silent errors**, and its one miss was a trap: it matched `OIL TRUFFLE BLACK` to the catalogue's cooking oil but flagged it as ambiguous instead of proposing a new ingredient, so the error was caught, not silent. These are small, clean, synthetic documents rendered by the same author as the baseline's rules, and a handful of rows decide each percentage, so read "no silent errors" as "none in these 358 rows", not as a rate for real invoices. The run-to-run variance check (the same cases three times) was **not** done.
+
+The baseline is a handful of regular expressions that I wrote **knowing the generator's layouts**, so it is a favourable one: it reads the clean, pack-notation and recipe tiers perfectly, and fails on abbreviated supplier names, which become flagged new ingredients (so its errors are caught, not silent). The model's advantage is on exactly the tier the rules were not written for.
 
 **Parser limitations.**
 - The evaluation invoices are **synthetic and rendered by the project's own generator**, and the baseline was written alongside it, so real invoices will be messier and these scores are not real-world accuracy. The formats research found no real invoice sample and no prevalence data, so "common" and "rare" are judgments.
@@ -253,6 +259,8 @@ The baseline is a handful of regular expressions that I wrote **knowing the gene
 - Defences against instructions hidden in an invoice (a delimited data block, schema and catalogue checks, source quotes beside every row, adversarial cases in the evaluation) reduce the risk and do not remove it.
 - Confidence is a categorical status plus the results of the code's checks, not a probability.
 - Results depend on a model version and a prompt version and must be re-recorded when either changes; the recorded results are replays.
+- The model results come from **Claude Code's headless mode on a subscription**, not the Anthropic API, so they say nothing about the API path's behaviour, and the run-to-run variance of the model was not measured.
+- The test set has 16 documents and 102 rows: the scores carry wide uncertainty, and the same author wrote the generator, the baseline and the scorer.
 - Staged rows always need a person, and the approved overlay is opt-in and not part of the portfolio's committed artifacts.
 
 ## Presenting it

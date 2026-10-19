@@ -79,9 +79,14 @@ def score_case(truth: dict, rows: list[StagedRow]) -> dict:
     value_field = "unit_cost" if kind == "cost" else "qty_per_serving"
     week = truth.get("effective_week") or ""
     truth_rows = {}
+    alternatives: dict[tuple, tuple] = {}   # an ambiguous line may be matched to either ingredient, if flagged ambiguous
     for r in truth["rows"]:
         k = (r["ingredient_id"], week) if kind == "cost" else (r["item_id"], r["ingredient_id"])
         truth_rows[k] = r
+        for alt in r.get("alternatives", []):
+            ak = (alt, week) if kind == "cost" else (r["item_id"], alt)
+            if ak != k:
+                alternatives[ak] = k
     produced = [r for r in rows if r.kind == kind and r.status != "skipped"]
     skipped = [r for r in rows if r.status == "skipped"]
     ingredient_rows = [r for r in rows if r.kind == "ingredient"]
@@ -94,6 +99,8 @@ def score_case(truth: dict, rows: list[StagedRow]) -> dict:
     for r in produced:
         k = _predicted_key(r, kind)
         flagged = bool(_flags(r.flags))
+        if k not in truth_rows and k in alternatives and "ambiguous_name" in r.flags:
+            k = alternatives[k]          # the line really is ambiguous: either reading is acceptable when the row says so
         tr = truth_rows.get(k)
         if tr is None:
             b["fabricated"] += 1

@@ -1,0 +1,1009 @@
+{
+  "backend": "claude-code",
+  "mode": "recorded",
+  "model": "claude-code:claude-sonnet-5-5",
+  "note": "Synthetic cases rendered by the project's own generator: scores are not real-world accuracy. This model ran through Claude Code's headless mode (`claude -p`, all tools disabled) on a Claude Code subscription, not through the Anthropic API.",
+  "prompt_versions": {
+    "invoice": "invoice-1",
+    "recipe": "recipe-1"
+  },
+  "report": {
+    "calls": 61,
+    "cases": 60,
+    "cases_with_no_output": {},
+    "downstream": {
+      "approve_all": {
+        "class_flips": 1,
+        "flipped_items": [
+          "side_salad"
+        ],
+        "items_with_cm_error": 12,
+        "max_abs_cm_error": 1.23,
+        "mean_abs_cm_error": 0.361171181,
+        "weekly_profit_error": 30.853382639
+      },
+      "approve_unflagged": {
+        "class_flips": 4,
+        "flipped_items": [
+          "bacon_burger",
+          "chicken_sandwich",
+          "classic_burger",
+          "veggie_burger"
+        ],
+        "items_with_cm_error": 16,
+        "max_abs_cm_error": 3.974375,
+        "mean_abs_cm_error": 0.607718165,
+        "weekly_profit_error": -134.002638493
+      }
+    },
+    "retries": {
+      "cases_retried": 1,
+      "fix_rate": 0.0,
+      "retried_and_fixed": 0,
+      "retry_rate": 0.016666667
+    },
+    "scorecard": {
+      "by_kind": {
+        "invoice": {
+          "buckets": {
+            "clean_hit": 277,
+            "correct_flagged": 17,
+            "fabricated": 1,
+            "omitted": 1,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 44,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 1,
+            "fp": 0,
+            "precision": null,
+            "recall": 0.0,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 3,
+          "per_flag": {
+            "ambiguous_name": {
+              "f1": 0.25,
+              "fn": 0,
+              "fp": 6,
+              "precision": 0.142857143,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "check_failed": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "conflict": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "missing_date": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 4
+            },
+            "needs_cost": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "new_ingredient": {
+              "f1": null,
+              "fn": 1,
+              "fp": 0,
+              "precision": null,
+              "recall": 0.0,
+              "tp": 0
+            },
+            "unconvertible_unit": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 6
+            }
+          },
+          "rows": {
+            "f1": 0.996610169,
+            "precision": 0.996610169,
+            "recall": 0.996610169
+          },
+          "rows_produced": 295,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 32,
+            "f1": 0.984615385,
+            "fn": 0,
+            "fp": 1,
+            "precision": 0.96969697,
+            "recall": 1.0,
+            "tp": 32
+          },
+          "truth_rows": 295
+        },
+        "recipe": {
+          "buckets": {
+            "clean_hit": 45,
+            "correct_flagged": 18,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 16,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {
+            "missing_servings": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 5
+            },
+            "no_yield_applied": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 6
+            },
+            "range_midpoint": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 7
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 63,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 4,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 4
+          },
+          "truth_rows": 63
+        }
+      },
+      "by_split": {
+        "dev": {
+          "buckets": {
+            "clean_hit": 227,
+            "correct_flagged": 29,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 44,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 2,
+          "per_flag": {
+            "ambiguous_name": {
+              "f1": 0.333333333,
+              "fn": 0,
+              "fp": 4,
+              "precision": 0.2,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "check_failed": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "conflict": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "missing_date": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 4
+            },
+            "missing_servings": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 5
+            },
+            "no_yield_applied": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 5
+            },
+            "range_midpoint": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 6
+            },
+            "unconvertible_unit": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 4
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 256,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 26,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 26
+          },
+          "truth_rows": 256
+        },
+        "test": {
+          "buckets": {
+            "clean_hit": 95,
+            "correct_flagged": 6,
+            "fabricated": 1,
+            "omitted": 1,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 16,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 1,
+            "fp": 0,
+            "precision": null,
+            "recall": 0.0,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 1,
+          "per_flag": {
+            "ambiguous_name": {
+              "f1": null,
+              "fn": 0,
+              "fp": 2,
+              "precision": 0.0,
+              "recall": null,
+              "tp": 0
+            },
+            "needs_cost": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "new_ingredient": {
+              "f1": null,
+              "fn": 1,
+              "fp": 0,
+              "precision": null,
+              "recall": 0.0,
+              "tp": 0
+            },
+            "no_yield_applied": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "range_midpoint": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "unconvertible_unit": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 2
+            }
+          },
+          "rows": {
+            "f1": 0.990196078,
+            "precision": 0.990196078,
+            "recall": 0.990196078
+          },
+          "rows_produced": 102,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 10,
+            "f1": 0.952380952,
+            "fn": 0,
+            "fp": 1,
+            "precision": 0.909090909,
+            "recall": 1.0,
+            "tp": 10
+          },
+          "truth_rows": 102
+        }
+      },
+      "by_tier": {
+        "invoice 1": {
+          "buckets": {
+            "clean_hit": 80,
+            "correct_flagged": 0,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 10,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {},
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 80,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 0,
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0
+          },
+          "truth_rows": 80
+        },
+        "invoice 2": {
+          "buckets": {
+            "clean_hit": 80,
+            "correct_flagged": 0,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 10,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {},
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 80,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 0,
+            "f1": null,
+            "fn": 0,
+            "fp": 1,
+            "precision": 0.0,
+            "recall": null,
+            "tp": 0
+          },
+          "truth_rows": 80
+        },
+        "invoice 3": {
+          "buckets": {
+            "clean_hit": 77,
+            "correct_flagged": 3,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 10,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 3,
+          "per_flag": {
+            "ambiguous_name": {
+              "f1": null,
+              "fn": 0,
+              "fp": 3,
+              "precision": 0.0,
+              "recall": null,
+              "tp": 0
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 80,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 30,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 30
+          },
+          "truth_rows": 80
+        },
+        "invoice 4": {
+          "buckets": {
+            "clean_hit": 35,
+            "correct_flagged": 11,
+            "fabricated": 1,
+            "omitted": 1,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 10,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 1,
+            "fp": 0,
+            "precision": null,
+            "recall": 0.0,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {
+            "ambiguous_name": {
+              "f1": 0.4,
+              "fn": 0,
+              "fp": 3,
+              "precision": 0.25,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "check_failed": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "conflict": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "missing_date": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 4
+            },
+            "needs_cost": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "new_ingredient": {
+              "f1": null,
+              "fn": 1,
+              "fp": 0,
+              "precision": null,
+              "recall": 0.0,
+              "tp": 0
+            },
+            "unconvertible_unit": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 3
+            }
+          },
+          "rows": {
+            "f1": 0.978723404,
+            "precision": 0.978723404,
+            "recall": 0.978723404
+          },
+          "rows_produced": 47,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 0,
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0
+          },
+          "truth_rows": 47
+        },
+        "invoice handwritten": {
+          "buckets": {
+            "clean_hit": 5,
+            "correct_flagged": 3,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 4,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {
+            "unconvertible_unit": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 3
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 8,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 2,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 2
+          },
+          "truth_rows": 8
+        },
+        "recipe 1": {
+          "buckets": {
+            "clean_hit": 18,
+            "correct_flagged": 0,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 5,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {},
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 18,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 0,
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0
+          },
+          "truth_rows": 18
+        },
+        "recipe 2": {
+          "buckets": {
+            "clean_hit": 20,
+            "correct_flagged": 0,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 5,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {},
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 20,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 0,
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0
+          },
+          "truth_rows": 20
+        },
+        "recipe 3": {
+          "buckets": {
+            "clean_hit": 5,
+            "correct_flagged": 11,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 4,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {
+            "no_yield_applied": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 5
+            },
+            "range_midpoint": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 6
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 16,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 3,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 3
+          },
+          "truth_rows": 16
+        },
+        "recipe handwritten": {
+          "buckets": {
+            "clean_hit": 2,
+            "correct_flagged": 7,
+            "fabricated": 0,
+            "omitted": 0,
+            "silent_error": 0,
+            "wrong_flagged": 0
+          },
+          "cases": 2,
+          "catch_rate": null,
+          "new_ingredients": {
+            "f1": null,
+            "fn": 0,
+            "fp": 0,
+            "precision": null,
+            "recall": null,
+            "tp": 0,
+            "unit_ok": 0
+          },
+          "over_cautious": 0,
+          "per_flag": {
+            "missing_servings": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 5
+            },
+            "no_yield_applied": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            },
+            "range_midpoint": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "tp": 1
+            }
+          },
+          "rows": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "rows_produced": 9,
+          "silent_error_rate": 0.0,
+          "skipped_lines": {
+            "category_ok": 1,
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 1
+          },
+          "truth_rows": 9
+        }
+      },
+      "overall": {
+        "buckets": {
+          "clean_hit": 322,
+          "correct_flagged": 35,
+          "fabricated": 1,
+          "omitted": 1,
+          "silent_error": 0,
+          "wrong_flagged": 0
+        },
+        "cases": 60,
+        "catch_rate": null,
+        "new_ingredients": {
+          "f1": null,
+          "fn": 1,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "unit_ok": 0
+        },
+        "over_cautious": 3,
+        "per_flag": {
+          "ambiguous_name": {
+            "f1": 0.25,
+            "fn": 0,
+            "fp": 6,
+            "precision": 0.142857143,
+            "recall": 1.0,
+            "tp": 1
+          },
+          "check_failed": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 1
+          },
+          "conflict": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 1
+          },
+          "missing_date": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 4
+          },
+          "missing_servings": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 5
+          },
+          "needs_cost": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 1
+          },
+          "new_ingredient": {
+            "f1": null,
+            "fn": 1,
+            "fp": 0,
+            "precision": null,
+            "recall": 0.0,
+            "tp": 0
+          },
+          "no_yield_applied": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 6
+          },
+          "range_midpoint": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 7
+          },
+          "unconvertible_unit": {
+            "f1": 1.0,
+            "fn": 0,
+            "fp": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "tp": 6
+          }
+        },
+        "rows": {
+          "f1": 0.997206704,
+          "precision": 0.997206704,
+          "recall": 0.997206704
+        },
+        "rows_produced": 358,
+        "silent_error_rate": 0.0,
+        "skipped_lines": {
+          "category_ok": 36,
+          "f1": 0.98630137,
+          "fn": 0,
+          "fp": 1,
+          "precision": 0.972972973,
+          "recall": 1.0,
+          "tp": 36
+        },
+        "truth_rows": 358
+      }
+    }
+  },
+  "split": "all"
+}
