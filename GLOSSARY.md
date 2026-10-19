@@ -39,3 +39,5 @@
 **Catch weight**: an item billed by the weight actually received rather than by the case count, so the cost per pound comes from received weight.
 
 **Approved overlay**: the person-approved rows from the invoice and recipe parser, kept apart from the generated synthetic data and merged over it only when asked for.
+
+**Recorded response**: a saved model reply, replayed in tests and CI so they need no API key and always give the same answer. A changed prompt or model needs a new recording.
