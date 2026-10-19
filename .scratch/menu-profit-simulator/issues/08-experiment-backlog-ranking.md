@@ -40,3 +40,10 @@ No weights are tuned and no prior over elasticity is invented.
 **After an experiment:** nothing in the MVP. The optional per-item elasticity override from the simulation model ticket lets a user enter a measured value by hand. Ingesting results and closing the loop is out of scope.
 
 Limitations to carry into the README: total units as traffic proxy, no satisfaction/waste/staff-load, assumed carryover m = 1 and sigma from synthetic data, guardrail thresholds are policy, menu-design and portion evidence is weak, no sequential boundaries claimed.
+
+## Comments
+
+- Amendments from the dashboard prototype (resolved by the agent under the user's delegation on that ticket):
+  1. The risk cost in the score must be **normalised** (risk as a share of the item's weekly profit, not dollars), otherwise item size cancels out and entries of different size score alike.
+  2. The backlog is shown as two lists: **"Feasible now"** (duration within the 12-week cap) and **"Needs pooling or a larger effect"** (over the cap), each ranked by the score. A single list let near-infeasible tests sit at the top.
+  3. The weak-evidence candidates (portion, menu-design) need defensible stake and feasibility inputs in the build; the prototype used placeholder constants, so its ordering between types is not evidence.
