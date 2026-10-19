@@ -18,18 +18,18 @@
   "rows": [
     {
       "flags": [],
-      "ingredient_id": "provolone",
+      "ingredient_id": "ribeye",
       "raw": {
-        "description": "PROVOLONE",
-        "extended_price": "81.80",
+        "description": "RIBEYE STEAK",
+        "extended_price": "208.90",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "10",
         "unit": "LB",
-        "unit_price": "8.18"
+        "unit_price": "20.89"
       },
       "source_line": 8,
-      "unit_cost": 8.18
+      "unit_cost": 20.89
     },
     {
       "flags": [],
@@ -48,33 +48,33 @@
     },
     {
       "flags": [],
-      "ingredient_id": "short_rib",
+      "ingredient_id": "soda_syrup",
       "raw": {
-        "description": "BEEF SHORT RIB",
-        "extended_price": "42.21",
+        "description": "SODA SYRUP",
+        "extended_price": "65.07",
         "pack_text": null,
-        "price_unit": "LB",
+        "price_unit": "GAL",
         "qty": "3",
-        "unit": "LB",
-        "unit_price": "14.07"
+        "unit": "GAL",
+        "unit_price": "21.69"
       },
       "source_line": 10,
-      "unit_cost": 14.07
+      "unit_cost": 21.69
     },
     {
       "flags": [],
-      "ingredient_id": "hot_sauce",
+      "ingredient_id": "ice_cream",
       "raw": {
-        "description": "WING SAUCE",
-        "extended_price": "60.80",
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "57.80",
         "pack_text": null,
         "price_unit": "QT",
         "qty": "10",
         "unit": "QT",
-        "unit_price": "6.08"
+        "unit_price": "5.78"
       },
       "source_line": 11,
-      "unit_cost": 6.08
+      "unit_cost": 5.78
     },
     {
       "flags": [

@@ -314,7 +314,8 @@ def gen_adversarial(idx, case_id, cat, rng, doc, style, supplier, week, d, truth
     has_date = trap != "missing_date"
     header(doc, supplier, 4000 + idx, d if has_date else None, 3 if d.day > 12 else 0, rng)
     column_header(doc, style)
-    plain_pool = [i for i in pool if i not in ("cream", "tomato_sauce", "cheddar", "mozzarella", "oil")]
+    # the ordinary lines must not share an ingredient with a trap line (two truth rows would share one key)
+    plain_pool = [i for i in pool if i not in ("cream", "tomato_sauce", "cheddar", "mozzarella", "oil", "pasta", "flour", "sirloin")]
     rows, others, skipped, new_ings, extra_ext = [], [], [], [], []
     for n, ing in enumerate(rng.sample(plain_pool, 4), 1):
         r = make_row_clean(rng, doc, style, n, cat, ing, week)

@@ -4,10 +4,10 @@ Date: 08/22/2025
 Ship to: Bistro on Third, 118 Third Street
 
 DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
-GRAHAM CRACKERS                             11 LB        3.33      36.63
-QUINOA                                      20 LB        4.79      95.80
+GROUND BEEF                                 11 LB        8.86      97.46
+ROMAINE                                     20 HD        2.36      47.20
 CREAM CHEESE                                19 LB        4.43      84.17
-LIME                                        18 EA        0.30       5.40
+MIXED GREENS                                18 LB        5.76     103.68
 CHEESE SHREDDED               4/5 LB         1 CS       62.00      62.00
 
-TOTAL DUE: $284.00
+TOTAL DUE: $394.51

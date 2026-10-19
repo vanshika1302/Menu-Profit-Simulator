@@ -5,9 +5,9 @@ Ship to: Bistro on Third, 118 Third Street
 
 DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
 EGGS                                         1 DOZ       5.67       5.67
-LIME                                         1 EA        0.31       0.31
+MIXED GREENS                                 1 LB        6.21       6.21
 BUTTER                                      10 LB        6.70      67.00
-MIXED GREENS                                10 LB        6.21      62.10
+ONION                                       10 LB        1.30      13.00
 EGGS                                        15 DOZ       5.67      85.05
 
-TOTAL DUE: $220.13
+TOTAL DUE: $176.93

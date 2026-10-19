@@ -32,35 +32,35 @@
       "flags": [
         "missing_date"
       ],
-      "ingredient_id": "sugar",
+      "ingredient_id": "veggie_patty",
       "raw": {
-        "description": "SUGAR",
-        "extended_price": "20.48",
+        "description": "VEGGIE PATTY",
+        "extended_price": "42.24",
         "pack_text": null,
-        "price_unit": "LB",
+        "price_unit": "EA",
         "qty": "16",
-        "unit": "LB",
-        "unit_price": "1.28"
+        "unit": "EA",
+        "unit_price": "2.64"
       },
       "source_line": 6,
-      "unit_cost": 1.28
+      "unit_cost": 2.64
     },
     {
       "flags": [
         "missing_date"
       ],
-      "ingredient_id": "soda_syrup",
+      "ingredient_id": "tomato",
       "raw": {
-        "description": "SODA SYRUP",
-        "extended_price": "44.58",
+        "description": "TOMATO",
+        "extended_price": "5.44",
         "pack_text": null,
-        "price_unit": "GAL",
+        "price_unit": "LB",
         "qty": "2",
-        "unit": "GAL",
-        "unit_price": "22.29"
+        "unit": "LB",
+        "unit_price": "2.72"
       },
       "source_line": 7,
-      "unit_cost": 22.29
+      "unit_cost": 2.72
     },
     {
       "flags": [

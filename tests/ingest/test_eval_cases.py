@@ -160,3 +160,10 @@ def test_handwritten_cases_are_present_and_labelled_by_hand():
 def test_the_generator_can_run_as_a_script(tmp_path):
     r = subprocess.run([sys.executable, "eval/generate_cases.py"], cwd=ROOT, capture_output=True, text=True)
     assert r.returncode == 0 and "60" in r.stdout
+
+
+def test_no_case_has_two_truth_rows_with_the_same_key():
+    """Rows are scored on (ingredient, week) for invoices and (dish, ingredient) for recipes: keys must be unique."""
+    for t in truths():
+        keys = [(r["ingredient_id"], t.get("effective_week")) if t["kind"] == "invoice" else (r["item_id"], r["ingredient_id"]) for r in t["rows"]]
+        assert len(keys) == len(set(keys)), t["case_id"]

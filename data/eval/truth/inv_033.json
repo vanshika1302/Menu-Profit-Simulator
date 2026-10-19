@@ -13,33 +13,33 @@
   "rows": [
     {
       "flags": [],
-      "ingredient_id": "shaved_beef",
+      "ingredient_id": "shrimp",
       "raw": {
-        "description": "SHAVED BEEF",
-        "extended_price": "118.71",
+        "description": "SHRIMP",
+        "extended_price": "127.98",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "9",
         "unit": "LB",
-        "unit_price": "13.19"
+        "unit_price": "14.22"
       },
       "source_line": 8,
-      "unit_cost": 13.19
+      "unit_cost": 14.22
     },
     {
       "flags": [],
-      "ingredient_id": "lime",
+      "ingredient_id": "mixed_greens",
       "raw": {
-        "description": "LIME",
-        "extended_price": "6.20",
+        "description": "MIXED GREENS",
+        "extended_price": "112.80",
         "pack_text": null,
-        "price_unit": "EA",
+        "price_unit": "LB",
         "qty": "20",
-        "unit": "EA",
-        "unit_price": "0.31"
+        "unit": "LB",
+        "unit_price": "5.64"
       },
       "source_line": 9,
-      "unit_cost": 0.31
+      "unit_cost": 5.64
     },
     {
       "flags": [],
@@ -58,18 +58,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "hot_sauce",
+      "ingredient_id": "ice_cream",
       "raw": {
-        "description": "WING SAUCE",
-        "extended_price": "109.65",
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "102.34",
         "pack_text": null,
         "price_unit": "QT",
         "qty": "17",
         "unit": "QT",
-        "unit_price": "6.45"
+        "unit_price": "6.02"
       },
       "source_line": 11,
-      "unit_cost": 6.45
+      "unit_cost": 6.02
     },
     {
       "flags": [

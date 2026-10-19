@@ -17,33 +17,33 @@
   "rows": [
     {
       "flags": [],
-      "ingredient_id": "graham",
+      "ingredient_id": "ground_beef",
       "raw": {
-        "description": "GRAHAM CRACKERS",
-        "extended_price": "36.63",
+        "description": "GROUND BEEF",
+        "extended_price": "97.46",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "11",
         "unit": "LB",
-        "unit_price": "3.33"
+        "unit_price": "8.86"
       },
       "source_line": 7,
-      "unit_cost": 3.33
+      "unit_cost": 8.86
     },
     {
       "flags": [],
-      "ingredient_id": "quinoa",
+      "ingredient_id": "romaine",
       "raw": {
-        "description": "QUINOA",
-        "extended_price": "95.80",
+        "description": "ROMAINE",
+        "extended_price": "47.20",
         "pack_text": null,
-        "price_unit": "LB",
+        "price_unit": "HD",
         "qty": "20",
-        "unit": "LB",
-        "unit_price": "4.79"
+        "unit": "HD",
+        "unit_price": "2.36"
       },
       "source_line": 8,
-      "unit_cost": 4.79
+      "unit_cost": 2.36
     },
     {
       "flags": [],
@@ -62,18 +62,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "lime",
+      "ingredient_id": "mixed_greens",
       "raw": {
-        "description": "LIME",
-        "extended_price": "5.40",
+        "description": "MIXED GREENS",
+        "extended_price": "103.68",
         "pack_text": null,
-        "price_unit": "EA",
+        "price_unit": "LB",
         "qty": "18",
-        "unit": "EA",
-        "unit_price": "0.30"
+        "unit": "LB",
+        "unit_price": "5.76"
       },
       "source_line": 10,
-      "unit_cost": 0.3
+      "unit_cost": 5.76
     },
     {
       "flags": [

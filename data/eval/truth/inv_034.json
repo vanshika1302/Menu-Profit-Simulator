@@ -32,24 +32,24 @@
     },
     {
       "flags": [],
-      "ingredient_id": "mixed_greens",
+      "ingredient_id": "onion",
       "raw": {
-        "description": "MIXED GREENS",
-        "extended_price": "56.00",
+        "description": "ONION",
+        "extended_price": "12.80",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "10",
         "unit": "LB",
-        "unit_price": "5.60"
+        "unit_price": "1.28"
       },
       "source_line": 9,
-      "unit_cost": 5.6
+      "unit_cost": 1.28
     },
     {
       "flags": [],
-      "ingredient_id": "hot_sauce",
+      "ingredient_id": "ice_cream",
       "raw": {
-        "description": "WING SAUCE",
+        "description": "VANILLA ICE CREAM",
         "extended_price": "44.80",
         "pack_text": null,
         "price_unit": "QT",
@@ -62,18 +62,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "romaine",
+      "ingredient_id": "shaved_beef",
       "raw": {
-        "description": "ROMAINE",
-        "extended_price": "43.20",
+        "description": "SHAVED BEEF",
+        "extended_price": "230.40",
         "pack_text": null,
-        "price_unit": "HD",
+        "price_unit": "LB",
         "qty": "18",
-        "unit": "HD",
-        "unit_price": "2.40"
+        "unit": "LB",
+        "unit_price": "12.80"
       },
       "source_line": 11,
-      "unit_cost": 2.4
+      "unit_cost": 12.8
     },
     {
       "flags": [

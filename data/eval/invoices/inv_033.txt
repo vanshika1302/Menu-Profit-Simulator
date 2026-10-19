@@ -5,10 +5,10 @@ Ship to: Bistro on Third, 118 Third Street
 
 | DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
 |---|---|---|---|---|---|
-| SHAVED BEEF |  | 9 | LB | 13.19 | 118.71 |
-| LIME |  | 20 | EA | 0.31 | 6.20 |
+| SHRIMP |  | 9 | LB | 14.22 | 127.98 |
+| MIXED GREENS |  | 20 | LB | 5.64 | 112.80 |
 | CREAM CHEESE |  | 10 | LB | 4.59 | 45.90 |
-| WING SAUCE |  | 17 | QT | 6.45 | 109.65 |
+| VANILLA ICE CREAM |  | 17 | QT | 6.02 | 102.34 |
 | PASTA SPAGHETTI | 4/5 PLT | 2 | CS | 55.00 | 110.00 |
 
-TOTAL DUE: $390.46
+TOTAL DUE: $499.02

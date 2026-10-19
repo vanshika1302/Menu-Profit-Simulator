@@ -30,18 +30,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "lime",
+      "ingredient_id": "mixed_greens",
       "raw": {
-        "description": "LIME",
-        "extended_price": "0.31",
+        "description": "MIXED GREENS",
+        "extended_price": "6.21",
         "pack_text": null,
-        "price_unit": "EA",
+        "price_unit": "LB",
         "qty": "1",
-        "unit": "EA",
-        "unit_price": "0.31"
+        "unit": "LB",
+        "unit_price": "6.21"
       },
       "source_line": 8,
-      "unit_cost": 0.31
+      "unit_cost": 6.21
     },
     {
       "flags": [],
@@ -60,18 +60,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "mixed_greens",
+      "ingredient_id": "onion",
       "raw": {
-        "description": "MIXED GREENS",
-        "extended_price": "62.10",
+        "description": "ONION",
+        "extended_price": "13.00",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "10",
         "unit": "LB",
-        "unit_price": "6.21"
+        "unit_price": "1.30"
       },
       "source_line": 10,
-      "unit_cost": 6.21
+      "unit_cost": 1.3
     }
   ],
   "skipped": [],

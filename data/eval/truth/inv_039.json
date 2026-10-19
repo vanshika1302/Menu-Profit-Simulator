@@ -32,48 +32,48 @@
     },
     {
       "flags": [],
-      "ingredient_id": "sirloin",
+      "ingredient_id": "sugar",
       "raw": {
-        "description": "SIRLOIN STEAK",
-        "extended_price": "190.84",
+        "description": "SUGAR",
+        "extended_price": "16.25",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "13",
         "unit": "LB",
-        "unit_price": "14.68"
+        "unit_price": "1.25"
       },
       "source_line": 9,
-      "unit_cost": 14.68
+      "unit_cost": 1.25
     },
     {
       "flags": [],
-      "ingredient_id": "pasta",
+      "ingredient_id": "provolone",
       "raw": {
-        "description": "DRY PASTA",
-        "extended_price": "26.74",
+        "description": "PROVOLONE",
+        "extended_price": "115.78",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "14",
         "unit": "LB",
-        "unit_price": "1.91"
+        "unit_price": "8.27"
       },
       "source_line": 10,
-      "unit_cost": 1.91
+      "unit_cost": 8.27
     },
     {
       "flags": [],
-      "ingredient_id": "graham",
+      "ingredient_id": "ground_beef",
       "raw": {
-        "description": "GRAHAM CRACKERS",
-        "extended_price": "9.87",
+        "description": "GROUND BEEF",
+        "extended_price": "26.88",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "3",
         "unit": "LB",
-        "unit_price": "3.29"
+        "unit_price": "8.96"
       },
       "source_line": 11,
-      "unit_cost": 3.29
+      "unit_cost": 8.96
     },
     {
       "flags": [

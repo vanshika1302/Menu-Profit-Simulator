@@ -5,10 +5,10 @@ Ship to: Bistro on Third, 118 Third Street
 
 | DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
 |---|---|---|---|---|---|
-| SOUP BASE |  | 8 | QT | 3.06 | 24.48 |
-| PARMESAN |  | 11 | LB | 13.09 | 143.99 |
+| TORTILLA CHIPS |  | 8 | LB | 4.17 | 33.36 |
+| POTATO |  | 11 | LB | 1.09 | 11.99 |
 | CHICKEN WINGS |  | 13 | LB | 4.83 | 62.79 |
-| VANILLA ICE CREAM |  | 6 | QT | 5.63 | 33.78 |
+| LEMON |  | 6 | EA | 0.51 | 3.06 |
 | SAUCE TOMATO CRUSHED | 12/#303 | 1 | CS | 30.00 | 30.00 |
 
-TOTAL DUE: $295.04
+TOTAL DUE: $141.20

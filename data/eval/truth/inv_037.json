@@ -13,33 +13,33 @@
   "rows": [
     {
       "flags": [],
-      "ingredient_id": "soup_base",
+      "ingredient_id": "tortilla_chips",
       "raw": {
-        "description": "SOUP BASE",
-        "extended_price": "24.48",
+        "description": "TORTILLA CHIPS",
+        "extended_price": "33.36",
         "pack_text": null,
-        "price_unit": "QT",
+        "price_unit": "LB",
         "qty": "8",
-        "unit": "QT",
-        "unit_price": "3.06"
+        "unit": "LB",
+        "unit_price": "4.17"
       },
       "source_line": 8,
-      "unit_cost": 3.06
+      "unit_cost": 4.17
     },
     {
       "flags": [],
-      "ingredient_id": "parmesan",
+      "ingredient_id": "potato",
       "raw": {
-        "description": "PARMESAN",
-        "extended_price": "143.99",
+        "description": "POTATO",
+        "extended_price": "11.99",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "11",
         "unit": "LB",
-        "unit_price": "13.09"
+        "unit_price": "1.09"
       },
       "source_line": 9,
-      "unit_cost": 13.09
+      "unit_cost": 1.09
     },
     {
       "flags": [],
@@ -58,18 +58,18 @@
     },
     {
       "flags": [],
-      "ingredient_id": "ice_cream",
+      "ingredient_id": "lemon",
       "raw": {
-        "description": "VANILLA ICE CREAM",
-        "extended_price": "33.78",
+        "description": "LEMON",
+        "extended_price": "3.06",
         "pack_text": null,
-        "price_unit": "QT",
+        "price_unit": "EA",
         "qty": "6",
-        "unit": "QT",
-        "unit_price": "5.63"
+        "unit": "EA",
+        "unit_price": "0.51"
       },
       "source_line": 11,
-      "unit_cost": 5.63
+      "unit_cost": 0.51
     },
     {
       "flags": [

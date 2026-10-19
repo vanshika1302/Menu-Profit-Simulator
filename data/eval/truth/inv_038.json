@@ -13,48 +13,48 @@
   "rows": [
     {
       "flags": [],
-      "ingredient_id": "parmesan",
+      "ingredient_id": "potato",
       "raw": {
-        "description": "PARMESAN",
-        "extended_price": "222.19",
+        "description": "POTATO",
+        "extended_price": "18.70",
         "pack_text": null,
         "price_unit": "LB",
         "qty": "17",
         "unit": "LB",
-        "unit_price": "13.07"
+        "unit_price": "1.10"
       },
       "source_line": 8,
-      "unit_cost": 13.07
+      "unit_cost": 1.1
     },
     {
       "flags": [],
-      "ingredient_id": "quinoa",
+      "ingredient_id": "romaine",
       "raw": {
-        "description": "QUINOA",
-        "extended_price": "97.60",
+        "description": "ROMAINE",
+        "extended_price": "47.60",
         "pack_text": null,
-        "price_unit": "LB",
+        "price_unit": "HD",
         "qty": "20",
-        "unit": "LB",
-        "unit_price": "4.88"
+        "unit": "HD",
+        "unit_price": "2.38"
       },
       "source_line": 9,
-      "unit_cost": 4.88
+      "unit_cost": 2.38
     },
     {
       "flags": [],
-      "ingredient_id": "lime",
+      "ingredient_id": "mixed_greens",
       "raw": {
-        "description": "LIME",
-        "extended_price": "2.40",
+        "description": "MIXED GREENS",
+        "extended_price": "46.72",
         "pack_text": null,
-        "price_unit": "EA",
+        "price_unit": "LB",
         "qty": "8",
-        "unit": "EA",
-        "unit_price": "0.30"
+        "unit": "LB",
+        "unit_price": "5.84"
       },
       "source_line": 10,
-      "unit_cost": 0.3
+      "unit_cost": 5.84
     },
     {
       "flags": [],
