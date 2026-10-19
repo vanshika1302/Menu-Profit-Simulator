@@ -1,0 +1,10 @@
+GREENLINE PRODUCE
+INVOICE # 5104
+Date: 2025-03-18
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| LETTUCE ROMAINE | | 12 | BUNCH | 1.80 | 21.60 |
+| TOMATO 5X6 | 25 LB | 2 | CS | 28.00 | 56.00 |
+
+TOTAL DUE: $77.60

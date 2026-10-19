@@ -1,0 +1,74 @@
+{
+  "case_id": "rec_008",
+  "dish": "grain_bowl",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "mixed numbers, Unicode fractions and compound amounts (3 lb 6 oz)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "chicken_breast",
+      "item_id": "grain_bowl",
+      "qty_per_serving": 0.25,
+      "raw": {
+        "ingredient_text": "chicken breast",
+        "quantity_text": "5 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "item_id": "grain_bowl",
+      "qty_per_serving": 0.15,
+      "raw": {
+        "ingredient_text": "mixed greens",
+        "quantity_text": "3 lb"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "item_id": "grain_bowl",
+      "qty_per_serving": 0.0125,
+      "raw": {
+        "ingredient_text": "cooking oil",
+        "quantity_text": "1/4 gal"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "item_id": "grain_bowl",
+      "qty_per_serving": 0.3,
+      "raw": {
+        "ingredient_text": "quinoa",
+        "quantity_text": "6 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "item_id": "grain_bowl",
+      "qty_per_serving": 0.15,
+      "raw": {
+        "ingredient_text": "tomato",
+        "quantity_text": "3 lb"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_008.txt",
+  "split": "test",
+  "tier": 2
+}

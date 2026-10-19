@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_009",
+  "effective_week": "2025-04-28",
+  "invoice_date": "2025-04-29",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "RIBEYE STEAK",
+        "extended_price": "70.05",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "3",
+        "unit": "LB",
+        "unit_price": "23.35"
+      },
+      "source_line": 6,
+      "unit_cost": 23.35
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "187.04",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "14",
+        "unit": "LB",
+        "unit_price": "13.36"
+      },
+      "source_line": 7,
+      "unit_cost": 13.36
+    },
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "62.32",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "19",
+        "unit": "LB",
+        "unit_price": "3.28"
+      },
+      "source_line": 8,
+      "unit_cost": 3.28
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "75.44",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "8",
+        "unit": "LB",
+        "unit_price": "9.43"
+      },
+      "source_line": 9,
+      "unit_cost": 9.43
+    },
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "11.11",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "11",
+        "unit": "LB",
+        "unit_price": "1.01"
+      },
+      "source_line": 10,
+      "unit_cost": 1.01
+    },
+    {
+      "flags": [],
+      "ingredient_id": "potato",
+      "raw": {
+        "description": "POTATO",
+        "extended_price": "22.40",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20",
+        "unit": "LB",
+        "unit_price": "1.12"
+      },
+      "source_line": 11,
+      "unit_cost": 1.12
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "91.68",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "16",
+        "unit": "LB",
+        "unit_price": "5.73"
+      },
+      "source_line": 12,
+      "unit_cost": 5.73
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "12.00",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "16",
+        "unit": "EA",
+        "unit_price": "0.75"
+      },
+      "source_line": 13,
+      "unit_cost": 0.75
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_009.txt",
+  "split": "test",
+  "supplier": "Harbor Provisions",
+  "tier": 1
+}

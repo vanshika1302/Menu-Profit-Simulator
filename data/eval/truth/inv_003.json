@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_003",
+  "effective_week": "2025-08-18",
+  "invoice_date": "2025-08-19",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "45.12",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "8",
+        "unit": "QT",
+        "unit_price": "5.64"
+      },
+      "source_line": 6,
+      "unit_cost": 5.64
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "SHAVED BEEF",
+        "extended_price": "149.52",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "12.46"
+      },
+      "source_line": 7,
+      "unit_cost": 12.46
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "33.53",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "7",
+        "unit": "LB",
+        "unit_price": "4.79"
+      },
+      "source_line": 8,
+      "unit_cost": 4.79
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_breast",
+      "raw": {
+        "description": "CHICKEN BREAST",
+        "extended_price": "63.00",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "5.25"
+      },
+      "source_line": 9,
+      "unit_cost": 5.25
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "46.08",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "8",
+        "unit": "LB",
+        "unit_price": "5.76"
+      },
+      "source_line": 10,
+      "unit_cost": 5.76
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "163.02",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "11",
+        "unit": "GAL",
+        "unit_price": "14.82"
+      },
+      "source_line": 11,
+      "unit_cost": 14.82
+    },
+    {
+      "flags": [],
+      "ingredient_id": "veggie_patty",
+      "raw": {
+        "description": "VEGGIE PATTY",
+        "extended_price": "2.74",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "1",
+        "unit": "EA",
+        "unit_price": "2.74"
+      },
+      "source_line": 12,
+      "unit_cost": 2.74
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "100.03",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "7",
+        "unit": "LB",
+        "unit_price": "14.29"
+      },
+      "source_line": 13,
+      "unit_cost": 14.29
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_003.txt",
+  "split": "test",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 1
+}

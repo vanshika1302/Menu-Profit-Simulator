@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_027",
+  "effective_week": "2025-06-23",
+  "invoice_date": "2025-06-24",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHKN WING JUMBO",
+        "extended_price": "483.48",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "241.74"
+      },
+      "source_line": 6,
+      "unit_cost": 4.8348
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGG LRG GRADE A",
+        "extended_price": "349.24",
+        "pack_text": "15 DOZ",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "87.31"
+      },
+      "source_line": 7,
+      "unit_cost": 5.820666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMATO 5X6",
+        "extended_price": "54.02",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "54.02"
+      },
+      "source_line": 8,
+      "unit_cost": 2.701
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "CHEESE PARM GRATED",
+        "extended_price": "785.34",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "261.78"
+      },
+      "source_line": 9,
+      "unit_cost": 13.089
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "BEEF STEAK SHAVED",
+        "extended_price": "1,290.48",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "645.24"
+      },
+      "source_line": 10,
+      "unit_cost": 12.9048
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "LETTUCE ROMANIE",
+        "extended_price": "56.46",
+        "pack_text": "12 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "28.23"
+      },
+      "source_line": 11,
+      "unit_cost": 2.3525
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP 21/25 PD",
+        "extended_price": "610.55",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "40.3",
+        "unit": "LB",
+        "unit_price": "15.15"
+      },
+      "source_line": 12,
+      "unit_cost": 15.150124069478908
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FIL ATL",
+        "extended_price": "1,281.50",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "82.2",
+        "unit": "LB",
+        "unit_price": "15.59"
+      },
+      "source_line": 14,
+      "unit_cost": 15.590024330900244
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 17
+    },
+    {
+      "category": "credit",
+      "source_line": 18
+    },
+    {
+      "category": "discount",
+      "source_line": 19
+    }
+  ],
+  "source_file": "invoices/inv_027.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 3
+}

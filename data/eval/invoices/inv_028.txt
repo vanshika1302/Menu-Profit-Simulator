@@ -1,0 +1,22 @@
+HARBOR PROVISIONS
+INVOICE # 4028
+Date: May 27, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+ONION YELLOW JMB              40 LB          4 CS       51.45     205.80
+CHESEE MOZZ LM SHRD           6/10#          2 CS      385.69     771.38
+POTATO RUSSET 70CT            50 LB          2 CS       55.60     111.20
+BUN BIROCHE 4IN               96 CT          1 CS       68.59      68.59
+EGG LRG GRADE A               15 DOZ         5 CS       87.79     438.95
+TOMTAO 5X6                    50 LB          3 CS      136.68     410.04
+SHRIMP 21/25 PD               CW          40.3 LB       15.01     604.90
+   ordered 1 CS, billed on received weight 40.3 LB
+BEEF RIBEYE LIPON             CW          19.6 LB       21.85     428.26
+   ordered 1 CS, billed on received weight 19.6 LB
+
+FUEL SURCHARGE 12.00
+CREDIT MEMO - SHORT SHIPPED ITEM (14.00)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $3,032.12

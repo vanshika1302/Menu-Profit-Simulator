@@ -1,0 +1,16 @@
+HARBOR PROVISIONS
+INVOICE # 4001
+Date: 03 Mar 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+VANILLA ICE CREAM                           13 QT        6.02      78.26
+LEMON                                       10 EA        0.50       5.00
+BURGER BUN                                  14 EA        0.72      10.08
+SHRIMP                                      12 LB       14.22     170.64
+FLOUR                                        1 LB        0.99       0.99
+POTATO                                       8 LB        1.12       8.96
+RIBEYE STEAK                                 9 LB       21.92     197.28
+ROMAINE                                      3 HD        2.39       7.17
+
+TOTAL DUE: $478.38

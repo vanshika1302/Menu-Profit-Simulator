@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_019",
+  "effective_week": "2025-05-26",
+  "invoice_date": "2025-05-29",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "soda_syrup",
+      "raw": {
+        "description": "SODA SYRUP",
+        "extended_price": "110.42",
+        "pack_text": "5 GAL",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "110.42"
+      },
+      "source_line": 6,
+      "unit_cost": 22.084
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "SHAVED BEEF",
+        "extended_price": "3,256.00",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "651.20"
+      },
+      "source_line": 7,
+      "unit_cost": 13.024
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "188.06",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "188.06"
+      },
+      "source_line": 8,
+      "unit_cost": 4.7015
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "raw": {
+        "description": "GROUND BEEF",
+        "extended_price": "701.56",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "175.39"
+      },
+      "source_line": 9,
+      "unit_cost": 8.7695
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "767.12",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "191.78"
+      },
+      "source_line": 10,
+      "unit_cost": 9.589
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "765.16",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "191.29"
+      },
+      "source_line": 11,
+      "unit_cost": 4.78225
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "343.95",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "114.65"
+      },
+      "source_line": 12,
+      "unit_cost": 5.7325
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "SIRLOIN STEAK",
+        "extended_price": "606.12",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "303.06"
+      },
+      "source_line": 13,
+      "unit_cost": 15.153
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_019.txt",
+  "split": "test",
+  "supplier": "Greenline Produce",
+  "tier": 2
+}

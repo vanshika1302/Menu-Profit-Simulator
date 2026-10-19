@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_022",
+  "effective_week": "2025-03-31",
+  "invoice_date": "2025-04-03",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGG LRG GRADE A",
+        "extended_price": "256.05",
+        "pack_text": "180 CT",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "85.35"
+      },
+      "source_line": 7,
+      "unit_cost": 5.69
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "LETTUCE ROMAINE",
+        "extended_price": "57.20",
+        "pack_text": "12 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "28.60"
+      },
+      "source_line": 8,
+      "unit_cost": 2.3833333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "CREAM HVY 36%",
+        "extended_price": "192.51",
+        "pack_text": "12/1 QT",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "64.17"
+      },
+      "source_line": 9,
+      "unit_cost": 5.3475
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "BEEF RIBEYE LIPON",
+        "extended_price": "4,509.35",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "901.87"
+      },
+      "source_line": 10,
+      "unit_cost": 22.54675
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "CHEESE PARM GRATED",
+        "extended_price": "2,458.59",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "819.53"
+      },
+      "source_line": 11,
+      "unit_cost": 13.658833333333334
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FIL ATL",
+        "extended_price": "619.60",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "309.80"
+      },
+      "source_line": 12,
+      "unit_cost": 15.49
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON SLICED APPWD",
+        "extended_price": "189.92",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20.4",
+        "unit": "LB",
+        "unit_price": "9.31"
+      },
+      "source_line": 13,
+      "unit_cost": 9.309803921568628
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB BNLS",
+        "extended_price": "261.79",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20.5",
+        "unit": "LB",
+        "unit_price": "12.77"
+      },
+      "source_line": 15,
+      "unit_cost": 12.770243902439024
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 18
+    },
+    {
+      "category": "credit",
+      "source_line": 19
+    },
+    {
+      "category": "discount",
+      "source_line": 20
+    }
+  ],
+  "source_file": "invoices/inv_022.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 3
+}

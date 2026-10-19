@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_004",
+  "effective_week": "2025-02-03",
+  "invoice_date": "2025-02-06",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "raw": {
+        "description": "ONION",
+        "extended_price": "15.96",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "1.33"
+      },
+      "source_line": 7,
+      "unit_cost": 1.33
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP",
+        "extended_price": "113.12",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "8",
+        "unit": "LB",
+        "unit_price": "14.14"
+      },
+      "source_line": 8,
+      "unit_cost": 14.14
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "186.29",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "13",
+        "unit": "GAL",
+        "unit_price": "14.33"
+      },
+      "source_line": 9,
+      "unit_cost": 14.33
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sugar",
+      "raw": {
+        "description": "SUGAR",
+        "extended_price": "18.90",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "15",
+        "unit": "LB",
+        "unit_price": "1.26"
+      },
+      "source_line": 10,
+      "unit_cost": 1.26
+    },
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "raw": {
+        "description": "BUTTER",
+        "extended_price": "132.40",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20",
+        "unit": "LB",
+        "unit_price": "6.62"
+      },
+      "source_line": 11,
+      "unit_cost": 6.62
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "81.34",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "14",
+        "unit": "LB",
+        "unit_price": "5.81"
+      },
+      "source_line": 12,
+      "unit_cost": 5.81
+    },
+    {
+      "flags": [],
+      "ingredient_id": "soda_syrup",
+      "raw": {
+        "description": "SODA SYRUP",
+        "extended_price": "380.70",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "18",
+        "unit": "GAL",
+        "unit_price": "21.15"
+      },
+      "source_line": 13,
+      "unit_cost": 21.15
+    },
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "44.66",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "7",
+        "unit": "QT",
+        "unit_price": "6.38"
+      },
+      "source_line": 14,
+      "unit_cost": 6.38
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_004.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 1
+}

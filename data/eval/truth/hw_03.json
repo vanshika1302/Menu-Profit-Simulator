@@ -1,0 +1,64 @@
+{
+  "case_id": "hw_03",
+  "dish": "grain_bowl",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "recipe with no serving count: per-serving quantities cannot be computed"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "missing_servings"
+      ],
+      "ingredient_id": "quinoa",
+      "item_id": "grain_bowl",
+      "qty_per_serving": null,
+      "source_line": 3
+    },
+    {
+      "flags": [
+        "missing_servings"
+      ],
+      "ingredient_id": "mixed_greens",
+      "item_id": "grain_bowl",
+      "qty_per_serving": null,
+      "source_line": 4
+    },
+    {
+      "flags": [
+        "missing_servings"
+      ],
+      "ingredient_id": "tomato",
+      "item_id": "grain_bowl",
+      "qty_per_serving": null,
+      "source_line": 5
+    },
+    {
+      "flags": [
+        "missing_servings"
+      ],
+      "ingredient_id": "chicken_breast",
+      "item_id": "grain_bowl",
+      "qty_per_serving": null,
+      "source_line": 6
+    },
+    {
+      "flags": [
+        "missing_servings"
+      ],
+      "ingredient_id": "oil",
+      "item_id": "grain_bowl",
+      "qty_per_serving": null,
+      "source_line": 7
+    }
+  ],
+  "servings": null,
+  "skipped": [],
+  "source_file": "recipes/hw_03.txt",
+  "split": "dev",
+  "tier": "handwritten"
+}

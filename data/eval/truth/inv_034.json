@@ -1,0 +1,102 @@
+{
+  "case_id": "inv_034",
+  "effective_week": "2025-01-06",
+  "invoice_date": "2025-01-08",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: weight_to_volume"
+    },
+    {
+      "basis": "guessed",
+      "type": "weight-to-volume trap: cream is stocked per quart, priced per pound"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "7.92",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "11",
+        "unit": "EA",
+        "unit_price": "0.72"
+      },
+      "source_line": 8,
+      "unit_cost": 0.72
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "56.00",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "5.60"
+      },
+      "source_line": 9,
+      "unit_cost": 5.6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "44.80",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "7",
+        "unit": "QT",
+        "unit_price": "6.40"
+      },
+      "source_line": 10,
+      "unit_cost": 6.4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "43.20",
+        "pack_text": null,
+        "price_unit": "HD",
+        "qty": "18",
+        "unit": "HD",
+        "unit_price": "2.40"
+      },
+      "source_line": 11,
+      "unit_cost": 2.4
+    },
+    {
+      "flags": [
+        "unconvertible_unit"
+      ],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "CREAM HVY 36%",
+        "extended_price": "48.00",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "48.00"
+      },
+      "source_line": 12,
+      "unit_cost": null
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_034.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 4,
+  "trap": "weight_to_volume"
+}

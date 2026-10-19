@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_011",
+  "effective_week": "2025-07-21",
+  "invoice_date": "2025-07-22",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "28.16",
+        "pack_text": "12 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "28.16"
+      },
+      "source_line": 6,
+      "unit_cost": 2.3466666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cod",
+      "raw": {
+        "description": "COD FILLET",
+        "extended_price": "2,329.90",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "465.98"
+      },
+      "source_line": 7,
+      "unit_cost": 9.3196
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "134.56",
+        "pack_text": "12/1 QT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "67.28"
+      },
+      "source_line": 8,
+      "unit_cost": 5.6066666666666665
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "raw": {
+        "description": "DRY PASTA",
+        "extended_price": "191.18",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "95.59"
+      },
+      "source_line": 9,
+      "unit_cost": 1.9118
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "277.52",
+        "pack_text": "96 CT",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "69.38"
+      },
+      "source_line": 10,
+      "unit_cost": 0.7227083333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "87.25",
+        "pack_text": "180 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "87.25"
+      },
+      "source_line": 11,
+      "unit_cost": 5.816666666666666
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "490.95",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "98.19"
+      },
+      "source_line": 12,
+      "unit_cost": 4.9095
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "1,335.75",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "267.15"
+      },
+      "source_line": 13,
+      "unit_cost": 13.3575
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_011.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 2
+}

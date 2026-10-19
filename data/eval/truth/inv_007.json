@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_007",
+  "effective_week": "2025-12-08",
+  "invoice_date": "2025-12-08",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "chocolate",
+      "raw": {
+        "description": "CHOCOLATE",
+        "extended_price": "6.16",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "1",
+        "unit": "LB",
+        "unit_price": "6.16"
+      },
+      "source_line": 8,
+      "unit_cost": 6.16
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "6.57",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "9",
+        "unit": "EA",
+        "unit_price": "0.73"
+      },
+      "source_line": 9,
+      "unit_cost": 0.73
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "MOZZARELLA",
+        "extended_price": "40.62",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "6",
+        "unit": "LB",
+        "unit_price": "6.77"
+      },
+      "source_line": 10,
+      "unit_cost": 6.77
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "26.40",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "2",
+        "unit": "LB",
+        "unit_price": "13.20"
+      },
+      "source_line": 11,
+      "unit_cost": 13.2
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "HEAVY CREAM",
+        "extended_price": "79.84",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "16",
+        "unit": "QT",
+        "unit_price": "4.99"
+      },
+      "source_line": 12,
+      "unit_cost": 4.99
+    },
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "1.10",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "1",
+        "unit": "LB",
+        "unit_price": "1.10"
+      },
+      "source_line": 13,
+      "unit_cost": 1.1
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "5.62",
+        "pack_text": null,
+        "price_unit": "DOZ",
+        "qty": "1",
+        "unit": "DOZ",
+        "unit_price": "5.62"
+      },
+      "source_line": 14,
+      "unit_cost": 5.62
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cod",
+      "raw": {
+        "description": "COD FILLET",
+        "extended_price": "153.92",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "16",
+        "unit": "LB",
+        "unit_price": "9.62"
+      },
+      "source_line": 15,
+      "unit_cost": 9.62
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_007.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 1
+}

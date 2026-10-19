@@ -1,0 +1,23 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4023
+Date: 2025-06-25
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| BACON SLICED APPWD | 2/10 LB | 5 | CS | 195.24 | 976.20 |
+| BEEF GRND 80/20 | 50 LB | 3 | CS | 447.79 | 1,343.37 |
+| TOMATO 5X6 | 2/10 LB | 3 | CS | 54.02 | 162.06 |
+| CHKN WING JMUBO | 6/10# | 4 | CS | 290.09 | 1,160.36 |
+| SLAMON FIL ATL | 50 LB | 2 | CS | 779.40 | 1,558.80 |
+| BEEF TOP SIROLIN | 4/5 LB | 1 | CS | 293.64 | 293.64 |
+| BEEF SHORT RIB BNLS | CW | 82.9 | LB | 13.40 | 1,110.86 |
+   ordered 2 CS, billed on received weight 82.9 LB
+| SHRIMP 21/25 PD | CW | 62.3 | LB | 15.15 | 943.85 |
+   ordered 3 CS, billed on received weight 62.3 LB
+
+FUEL SURCHARGE 12.00
+CREDIT MEMO - SHORT SHIPPED ITEM (14.00)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $7,542.14

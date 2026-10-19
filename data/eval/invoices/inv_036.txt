@@ -1,0 +1,14 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4036
+Date: 09/15/2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| PROVOLONE |  | 10 | LB | 8.18 | 81.80 |
+| CHICKEN WINGS |  | 17 | LB | 4.88 | 82.96 |
+| BEEF SHORT RIB |  | 3 | LB | 14.07 | 42.21 |
+| WING SAUCE |  | 10 | QT | 6.08 | 60.80 |
+| OIL TRUFFLE BLACK | 6/1 GAL | 1 | CS | 36.00 | 36.00 |
+
+TOTAL DUE: $303.77

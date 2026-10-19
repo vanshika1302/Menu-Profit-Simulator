@@ -1,0 +1,13 @@
+GREENLINE PRODUCE
+INVOICE # 4035
+Date: 08/22/2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+GRAHAM CRACKERS                             11 LB        3.33      36.63
+QUINOA                                      20 LB        4.79      95.80
+CREAM CHEESE                                19 LB        4.43      84.17
+LIME                                        18 EA        0.30       5.40
+CHEESE SHREDDED               4/5 LB         1 CS       62.00      62.00
+
+TOTAL DUE: $284.00

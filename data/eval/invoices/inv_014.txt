@@ -1,0 +1,17 @@
+HARBOR PROVISIONS
+INVOICE # 4014
+Date: Dec 10, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| SHRIMP | 4/5 LB | 3 | CS | 288.40 | 865.20 |
+| BACON | 50 LB | 4 | CS | 469.39 | 1,877.56 |
+| MIXED GREENS | 6/10# | 5 | CS | 376.66 | 1,883.30 |
+| ONION | 6/10# | 3 | CS | 76.30 | 228.90 |
+| HEAVY CREAM | 4/1 GAL | 1 | CS | 79.85 | 79.85 |
+| VANILLA ICE CREAM | 4/1 GAL | 1 | CS | 97.95 | 97.95 |
+| TOMATO | 6/10# | 3 | CS | 171.83 | 515.49 |
+| CHEDDAR | 40 LB | 3 | CS | 325.83 | 977.49 |
+
+TOTAL DUE: $6,525.74

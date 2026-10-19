@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_021",
+  "effective_week": "2025-01-06",
+  "invoice_date": "2025-01-08",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "BEEF STEAK SHAVED",
+        "extended_price": "2,048.00",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "512.00"
+      },
+      "source_line": 7,
+      "unit_cost": 12.8
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "SAUCE TOMATO CRUSHED",
+        "extended_price": "162.00",
+        "pack_text": "6/#10",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "81.00"
+      },
+      "source_line": 8,
+      "unit_cost": 4.0
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "CHEESE MOZZ LM SHRD",
+        "extended_price": "768.00",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "384.00"
+      },
+      "source_line": 9,
+      "unit_cost": 6.4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON SLICED APPWD",
+        "extended_price": "384.00",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "384.00"
+      },
+      "source_line": 10,
+      "unit_cost": 9.6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "CERAM HVY 36%",
+        "extended_price": "134.40",
+        "pack_text": "12/1 QT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "67.20"
+      },
+      "source_line": 11,
+      "unit_cost": 5.6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "OIL FRY SOBYEAN",
+        "extended_price": "230.40",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "57.60"
+      },
+      "source_line": 12,
+      "unit_cost": 14.4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB BNLS",
+        "extended_price": "1,000.96",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "78.2",
+        "unit": "LB",
+        "unit_price": "12.80"
+      },
+      "source_line": 13,
+      "unit_cost": 12.8
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FIL ATL",
+        "extended_price": "960.00",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "60.0",
+        "unit": "LB",
+        "unit_price": "16.00"
+      },
+      "source_line": 15,
+      "unit_cost": 16.0
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 18
+    },
+    {
+      "category": "credit",
+      "source_line": 19
+    },
+    {
+      "category": "discount",
+      "source_line": 20
+    }
+  ],
+  "source_file": "invoices/inv_021.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 3
+}

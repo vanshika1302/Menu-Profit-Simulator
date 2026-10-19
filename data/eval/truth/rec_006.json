@@ -1,0 +1,74 @@
+{
+  "case_id": "rec_006",
+  "dish": "bolognese",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "mixed numbers, Unicode fractions and compound amounts (3 lb 6 oz)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "item_id": "bolognese",
+      "qty_per_serving": 0.3,
+      "raw": {
+        "ingredient_text": "ground beef",
+        "quantity_text": "6 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "item_id": "bolognese",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "onion",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "item_id": "bolognese",
+      "qty_per_serving": 0.05,
+      "raw": {
+        "ingredient_text": "parmesan",
+        "quantity_text": "1 lb"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "item_id": "bolognese",
+      "qty_per_serving": 0.4,
+      "raw": {
+        "ingredient_text": "dry pasta",
+        "quantity_text": "8 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "item_id": "bolognese",
+      "qty_per_serving": 0.15,
+      "raw": {
+        "ingredient_text": "tomato sauce",
+        "quantity_text": "3 qt"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_006.txt",
+  "split": "dev",
+  "tier": 2
+}

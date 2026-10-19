@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_025",
+  "effective_week": "2025-01-06",
+  "invoice_date": "2025-01-10",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "lemon",
+      "raw": {
+        "description": "LEMON 115CT",
+        "extended_price": "184.32",
+        "pack_text": "96 CT",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "46.08"
+      },
+      "source_line": 8,
+      "unit_cost": 0.48
+    },
+    {
+      "flags": [],
+      "ingredient_id": "provolone",
+      "raw": {
+        "description": "CHEESE PROV SLCD",
+        "extended_price": "1,280.00",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "320.00"
+      },
+      "source_line": 9,
+      "unit_cost": 8.0
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "CHEESE MOZZ LM SHRD",
+        "extended_price": "640.00",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "128.00"
+      },
+      "source_line": 10,
+      "unit_cost": 6.4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "raw": {
+        "description": "BUTTER UNSLTD",
+        "extended_price": "1,344.00",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "336.00"
+      },
+      "source_line": 11,
+      "unit_cost": 6.72
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cheddar",
+      "raw": {
+        "description": "CHEESE CHED SHRD",
+        "extended_price": "360.00",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "360.00"
+      },
+      "source_line": 12,
+      "unit_cost": 7.2
+    },
+    {
+      "flags": [],
+      "ingredient_id": "potato",
+      "raw": {
+        "description": "POTATO RUSSET 70CT",
+        "extended_price": "224.00",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "44.80"
+      },
+      "source_line": 13,
+      "unit_cost": 1.12
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "BEEF RIBEYE LIPON",
+        "extended_price": "909.44",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "40.6",
+        "unit": "LB",
+        "unit_price": "22.40"
+      },
+      "source_line": 14,
+      "unit_cost": 22.4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FIL ATL",
+        "extended_price": "646.40",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "40.4",
+        "unit": "LB",
+        "unit_price": "16.00"
+      },
+      "source_line": 16,
+      "unit_cost": 16.0
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 19
+    },
+    {
+      "category": "credit",
+      "source_line": 20
+    },
+    {
+      "category": "discount",
+      "source_line": 21
+    }
+  ],
+  "source_file": "invoices/inv_025.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 3
+}

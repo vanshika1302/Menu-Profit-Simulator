@@ -1,0 +1,22 @@
+GREENLINE PRODUCE
+INVOICE # 4029
+Date: Sep 16, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+SAUCE TOMATO CRUSHED          6/#10          1 CS       74.98      74.98
+BUN BRIOHCE 4IN               24 CT          2 CS       18.14      36.28
+OIL FRY SOYBEAN               6/1 GAL        3 CS       92.63     277.89
+CHEESE MOZZ LM SHRD           4/5 LB         3 CS      129.01     387.03
+CHKN BRST BNLS SKNLS          50 LB          3 CS      265.47     796.41
+CHKN WING JUBMO               40 LB          1 CS      195.12     195.12
+BEEF SHORT RIB BNLS           CW          61.8 LB       14.07     869.53
+   ordered 3 CS, billed on received weight 61.8 LB
+BEEF RIBEYE LIPON             CW          38.7 LB       20.89     808.44
+   ordered 1 CS, billed on received weight 38.7 LB
+
+FUEL SURCHARGE 6.50
+CREDIT MEMO - SHORT SHIPPED ITEM (22.50)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $3,424.68

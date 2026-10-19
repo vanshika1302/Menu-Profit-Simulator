@@ -1,0 +1,6 @@
+{"case_id": "hw_06", "kind": "invoice", "supplier": "Harbor Provisions", "invoice_date": "2025-03-05", "effective_week": "2025-03-03",
+ "rows": [
+  {"source_line": 5, "ingredient_id": "house_wine", "unit_cost": null, "flags": ["unconvertible_unit"]},
+  {"source_line": 6, "ingredient_id": "draft_beer", "unit_cost": null, "flags": ["unconvertible_unit"]}],
+ "skipped": [], "new_ingredients": [],
+ "messiness": [{"type": "known limitation: the catalogue's oz for beer and wine is a fluid ounce but the converter reads oz as weight, so volume packs are refused and flagged", "basis": "guessed"}]}

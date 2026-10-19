@@ -1,0 +1,100 @@
+{
+  "case_id": "inv_040",
+  "effective_week": "2025-11-10",
+  "invoice_date": "2025-11-10",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: duplicate_ingredient"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "conflict"
+      ],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "5.67",
+        "pack_text": null,
+        "price_unit": "DOZ",
+        "qty": "1",
+        "unit": "DOZ",
+        "unit_price": "5.67"
+      },
+      "source_line": 7,
+      "unit_cost": 5.67
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "0.31",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "1",
+        "unit": "EA",
+        "unit_price": "0.31"
+      },
+      "source_line": 8,
+      "unit_cost": 0.31
+    },
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "raw": {
+        "description": "BUTTER",
+        "extended_price": "67.00",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "6.70"
+      },
+      "source_line": 9,
+      "unit_cost": 6.7
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "62.10",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "6.21"
+      },
+      "source_line": 10,
+      "unit_cost": 6.21
+    },
+    {
+      "flags": [
+        "conflict"
+      ],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "85.05",
+        "pack_text": null,
+        "price_unit": "DOZ",
+        "qty": "15",
+        "unit": "DOZ",
+        "unit_price": "5.67"
+      },
+      "source_line": 11,
+      "unit_cost": 5.67
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_040.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 4,
+  "trap": "duplicate_ingredient"
+}

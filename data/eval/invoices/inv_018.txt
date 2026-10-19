@@ -1,0 +1,16 @@
+GREENLINE PRODUCE
+INVOICE # 4018
+Date: 2025-12-10
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+SALMON FILLET                 6/10#          1 CS      908.60     908.60
+TORTILLA CHIPS                6/10#          4 CS      257.66   1,030.64
+BEEF SHORT RIB                2/10 LB        4 CS      292.42   1,169.68
+GROUND BEEF                   50 LB          4 CS      469.29   1,877.16
+CHOCOLATE                     2/10 LB        2 CS      123.23     246.46
+ROMAINE                       24 CT          1 CS       55.39      55.39
+BACON                         4/5 LB         4 CS      187.76     751.04
+EGGS                          15 DOZ         1 CS       84.33      84.33
+
+TOTAL DUE: $6,123.30

@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_012",
+  "effective_week": "2025-06-23",
+  "invoice_date": "2025-06-26",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "TOMATO SAUCE",
+        "extended_price": "243.00",
+        "pack_text": "12/1 QT",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "48.60"
+      },
+      "source_line": 6,
+      "unit_cost": 4.05
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMATO",
+        "extended_price": "270.10",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "54.02"
+      },
+      "source_line": 7,
+      "unit_cost": 2.701
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tortilla_chips",
+      "raw": {
+        "description": "TORTILLA CHIPS",
+        "extended_price": "166.96",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "83.48"
+      },
+      "source_line": 8,
+      "unit_cost": 4.174
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sugar",
+      "raw": {
+        "description": "SUGAR",
+        "extended_price": "250.52",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "62.63"
+      },
+      "source_line": 9,
+      "unit_cost": 1.2526
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "1,160.80",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "232.16"
+      },
+      "source_line": 10,
+      "unit_cost": 4.6432
+    },
+    {
+      "flags": [],
+      "ingredient_id": "garlic",
+      "raw": {
+        "description": "GARLIC",
+        "extended_price": "607.08",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "202.36"
+      },
+      "source_line": 11,
+      "unit_cost": 4.0472
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "180.08",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "90.04"
+      },
+      "source_line": 12,
+      "unit_cost": 5.6275
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "73.48",
+        "pack_text": "5 GAL",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "73.48"
+      },
+      "source_line": 13,
+      "unit_cost": 14.696
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_012.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 2
+}

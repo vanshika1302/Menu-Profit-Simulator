@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_014",
+  "effective_week": "2025-12-08",
+  "invoice_date": "2025-12-10",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP",
+        "extended_price": "865.20",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "288.40"
+      },
+      "source_line": 8,
+      "unit_cost": 14.42
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "1,877.56",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "469.39"
+      },
+      "source_line": 9,
+      "unit_cost": 9.3878
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "1,883.30",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "376.66"
+      },
+      "source_line": 10,
+      "unit_cost": 6.277666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "raw": {
+        "description": "ONION",
+        "extended_price": "228.90",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "76.30"
+      },
+      "source_line": 11,
+      "unit_cost": 1.2716666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "HEAVY CREAM",
+        "extended_price": "79.85",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "79.85"
+      },
+      "source_line": 12,
+      "unit_cost": 4.990625
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "97.95",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "97.95"
+      },
+      "source_line": 13,
+      "unit_cost": 6.121875
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMATO",
+        "extended_price": "515.49",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "171.83"
+      },
+      "source_line": 14,
+      "unit_cost": 2.8638333333333335
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cheddar",
+      "raw": {
+        "description": "CHEDDAR",
+        "extended_price": "977.49",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "325.83"
+      },
+      "source_line": 15,
+      "unit_cost": 8.14575
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_014.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 2
+}

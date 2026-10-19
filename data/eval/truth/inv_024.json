@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_024",
+  "effective_week": "2025-07-21",
+  "invoice_date": "2025-07-22",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "CHEESE PARM GRATED",
+        "extended_price": "801.45",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "267.15"
+      },
+      "source_line": 6,
+      "unit_cost": 13.3575
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "BEEF RBIEYE LIPON",
+        "extended_price": "842.18",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "421.09"
+      },
+      "source_line": 7,
+      "unit_cost": 21.0545
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMATO 5X6",
+        "extended_price": "662.56",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "165.64"
+      },
+      "source_line": 8,
+      "unit_cost": 2.760666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHKN WING JUBMO",
+        "extended_price": "785.52",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "196.38"
+      },
+      "source_line": 9,
+      "unit_cost": 4.9095
+    },
+    {
+      "flags": [],
+      "ingredient_id": "calamari",
+      "raw": {
+        "description": "SQUID TUBE & TENT",
+        "extended_price": "414.46",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "414.46"
+      },
+      "source_line": 10,
+      "unit_cost": 8.2892
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cod",
+      "raw": {
+        "description": "COD FILLET PORT",
+        "extended_price": "745.56",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "186.39"
+      },
+      "source_line": 11,
+      "unit_cost": 9.3195
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON SLICED APPWD",
+        "extended_price": "1,180.74",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "121.6",
+        "unit": "LB",
+        "unit_price": "9.71"
+      },
+      "source_line": 12,
+      "unit_cost": 9.710032894736843
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "BEEF TOP SIRLOIN",
+        "extended_price": "1,800.68",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "118.7",
+        "unit": "LB",
+        "unit_price": "15.17"
+      },
+      "source_line": 14,
+      "unit_cost": 15.170008424599832
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 17
+    },
+    {
+      "category": "credit",
+      "source_line": 18
+    },
+    {
+      "category": "discount",
+      "source_line": 19
+    }
+  ],
+  "source_file": "invoices/inv_024.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 3
+}

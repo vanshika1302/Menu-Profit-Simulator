@@ -1,0 +1,34 @@
+{
+  "case_id": "hw_04",
+  "effective_week": "2025-03-17",
+  "invoice_date": "2025-03-18",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "a bunch has no fixed count, so a priced-per-bunch line cannot become a per-head cost"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "unconvertible_unit"
+      ],
+      "ingredient_id": "romaine",
+      "source_line": 7,
+      "unit_cost": null
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "source_line": 8,
+      "unit_cost": 1.12
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/hw_04.txt",
+  "split": "test",
+  "supplier": "Greenline Produce",
+  "tier": "handwritten"
+}

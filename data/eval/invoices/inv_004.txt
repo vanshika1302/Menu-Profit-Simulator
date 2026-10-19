@@ -1,0 +1,16 @@
+GREENLINE PRODUCE
+INVOICE # 4004
+Date: Feb 6, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+ONION                                       12 LB        1.33      15.96
+SHRIMP                                       8 LB       14.14     113.12
+COOKING OIL                                 13 GAL      14.33     186.29
+SUGAR                                       15 LB        1.26      18.90
+BUTTER                                      20 LB        6.62     132.40
+MIXED GREENS                                14 LB        5.81      81.34
+SODA SYRUP                                  18 GAL      21.15     380.70
+WING SAUCE                                   7 QT        6.38      44.66
+
+TOTAL DUE: $973.37

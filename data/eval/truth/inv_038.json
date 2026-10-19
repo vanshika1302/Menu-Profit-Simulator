@@ -1,0 +1,98 @@
+{
+  "case_id": "inv_038",
+  "effective_week": "2025-09-15",
+  "invoice_date": "2025-09-15",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: line_total_mismatch"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "222.19",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "17",
+        "unit": "LB",
+        "unit_price": "13.07"
+      },
+      "source_line": 8,
+      "unit_cost": 13.07
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "97.60",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20",
+        "unit": "LB",
+        "unit_price": "4.88"
+      },
+      "source_line": 9,
+      "unit_cost": 4.88
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "2.40",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "8",
+        "unit": "EA",
+        "unit_price": "0.30"
+      },
+      "source_line": 10,
+      "unit_cost": 0.3
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "63.44",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "4.88"
+      },
+      "source_line": 11,
+      "unit_cost": 4.88
+    },
+    {
+      "flags": [
+        "check_failed"
+      ],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR AP BLEACHED",
+        "extended_price": "110.22",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "50.41"
+      },
+      "source_line": 12,
+      "unit_cost": 1.0082
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_038.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 4,
+  "trap": "line_total_mismatch"
+}

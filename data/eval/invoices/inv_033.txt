@@ -1,0 +1,14 @@
+HARBOR PROVISIONS
+INVOICE # 4033
+Date: 2025-03-04
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| SHAVED BEEF |  | 9 | LB | 13.19 | 118.71 |
+| LIME |  | 20 | EA | 0.31 | 6.20 |
+| CREAM CHEESE |  | 10 | LB | 4.59 | 45.90 |
+| WING SAUCE |  | 17 | QT | 6.45 | 109.65 |
+| PASTA SPAGHETTI | 4/5 PLT | 2 | CS | 55.00 | 110.00 |
+
+TOTAL DUE: $390.46

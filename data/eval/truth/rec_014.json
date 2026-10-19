@@ -1,0 +1,80 @@
+{
+  "case_id": "rec_014",
+  "dish": "alfredo",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed (restaurant recipe style unverified in the research)",
+      "type": "ranges and 'to taste'"
+    },
+    {
+      "basis": "grounded",
+      "type": "edible-portion yield remarks"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "no_yield_applied"
+      ],
+      "ingredient_id": "butter",
+      "item_id": "alfredo",
+      "qty_per_serving": 0.0375,
+      "raw": {
+        "ingredient_text": "butter",
+        "quantity_text": "0.75 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [
+        "range_midpoint"
+      ],
+      "ingredient_id": "cream",
+      "item_id": "alfredo",
+      "qty_per_serving": 0.2125,
+      "raw": {
+        "ingredient_text": "heavy cream",
+        "quantity_text": "4-4 1/2 qt"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [
+        "no_yield_applied"
+      ],
+      "ingredient_id": "parmesan",
+      "item_id": "alfredo",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "parmesan",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [
+        "range_midpoint"
+      ],
+      "ingredient_id": "pasta",
+      "item_id": "alfredo",
+      "qty_per_serving": 0.4125,
+      "raw": {
+        "ingredient_text": "dry pasta",
+        "quantity_text": "8-8 1/2 lb"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [
+    {
+      "reason": "to taste",
+      "source_line": 5
+    }
+  ],
+  "source_file": "recipes/rec_014.txt",
+  "split": "dev",
+  "tier": 3
+}

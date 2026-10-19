@@ -1,0 +1,21 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4030
+Date: 2025-02-07
+Ship to: Bistro on Third, 118 Third Street
+
+1. CHEESE MOZZ LM SHRD - 2/10 LB - qty 2 CS @ $127.28 = $254.56
+2. BUN BRIOCHE 4IN - 4/12 CT - qty 2 CS @ $34.17 = $68.34
+3. PASTA SPAGHETTI - 40 LB - qty 4 CS @ $75.71 = $302.84
+4. TOMATO 5X6 - 4/5 LB - qty 4 CS @ $53.12 = $212.48
+5. CHEESE PROV SLCD - 4/5 LB - qty 1 CS @ $162.06 = $162.06
+6. SHRIMP 21/25 PD - 50 LB - qty 1 CS @ $706.83 = $706.83
+7. BEEF RIBEYE LIPON - CW - qty 20.7 LB @ $22.69 = $469.68
+   ordered 1 CS, billed on received weight 20.7 LB
+8. SALMON FIL ATL - CW - qty 120.5 LB @ $15.61 = $1,881.01
+   ordered 3 CS, billed on received weight 120.5 LB
+
+FUEL SURCHARGE 12.00
+CREDIT MEMO - SHORT SHIPPED ITEM (14.00)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $4,050.80

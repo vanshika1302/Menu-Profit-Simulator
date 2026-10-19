@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_005",
+  "effective_week": "2025-02-03",
+  "invoice_date": "2025-02-07",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FILLET",
+        "extended_price": "31.22",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "2",
+        "unit": "LB",
+        "unit_price": "15.61"
+      },
+      "source_line": 8,
+      "unit_cost": 15.61
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "9.23",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "13",
+        "unit": "EA",
+        "unit_price": "0.71"
+      },
+      "source_line": 9,
+      "unit_cost": 0.71
+    },
+    {
+      "flags": [],
+      "ingredient_id": "soda_syrup",
+      "raw": {
+        "description": "SODA SYRUP",
+        "extended_price": "63.45",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "3",
+        "unit": "GAL",
+        "unit_price": "21.15"
+      },
+      "source_line": 10,
+      "unit_cost": 21.15
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "83.70",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "9",
+        "unit": "LB",
+        "unit_price": "9.30"
+      },
+      "source_line": 11,
+      "unit_cost": 9.3
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "TOMATO SAUCE",
+        "extended_price": "20.50",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "5",
+        "unit": "QT",
+        "unit_price": "4.10"
+      },
+      "source_line": 12,
+      "unit_cost": 4.1
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lemon",
+      "raw": {
+        "description": "LEMON",
+        "extended_price": "2.40",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "5",
+        "unit": "EA",
+        "unit_price": "0.48"
+      },
+      "source_line": 13,
+      "unit_cost": 0.48
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "42.99",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "3",
+        "unit": "GAL",
+        "unit_price": "14.33"
+      },
+      "source_line": 14,
+      "unit_cost": 14.33
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "RIBEYE STEAK",
+        "extended_price": "431.11",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "19",
+        "unit": "LB",
+        "unit_price": "22.69"
+      },
+      "source_line": 15,
+      "unit_cost": 22.69
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_005.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 1
+}

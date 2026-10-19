@@ -1,0 +1,102 @@
+{
+  "case_id": "inv_039",
+  "effective_week": "2025-06-23",
+  "invoice_date": "2025-06-23",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: catch_weight_missing_received"
+    },
+    {
+      "basis": "guessed",
+      "type": "catch-weight line with no received weight"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "14.40",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "20",
+        "unit": "EA",
+        "unit_price": "0.72"
+      },
+      "source_line": 8,
+      "unit_cost": 0.72
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "SIRLOIN STEAK",
+        "extended_price": "190.84",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "14.68"
+      },
+      "source_line": 9,
+      "unit_cost": 14.68
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "raw": {
+        "description": "DRY PASTA",
+        "extended_price": "26.74",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "14",
+        "unit": "LB",
+        "unit_price": "1.91"
+      },
+      "source_line": 10,
+      "unit_cost": 1.91
+    },
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "9.87",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "3",
+        "unit": "LB",
+        "unit_price": "3.29"
+      },
+      "source_line": 11,
+      "unit_cost": 3.29
+    },
+    {
+      "flags": [
+        "needs_cost"
+      ],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "BEEF TOP SIRLOIN",
+        "extended_price": null,
+        "pack_text": "CW",
+        "price_unit": "LB",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "14.68"
+      },
+      "source_line": 12,
+      "unit_cost": null
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_039.txt",
+  "split": "test",
+  "supplier": "Harbor Provisions",
+  "tier": 4,
+  "trap": "catch_weight_missing_received"
+}

@@ -1,0 +1,6 @@
+{"case_id": "hw_04", "kind": "invoice", "supplier": "Greenline Produce", "invoice_date": "2025-03-18", "effective_week": "2025-03-17",
+ "rows": [
+  {"source_line": 7, "ingredient_id": "romaine", "unit_cost": null, "flags": ["unconvertible_unit"]},
+  {"source_line": 8, "ingredient_id": "tomato", "unit_cost": 1.12, "flags": []}],
+ "skipped": [], "new_ingredients": [],
+ "messiness": [{"type": "a bunch has no fixed count, so a priced-per-bunch line cannot become a per-head cost", "basis": "grounded"}]}

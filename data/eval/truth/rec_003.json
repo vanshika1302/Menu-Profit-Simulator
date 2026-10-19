@@ -1,0 +1,74 @@
+{
+  "case_id": "rec_003",
+  "dish": "scampi",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "plain decimal quantities in the ingredient's unit"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "item_id": "scampi",
+      "qty_per_serving": 0.08125,
+      "raw": {
+        "ingredient_text": "butter",
+        "quantity_text": "1.625 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "garlic",
+      "item_id": "scampi",
+      "qty_per_serving": 0.0375,
+      "raw": {
+        "ingredient_text": "garlic",
+        "quantity_text": "0.75 lb"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lemon",
+      "item_id": "scampi",
+      "qty_per_serving": 0.5,
+      "raw": {
+        "ingredient_text": "lemon",
+        "quantity_text": "10 ea"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "item_id": "scampi",
+      "qty_per_serving": 0.4,
+      "raw": {
+        "ingredient_text": "dry pasta",
+        "quantity_text": "8 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "item_id": "scampi",
+      "qty_per_serving": 0.45,
+      "raw": {
+        "ingredient_text": "shrimp",
+        "quantity_text": "9 lb"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_003.txt",
+  "split": "test",
+  "tier": 1
+}

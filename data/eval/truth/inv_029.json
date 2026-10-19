@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_029",
+  "effective_week": "2025-09-15",
+  "invoice_date": "2025-09-16",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "SAUCE TOMATO CRUSHED",
+        "extended_price": "74.98",
+        "pack_text": "6/#10",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "74.98"
+      },
+      "source_line": 7,
+      "unit_cost": 3.7027160493827163
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BUN BRIOHCE 4IN",
+        "extended_price": "36.28",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "18.14"
+      },
+      "source_line": 8,
+      "unit_cost": 0.7558333333333334
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "OIL FRY SOYBEAN",
+        "extended_price": "277.89",
+        "pack_text": "6/1 GAL",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "92.63"
+      },
+      "source_line": 9,
+      "unit_cost": 15.438333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "CHEESE MOZZ LM SHRD",
+        "extended_price": "387.03",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "129.01"
+      },
+      "source_line": 10,
+      "unit_cost": 6.4505
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_breast",
+      "raw": {
+        "description": "CHKN BRST BNLS SKNLS",
+        "extended_price": "796.41",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "265.47"
+      },
+      "source_line": 11,
+      "unit_cost": 5.3094
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHKN WING JUBMO",
+        "extended_price": "195.12",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "195.12"
+      },
+      "source_line": 12,
+      "unit_cost": 4.878
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB BNLS",
+        "extended_price": "869.53",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "61.8",
+        "unit": "LB",
+        "unit_price": "14.07"
+      },
+      "source_line": 13,
+      "unit_cost": 14.070064724919094
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "BEEF RIBEYE LIPON",
+        "extended_price": "808.44",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "38.7",
+        "unit": "LB",
+        "unit_price": "20.89"
+      },
+      "source_line": 15,
+      "unit_cost": 20.889922480620154
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 18
+    },
+    {
+      "category": "credit",
+      "source_line": 19
+    },
+    {
+      "category": "discount",
+      "source_line": 20
+    }
+  ],
+  "source_file": "invoices/inv_029.txt",
+  "split": "test",
+  "supplier": "Greenline Produce",
+  "tier": 3
+}

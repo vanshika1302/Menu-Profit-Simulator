@@ -1,0 +1,13 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4040
+Date: 2025-11-10
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+EGGS                                         1 DOZ       5.67       5.67
+LIME                                         1 EA        0.31       0.31
+BUTTER                                      10 LB        6.70      67.00
+MIXED GREENS                                10 LB        6.21      62.10
+EGGS                                        15 DOZ       5.67      85.05
+
+TOTAL DUE: $220.13

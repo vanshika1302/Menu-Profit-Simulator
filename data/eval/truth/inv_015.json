@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_015",
+  "effective_week": "2025-03-31",
+  "invoice_date": "2025-04-02",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "520.04",
+        "pack_text": "6/#10",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "130.01"
+      },
+      "source_line": 6,
+      "unit_cost": 6.420246913580247
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "575.40",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "115.08"
+      },
+      "source_line": 7,
+      "unit_cost": 5.754
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP",
+        "extended_price": "858.42",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "286.14"
+      },
+      "source_line": 8,
+      "unit_cost": 14.307
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "114.40",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "57.20"
+      },
+      "source_line": 9,
+      "unit_cost": 2.3833333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "285.40",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "57.08"
+      },
+      "source_line": 10,
+      "unit_cost": 14.27
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "1,414.90",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "282.98"
+      },
+      "source_line": 11,
+      "unit_cost": 4.716333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "RIBEYE STEAK",
+        "extended_price": "3,607.48",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "901.87"
+      },
+      "source_line": 12,
+      "unit_cost": 22.54675
+    },
+    {
+      "flags": [],
+      "ingredient_id": "soda_syrup",
+      "raw": {
+        "description": "SODA SYRUP",
+        "extended_price": "396.90",
+        "pack_text": "6/1 GAL",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "132.30"
+      },
+      "source_line": 13,
+      "unit_cost": 22.05
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_015.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 2
+}

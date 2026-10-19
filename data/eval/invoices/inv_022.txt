@@ -1,0 +1,22 @@
+GREENLINE PRODUCE
+INVOICE # 4022
+Date: 03 Apr 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+EGG LRG GRADE A               180 CT         3 CS       85.35     256.05
+LETTUCE ROMAINE               12 CT          2 CS       28.60      57.20
+CREAM HVY 36%                 12/1 QT        3 CS       64.17     192.51
+BEEF RIBEYE LIPON             40 LB          5 CS      901.87   4,509.35
+CHEESE PARM GRATED            6/10#          3 CS      819.53   2,458.59
+SALMON FIL ATL                2/10 LB        2 CS      309.80     619.60
+BACON SLICED APPWD            CW          20.4 LB        9.31     189.92
+   ordered 1 CS, billed on received weight 20.4 LB
+BEEF SHORT RIB BNLS           CW          20.5 LB       12.77     261.79
+   ordered 1 CS, billed on received weight 20.5 LB
+
+FUEL SURCHARGE 12.00
+CREDIT MEMO - SHORT SHIPPED ITEM (9.75)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $8,542.26

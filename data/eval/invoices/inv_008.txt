@@ -1,0 +1,17 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4008
+Date: May 2, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| FLOUR |  | 13 | LB | 1.01 | 13.13 |
+| GROUND BEEF |  | 19 | LB | 8.53 | 162.07 |
+| BACON |  | 2 | LB | 9.43 | 18.86 |
+| GRAHAM CRACKERS |  | 10 | LB | 3.28 | 32.80 |
+| CHOCOLATE |  | 4 | LB | 6.10 | 24.40 |
+| TOMATO SAUCE |  | 6 | QT | 4.08 | 24.48 |
+| VANILLA ICE CREAM |  | 6 | QT | 5.60 | 33.60 |
+| HEAVY CREAM |  | 4 | QT | 5.30 | 21.20 |
+
+TOTAL DUE: $330.54

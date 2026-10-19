@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_026",
+  "effective_week": "2025-07-21",
+  "invoice_date": "2025-07-23",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "provolone",
+      "raw": {
+        "description": "CHESEE PROV SLCD",
+        "extended_price": "1,995.16",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "498.79"
+      },
+      "source_line": 7,
+      "unit_cost": 8.313166666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "LETTUCE ROMAINE",
+        "extended_price": "112.64",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "56.32"
+      },
+      "source_line": 8,
+      "unit_cost": 2.3466666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SLAMON FIL ATL",
+        "extended_price": "620.32",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "310.16"
+      },
+      "source_line": 9,
+      "unit_cost": 15.508
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "BEEF TOP SIROLIN",
+        "extended_price": "3,034.16",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "758.54"
+      },
+      "source_line": 10,
+      "unit_cost": 15.1708
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGG LRG GRADE A",
+        "extended_price": "436.25",
+        "pack_text": "15 DOZ",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "87.25"
+      },
+      "source_line": 11,
+      "unit_cost": 5.816666666666666
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "raw": {
+        "description": "BEEF GRND 80/20",
+        "extended_price": "175.34",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "175.34"
+      },
+      "source_line": 12,
+      "unit_cost": 8.767
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON SLICED APPWD",
+        "extended_price": "372.86",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "38.4",
+        "unit": "LB",
+        "unit_price": "9.71"
+      },
+      "source_line": 13,
+      "unit_cost": 9.709895833333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP 21/25 PD",
+        "extended_price": "645.52",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "41.3",
+        "unit": "LB",
+        "unit_price": "15.63"
+      },
+      "source_line": 15,
+      "unit_cost": 15.63002421307506
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 18
+    },
+    {
+      "category": "credit",
+      "source_line": 19
+    },
+    {
+      "category": "discount",
+      "source_line": 20
+    }
+  ],
+  "source_file": "invoices/inv_026.txt",
+  "split": "test",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 3
+}

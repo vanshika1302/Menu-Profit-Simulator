@@ -1,0 +1,98 @@
+{
+  "case_id": "inv_037",
+  "effective_week": "2025-06-23",
+  "invoice_date": "2025-06-23",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: unknown_can_size"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "soup_base",
+      "raw": {
+        "description": "SOUP BASE",
+        "extended_price": "24.48",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "8",
+        "unit": "QT",
+        "unit_price": "3.06"
+      },
+      "source_line": 8,
+      "unit_cost": 3.06
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "143.99",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "11",
+        "unit": "LB",
+        "unit_price": "13.09"
+      },
+      "source_line": 9,
+      "unit_cost": 13.09
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "62.79",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "4.83"
+      },
+      "source_line": 10,
+      "unit_cost": 4.83
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "33.78",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "6",
+        "unit": "QT",
+        "unit_price": "5.63"
+      },
+      "source_line": 11,
+      "unit_cost": 5.63
+    },
+    {
+      "flags": [
+        "unconvertible_unit"
+      ],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "SAUCE TOMATO CRUSHED",
+        "extended_price": "30.00",
+        "pack_text": "12/#303",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "30.00"
+      },
+      "source_line": 12,
+      "unit_cost": null
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_037.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 4,
+  "trap": "unknown_can_size"
+}

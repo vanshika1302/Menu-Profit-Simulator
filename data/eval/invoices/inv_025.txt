@@ -1,0 +1,23 @@
+GREENLINE PRODUCE
+INVOICE # 4025
+Date: Jan 10, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| LEMON 115CT | 96 CT | 4 | CS | 46.08 | 184.32 |
+| CHEESE PROV SLCD | 40 LB | 4 | CS | 320.00 | 1,280.00 |
+| CHEESE MOZZ LM SHRD | 4/5 LB | 5 | CS | 128.00 | 640.00 |
+| BUTTER UNSLTD | 50 LB | 4 | CS | 336.00 | 1,344.00 |
+| CHEESE CHED SHRD | 50 LB | 1 | CS | 360.00 | 360.00 |
+| POTATO RUSSET 70CT | 40 LB | 5 | CS | 44.80 | 224.00 |
+| BEEF RIBEYE LIPON | CW | 40.6 | LB | 22.40 | 909.44 |
+   ordered 2 CS, billed on received weight 40.6 LB
+| SALMON FIL ATL | CW | 40.4 | LB | 16.00 | 646.40 |
+   ordered 1 CS, billed on received weight 40.4 LB
+
+FUEL SURCHARGE 8.25
+CREDIT MEMO - SHORT SHIPPED ITEM (22.50)
+PROMPT PAY DISCOUNT -7.50
+
+TOTAL DUE: $5,566.41

@@ -1,0 +1,15 @@
+GREENLINE PRODUCE
+INVOICE # 4019
+Date: 2025-05-29
+Ship to: Bistro on Third, 118 Third Street
+
+1. SODA SYRUP - 5 GAL - qty 1 CS @ $110.42 = $110.42
+2. SHAVED BEEF - 50 LB - qty 5 CS @ $651.20 = $3,256.00
+3. QUINOA - 40 LB - qty 1 CS @ $188.06 = $188.06
+4. GROUND BEEF - 4/5 LB - qty 4 CS @ $175.39 = $701.56
+5. BACON - 4/5 LB - qty 4 CS @ $191.78 = $767.12
+6. CHICKEN WINGS - 40 LB - qty 4 CS @ $191.29 = $765.16
+7. MIXED GREENS - 2/10 LB - qty 3 CS @ $114.65 = $343.95
+8. SIRLOIN STEAK - 4/5 LB - qty 2 CS @ $303.06 = $606.12
+
+TOTAL DUE: $6,738.39

@@ -1,0 +1,425 @@
+{
+  "cases": [
+    {
+      "case_id": "inv_001",
+      "file": "invoices/inv_001.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_002",
+      "file": "invoices/inv_002.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_003",
+      "file": "invoices/inv_003.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_004",
+      "file": "invoices/inv_004.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_005",
+      "file": "invoices/inv_005.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_006",
+      "file": "invoices/inv_006.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_007",
+      "file": "invoices/inv_007.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_008",
+      "file": "invoices/inv_008.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_009",
+      "file": "invoices/inv_009.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_010",
+      "file": "invoices/inv_010.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "inv_011",
+      "file": "invoices/inv_011.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_012",
+      "file": "invoices/inv_012.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_013",
+      "file": "invoices/inv_013.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_014",
+      "file": "invoices/inv_014.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_015",
+      "file": "invoices/inv_015.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_016",
+      "file": "invoices/inv_016.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_017",
+      "file": "invoices/inv_017.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_018",
+      "file": "invoices/inv_018.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_019",
+      "file": "invoices/inv_019.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_020",
+      "file": "invoices/inv_020.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "inv_021",
+      "file": "invoices/inv_021.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_022",
+      "file": "invoices/inv_022.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_023",
+      "file": "invoices/inv_023.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_024",
+      "file": "invoices/inv_024.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_025",
+      "file": "invoices/inv_025.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_026",
+      "file": "invoices/inv_026.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_027",
+      "file": "invoices/inv_027.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_028",
+      "file": "invoices/inv_028.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_029",
+      "file": "invoices/inv_029.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_030",
+      "file": "invoices/inv_030.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "inv_031",
+      "file": "invoices/inv_031.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_032",
+      "file": "invoices/inv_032.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_033",
+      "file": "invoices/inv_033.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_034",
+      "file": "invoices/inv_034.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_035",
+      "file": "invoices/inv_035.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_036",
+      "file": "invoices/inv_036.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_037",
+      "file": "invoices/inv_037.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_038",
+      "file": "invoices/inv_038.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_039",
+      "file": "invoices/inv_039.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": 4
+    },
+    {
+      "case_id": "inv_040",
+      "file": "invoices/inv_040.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": 4
+    },
+    {
+      "case_id": "rec_001",
+      "file": "recipes/rec_001.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "rec_002",
+      "file": "recipes/rec_002.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "rec_003",
+      "file": "recipes/rec_003.txt",
+      "kind": "recipe",
+      "split": "test",
+      "tier": 1
+    },
+    {
+      "case_id": "rec_004",
+      "file": "recipes/rec_004.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "rec_005",
+      "file": "recipes/rec_005.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 1
+    },
+    {
+      "case_id": "rec_006",
+      "file": "recipes/rec_006.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "rec_007",
+      "file": "recipes/rec_007.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "rec_008",
+      "file": "recipes/rec_008.txt",
+      "kind": "recipe",
+      "split": "test",
+      "tier": 2
+    },
+    {
+      "case_id": "rec_009",
+      "file": "recipes/rec_009.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "rec_010",
+      "file": "recipes/rec_010.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 2
+    },
+    {
+      "case_id": "rec_011",
+      "file": "recipes/rec_011.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "rec_012",
+      "file": "recipes/rec_012.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "rec_013",
+      "file": "recipes/rec_013.txt",
+      "kind": "recipe",
+      "split": "test",
+      "tier": 3
+    },
+    {
+      "case_id": "rec_014",
+      "file": "recipes/rec_014.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": 3
+    },
+    {
+      "case_id": "hw_01",
+      "file": "invoices/hw_01.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": "handwritten"
+    },
+    {
+      "case_id": "hw_02",
+      "file": "invoices/hw_02.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": "handwritten"
+    },
+    {
+      "case_id": "hw_03",
+      "file": "recipes/hw_03.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": "handwritten"
+    },
+    {
+      "case_id": "hw_04",
+      "file": "invoices/hw_04.txt",
+      "kind": "invoice",
+      "split": "test",
+      "tier": "handwritten"
+    },
+    {
+      "case_id": "hw_05",
+      "file": "recipes/hw_05.txt",
+      "kind": "recipe",
+      "split": "dev",
+      "tier": "handwritten"
+    },
+    {
+      "case_id": "hw_06",
+      "file": "invoices/hw_06.txt",
+      "kind": "invoice",
+      "split": "dev",
+      "tier": "handwritten"
+    }
+  ],
+  "seed": 2025
+}

@@ -1,0 +1,102 @@
+{
+  "case_id": "inv_035",
+  "effective_week": "2025-08-18",
+  "invoice_date": "2025-08-22",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: ambiguous_name"
+    },
+    {
+      "basis": "guessed",
+      "type": "ambiguous name: shredded cheese could be cheddar or mozzarella"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "36.63",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "11",
+        "unit": "LB",
+        "unit_price": "3.33"
+      },
+      "source_line": 7,
+      "unit_cost": 3.33
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "95.80",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20",
+        "unit": "LB",
+        "unit_price": "4.79"
+      },
+      "source_line": 8,
+      "unit_cost": 4.79
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream_cheese",
+      "raw": {
+        "description": "CREAM CHEESE",
+        "extended_price": "84.17",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "19",
+        "unit": "LB",
+        "unit_price": "4.43"
+      },
+      "source_line": 9,
+      "unit_cost": 4.43
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "5.40",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "18",
+        "unit": "EA",
+        "unit_price": "0.30"
+      },
+      "source_line": 10,
+      "unit_cost": 0.3
+    },
+    {
+      "flags": [
+        "ambiguous_name"
+      ],
+      "ingredient_id": "cheddar",
+      "raw": {
+        "description": "CHEESE SHREDDED",
+        "extended_price": "62.00",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "62.00"
+      },
+      "source_line": 11,
+      "unit_cost": 3.1
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_035.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 4,
+  "trap": "ambiguous_name"
+}

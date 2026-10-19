@@ -1,0 +1,14 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4034
+Date: 2025-01-08
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| BURGER BUN |  | 11 | EA | 0.72 | 7.92 |
+| MIXED GREENS |  | 10 | LB | 5.60 | 56.00 |
+| WING SAUCE |  | 7 | QT | 6.40 | 44.80 |
+| ROMAINE |  | 18 | HD | 2.40 | 43.20 |
+| CREAM HVY 36% | 40 LB | 1 | CS | 48.00 | 48.00 |
+
+TOTAL DUE: $199.92

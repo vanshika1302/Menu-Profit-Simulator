@@ -1,0 +1,14 @@
+GREENLINE PRODUCE
+INVOICE # 4038
+Date: 09/15/2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| PARMESAN |  | 17 | LB | 13.07 | 222.19 |
+| QUINOA |  | 20 | LB | 4.88 | 97.60 |
+| LIME |  | 8 | EA | 0.30 | 2.40 |
+| CHICKEN WINGS |  | 13 | LB | 4.88 | 63.44 |
+| FLOUR AP BLEACHED | 50 LB | 2 | CS | 50.41 | 110.22 |
+
+TOTAL DUE: $495.85

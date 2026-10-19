@@ -1,0 +1,65 @@
+{
+  "case_id": "rec_013",
+  "dish": "mac_cheese",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed (restaurant recipe style unverified in the research)",
+      "type": "ranges and 'to taste'"
+    },
+    {
+      "basis": "grounded",
+      "type": "edible-portion yield remarks"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "no_yield_applied"
+      ],
+      "ingredient_id": "butter",
+      "item_id": "mac_cheese",
+      "qty_per_serving": 0.0375,
+      "raw": {
+        "ingredient_text": "butter",
+        "quantity_text": "0.75 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [
+        "range_midpoint"
+      ],
+      "ingredient_id": "cream",
+      "item_id": "mac_cheese",
+      "qty_per_serving": 0.1125,
+      "raw": {
+        "ingredient_text": "heavy cream",
+        "quantity_text": "2-2 1/2 qt"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "item_id": "mac_cheese",
+      "qty_per_serving": 0.4,
+      "raw": {
+        "ingredient_text": "dry pasta",
+        "quantity_text": "8 lb"
+      },
+      "source_line": 7
+    }
+  ],
+  "servings": 20,
+  "skipped": [
+    {
+      "reason": "to taste",
+      "source_line": 5
+    }
+  ],
+  "source_file": "recipes/rec_013.txt",
+  "split": "test",
+  "tier": 3
+}

@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_010",
+  "effective_week": "2025-12-08",
+  "invoice_date": "2025-12-12",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "17.85",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "3",
+        "unit": "QT",
+        "unit_price": "5.95"
+      },
+      "source_line": 6,
+      "unit_cost": 5.95
+    },
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "34.30",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "3.43"
+      },
+      "source_line": 7,
+      "unit_cost": 3.43
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "0.32",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "1",
+        "unit": "EA",
+        "unit_price": "0.32"
+      },
+      "source_line": 8,
+      "unit_cost": 0.32
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "SHAVED BEEF",
+        "extended_price": "171.08",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "13.16"
+      },
+      "source_line": 9,
+      "unit_cost": 13.16
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "HEAVY CREAM",
+        "extended_price": "69.86",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "14",
+        "unit": "QT",
+        "unit_price": "4.99"
+      },
+      "source_line": 10,
+      "unit_cost": 4.99
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "MOZZARELLA",
+        "extended_price": "67.70",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "6.77"
+      },
+      "source_line": 11,
+      "unit_cost": 6.77
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_breast",
+      "raw": {
+        "description": "CHICKEN BREAST",
+        "extended_price": "103.80",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "20",
+        "unit": "LB",
+        "unit_price": "5.19"
+      },
+      "source_line": 12,
+      "unit_cost": 5.19
+    },
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "raw": {
+        "description": "BUTTER",
+        "extended_price": "81.12",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "6.76"
+      },
+      "source_line": 13,
+      "unit_cost": 6.76
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_010.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 1
+}

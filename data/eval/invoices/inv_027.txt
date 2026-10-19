@@ -1,0 +1,21 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4027
+Date: 2025-06-24
+Ship to: Bistro on Third, 118 Third Street
+
+1. CHKN WING JUMBO - 50 LB - qty 2 CS @ $241.74 = $483.48
+2. EGG LRG GRADE A - 15 DOZ - qty 4 CS @ $87.31 = $349.24
+3. TOMATO 5X6 - 4/5 LB - qty 1 CS @ $54.02 = $54.02
+4. CHEESE PARM GRATED - 2/10 LB - qty 3 CS @ $261.78 = $785.34
+5. BEEF STEAK SHAVED - 50 LB - qty 2 CS @ $645.24 = $1,290.48
+6. LETTUCE ROMANIE - 12 CT - qty 2 CS @ $28.23 = $56.46
+7. SHRIMP 21/25 PD - CW - qty 40.3 LB @ $15.15 = $610.55
+   ordered 1 CS, billed on received weight 40.3 LB
+8. SALMON FIL ATL - CW - qty 82.2 LB @ $15.59 = $1,281.50
+   ordered 2 CS, billed on received weight 82.2 LB
+
+FUEL SURCHARGE 12.00
+CREDIT MEMO - SHORT SHIPPED ITEM (14.00)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $4,904.07

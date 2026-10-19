@@ -1,0 +1,3 @@
+{"case_id": "hw_02", "kind": "invoice", "supplier": "Northgate Dairy & Dry", "invoice_date": "2025-03-12", "effective_week": "2025-03-10",
+ "rows": [], "skipped": [{"source_line": 6, "category": "credit"}, {"source_line": 7, "category": "credit"}], "new_ingredients": [],
+ "messiness": [{"type": "a credit memo with no ingredient costs: nothing may be costed", "basis": "grounded"}]}

@@ -1,0 +1,8 @@
+{"case_id": "hw_05", "kind": "recipe", "dish": "short_rib", "servings": 20,
+ "rows": [
+  {"source_line": 4, "item_id": "short_rib", "ingredient_id": "short_rib", "qty_per_serving": 0.65, "flags": ["range_midpoint"]},
+  {"source_line": 5, "item_id": "short_rib", "ingredient_id": "potato", "qty_per_serving": 0.4, "flags": ["no_yield_applied"]},
+  {"source_line": 6, "item_id": "short_rib", "ingredient_id": "cream", "qty_per_serving": 0.05, "flags": []},
+  {"source_line": 7, "item_id": "short_rib", "ingredient_id": "onion", "qty_per_serving": 0.15, "flags": []}],
+ "skipped": [{"source_line": 8, "reason": "to taste"}], "new_ingredients": [],
+ "messiness": [{"type": "range, edible-portion yield remark and a to-taste line", "basis": "guessed (restaurant recipe style unverified in the research)"}]}

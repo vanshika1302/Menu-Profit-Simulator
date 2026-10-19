@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_018",
+  "effective_week": "2025-12-08",
+  "invoice_date": "2025-12-10",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FILLET",
+        "extended_price": "908.60",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "908.60"
+      },
+      "source_line": 7,
+      "unit_cost": 15.143333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tortilla_chips",
+      "raw": {
+        "description": "TORTILLA CHIPS",
+        "extended_price": "1,030.64",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "257.66"
+      },
+      "source_line": 8,
+      "unit_cost": 4.294333333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "1,169.68",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "292.42"
+      },
+      "source_line": 9,
+      "unit_cost": 14.621
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "raw": {
+        "description": "GROUND BEEF",
+        "extended_price": "1,877.16",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "469.29"
+      },
+      "source_line": 10,
+      "unit_cost": 9.3858
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chocolate",
+      "raw": {
+        "description": "CHOCOLATE",
+        "extended_price": "246.46",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "123.23"
+      },
+      "source_line": 11,
+      "unit_cost": 6.1615
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "55.39",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "55.39"
+      },
+      "source_line": 12,
+      "unit_cost": 2.307916666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "751.04",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "187.76"
+      },
+      "source_line": 13,
+      "unit_cost": 9.388
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "84.33",
+        "pack_text": "15 DOZ",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "84.33"
+      },
+      "source_line": 14,
+      "unit_cost": 5.622
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_018.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 2
+}

@@ -1,0 +1,28 @@
+{
+  "case_id": "hw_02",
+  "effective_week": "2025-03-10",
+  "invoice_date": "2025-03-12",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "a credit memo with no ingredient costs: nothing may be costed"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [],
+  "skipped": [
+    {
+      "category": "credit",
+      "source_line": 6
+    },
+    {
+      "category": "credit",
+      "source_line": 7
+    }
+  ],
+  "source_file": "invoices/hw_02.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": "handwritten"
+}

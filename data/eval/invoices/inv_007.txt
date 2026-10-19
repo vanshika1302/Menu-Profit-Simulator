@@ -1,0 +1,17 @@
+NORTHGATE DAIRY & DRY
+INVOICE # 4007
+Date: 08 Dec 2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| CHOCOLATE |  | 1 | LB | 6.16 | 6.16 |
+| BURGER BUN |  | 9 | EA | 0.73 | 6.57 |
+| MOZZARELLA |  | 6 | LB | 6.77 | 40.62 |
+| PARMESAN |  | 2 | LB | 13.20 | 26.40 |
+| HEAVY CREAM |  | 16 | QT | 4.99 | 79.84 |
+| FLOUR |  | 1 | LB | 1.10 | 1.10 |
+| EGGS |  | 1 | DOZ | 5.62 | 5.62 |
+| COD FILLET |  | 16 | LB | 9.62 | 153.92 |
+
+TOTAL DUE: $320.23

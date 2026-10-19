@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_013",
+  "effective_week": "2025-06-23",
+  "invoice_date": "2025-06-27",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "soup_base",
+      "raw": {
+        "description": "SOUP BASE",
+        "extended_price": "247.56",
+        "pack_text": "6/#10",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "61.89"
+      },
+      "source_line": 6,
+      "unit_cost": 3.0562962962962965
+    },
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "80.96",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "20.24"
+      },
+      "source_line": 7,
+      "unit_cost": 1.012
+    },
+    {
+      "flags": [],
+      "ingredient_id": "pasta",
+      "raw": {
+        "description": "DRY PASTA",
+        "extended_price": "38.28",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "38.28"
+      },
+      "source_line": 8,
+      "unit_cost": 1.914
+    },
+    {
+      "flags": [],
+      "ingredient_id": "calamari",
+      "raw": {
+        "description": "CALAMARI",
+        "extended_price": "2,384.60",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "476.92"
+      },
+      "source_line": 9,
+      "unit_cost": 7.948666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "56.46",
+        "pack_text": "12 CT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "28.23"
+      },
+      "source_line": 10,
+      "unit_cost": 2.3525
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tortilla_chips",
+      "raw": {
+        "description": "TORTILLA CHIPS",
+        "extended_price": "166.96",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "83.48"
+      },
+      "source_line": 11,
+      "unit_cost": 4.174
+    },
+    {
+      "flags": [],
+      "ingredient_id": "garlic",
+      "raw": {
+        "description": "GARLIC",
+        "extended_price": "242.83",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "242.83"
+      },
+      "source_line": 12,
+      "unit_cost": 4.047166666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "803.86",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "803.86"
+      },
+      "source_line": 13,
+      "unit_cost": 13.397666666666666
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_013.txt",
+  "split": "test",
+  "supplier": "Greenline Produce",
+  "tier": 2
+}

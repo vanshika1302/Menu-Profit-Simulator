@@ -1,0 +1,22 @@
+GREENLINE PRODUCE
+INVOICE # 4021
+Date: Jan 8, 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+BEEF STEAK SHAVED             40 LB          4 CS      512.00   2,048.00
+SAUCE TOMATO CRUSHED          6/#10          2 CS       81.00     162.00
+CHEESE MOZZ LM SHRD           6/10#          2 CS      384.00     768.00
+BACON SLICED APPWD            40 LB          1 CS      384.00     384.00
+CERAM HVY 36%                 12/1 QT        2 CS       67.20     134.40
+OIL FRY SOBYEAN               4/1 GAL        4 CS       57.60     230.40
+BEEF SHORT RIB BNLS           CW          78.2 LB       12.80   1,000.96
+   ordered 2 CS, billed on received weight 78.2 LB
+SALMON FIL ATL                CW          60.0 LB       16.00     960.00
+   ordered 3 CS, billed on received weight 60.0 LB
+
+FUEL SURCHARGE 6.50
+CREDIT MEMO - SHORT SHIPPED ITEM (14.00)
+PROMPT PAY DISCOUNT -5.00
+
+TOTAL DUE: $5,675.26

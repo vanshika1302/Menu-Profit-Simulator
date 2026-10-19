@@ -1,0 +1,103 @@
+{
+  "case_id": "inv_036",
+  "effective_week": "2025-09-15",
+  "invoice_date": "2025-09-15",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: new_ingredient"
+    }
+  ],
+  "new_ingredients": [
+    {
+      "proposed_unit": "gal",
+      "source_line": 12
+    }
+  ],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "provolone",
+      "raw": {
+        "description": "PROVOLONE",
+        "extended_price": "81.80",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "8.18"
+      },
+      "source_line": 8,
+      "unit_cost": 8.18
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "raw": {
+        "description": "CHICKEN WINGS",
+        "extended_price": "82.96",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "17",
+        "unit": "LB",
+        "unit_price": "4.88"
+      },
+      "source_line": 9,
+      "unit_cost": 4.88
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "42.21",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "3",
+        "unit": "LB",
+        "unit_price": "14.07"
+      },
+      "source_line": 10,
+      "unit_cost": 14.07
+    },
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "60.80",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "10",
+        "unit": "QT",
+        "unit_price": "6.08"
+      },
+      "source_line": 11,
+      "unit_cost": 6.08
+    },
+    {
+      "flags": [
+        "new_ingredient"
+      ],
+      "ingredient_id": "NEW",
+      "raw": {
+        "description": "OIL TRUFFLE BLACK",
+        "extended_price": "36.00",
+        "pack_text": "6/1 GAL",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "36.00"
+      },
+      "source_line": 12,
+      "unit_cost": 6.0
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_036.txt",
+  "split": "test",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 4,
+  "trap": "new_ingredient"
+}

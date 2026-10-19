@@ -1,0 +1,165 @@
+{
+  "case_id": "inv_028",
+  "effective_week": "2025-05-26",
+  "invoice_date": "2025-05-27",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "catch weight billed per lb on received weight"
+    },
+    {
+      "basis": "grounded",
+      "type": "fuel surcharge, credit and prompt-pay discount lines"
+    },
+    {
+      "basis": "grounded (specific variants guessed)",
+      "type": "supplier name variants for the same ingredient"
+    },
+    {
+      "basis": "guessed",
+      "type": "typos in descriptions"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "raw": {
+        "description": "ONION YELLOW JMB",
+        "extended_price": "205.80",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "51.45"
+      },
+      "source_line": 7,
+      "unit_cost": 1.28625
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "CHESEE MOZZ LM SHRD",
+        "extended_price": "771.38",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "385.69"
+      },
+      "source_line": 8,
+      "unit_cost": 6.428166666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "potato",
+      "raw": {
+        "description": "POTATO RUSSET 70CT",
+        "extended_price": "111.20",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "55.60"
+      },
+      "source_line": 9,
+      "unit_cost": 1.112
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BUN BIROCHE 4IN",
+        "extended_price": "68.59",
+        "pack_text": "96 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "68.59"
+      },
+      "source_line": 10,
+      "unit_cost": 0.7144791666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGG LRG GRADE A",
+        "extended_price": "438.95",
+        "pack_text": "15 DOZ",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "87.79"
+      },
+      "source_line": 11,
+      "unit_cost": 5.852666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMTAO 5X6",
+        "extended_price": "410.04",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "136.68"
+      },
+      "source_line": 12,
+      "unit_cost": 2.7336
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP 21/25 PD",
+        "extended_price": "604.90",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "40.3",
+        "unit": "LB",
+        "unit_price": "15.01"
+      },
+      "source_line": 13,
+      "unit_cost": 15.009925558312656
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "BEEF RIBEYE LIPON",
+        "extended_price": "428.26",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "19.6",
+        "unit": "LB",
+        "unit_price": "21.85"
+      },
+      "source_line": 15,
+      "unit_cost": 21.85
+    }
+  ],
+  "skipped": [
+    {
+      "category": "fee",
+      "source_line": 18
+    },
+    {
+      "category": "credit",
+      "source_line": 19
+    },
+    {
+      "category": "discount",
+      "source_line": 20
+    }
+  ],
+  "source_file": "invoices/inv_028.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 3
+}

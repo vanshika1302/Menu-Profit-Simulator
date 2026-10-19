@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_017",
+  "effective_week": "2025-05-26",
+  "invoice_date": "2025-05-30",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "29.72",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "7.43"
+      },
+      "source_line": 6,
+      "unit_cost": 0.3095833333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chocolate",
+      "raw": {
+        "description": "CHOCOLATE",
+        "extended_price": "1,800.65",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "360.13"
+      },
+      "source_line": 7,
+      "unit_cost": 6.002166666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "raw": {
+        "description": "SALMON FILLET",
+        "extended_price": "303.16",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "303.16"
+      },
+      "source_line": 8,
+      "unit_cost": 15.158
+    },
+    {
+      "flags": [],
+      "ingredient_id": "veggie_patty",
+      "raw": {
+        "description": "VEGGIE PATTY",
+        "extended_price": "125.46",
+        "pack_text": "4/12 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "125.46"
+      },
+      "source_line": 9,
+      "unit_cost": 2.61375
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato",
+      "raw": {
+        "description": "TOMATO",
+        "extended_price": "546.70",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "109.34"
+      },
+      "source_line": 10,
+      "unit_cost": 2.7335
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "SIRLOIN STEAK",
+        "extended_price": "1,212.24",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "303.06"
+      },
+      "source_line": 11,
+      "unit_cost": 15.153
+    },
+    {
+      "flags": [],
+      "ingredient_id": "potato",
+      "raw": {
+        "description": "POTATO",
+        "extended_price": "200.13",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "66.71"
+      },
+      "source_line": 12,
+      "unit_cost": 1.1118333333333332
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sugar",
+      "raw": {
+        "description": "SUGAR",
+        "extended_price": "129.44",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "64.72"
+      },
+      "source_line": 13,
+      "unit_cost": 1.2944
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_017.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 2
+}

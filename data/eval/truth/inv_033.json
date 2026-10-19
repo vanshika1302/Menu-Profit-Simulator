@@ -1,0 +1,98 @@
+{
+  "case_id": "inv_033",
+  "effective_week": "2025-03-03",
+  "invoice_date": "2025-03-04",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: unknown_pack_unit"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "SHAVED BEEF",
+        "extended_price": "118.71",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "9",
+        "unit": "LB",
+        "unit_price": "13.19"
+      },
+      "source_line": 8,
+      "unit_cost": 13.19
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "6.20",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "20",
+        "unit": "EA",
+        "unit_price": "0.31"
+      },
+      "source_line": 9,
+      "unit_cost": 0.31
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream_cheese",
+      "raw": {
+        "description": "CREAM CHEESE",
+        "extended_price": "45.90",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "4.59"
+      },
+      "source_line": 10,
+      "unit_cost": 4.59
+    },
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "raw": {
+        "description": "WING SAUCE",
+        "extended_price": "109.65",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "17",
+        "unit": "QT",
+        "unit_price": "6.45"
+      },
+      "source_line": 11,
+      "unit_cost": 6.45
+    },
+    {
+      "flags": [
+        "unconvertible_unit"
+      ],
+      "ingredient_id": "pasta",
+      "raw": {
+        "description": "PASTA SPAGHETTI",
+        "extended_price": "110.00",
+        "pack_text": "4/5 PLT",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "55.00"
+      },
+      "source_line": 12,
+      "unit_cost": null
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_033.txt",
+  "split": "test",
+  "supplier": "Harbor Provisions",
+  "tier": 4,
+  "trap": "unknown_pack_unit"
+}

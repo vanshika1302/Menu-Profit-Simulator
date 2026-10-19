@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_001",
+  "effective_week": "2025-03-03",
+  "invoice_date": "2025-03-03",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "78.26",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "13",
+        "unit": "QT",
+        "unit_price": "6.02"
+      },
+      "source_line": 7,
+      "unit_cost": 6.02
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lemon",
+      "raw": {
+        "description": "LEMON",
+        "extended_price": "5.00",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "10",
+        "unit": "EA",
+        "unit_price": "0.50"
+      },
+      "source_line": 8,
+      "unit_cost": 0.5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "10.08",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "14",
+        "unit": "EA",
+        "unit_price": "0.72"
+      },
+      "source_line": 9,
+      "unit_cost": 0.72
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP",
+        "extended_price": "170.64",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "14.22"
+      },
+      "source_line": 10,
+      "unit_cost": 14.22
+    },
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "0.99",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "1",
+        "unit": "LB",
+        "unit_price": "0.99"
+      },
+      "source_line": 11,
+      "unit_cost": 0.99
+    },
+    {
+      "flags": [],
+      "ingredient_id": "potato",
+      "raw": {
+        "description": "POTATO",
+        "extended_price": "8.96",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "8",
+        "unit": "LB",
+        "unit_price": "1.12"
+      },
+      "source_line": 12,
+      "unit_cost": 1.12
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ribeye",
+      "raw": {
+        "description": "RIBEYE STEAK",
+        "extended_price": "197.28",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "9",
+        "unit": "LB",
+        "unit_price": "21.92"
+      },
+      "source_line": 13,
+      "unit_cost": 21.92
+    },
+    {
+      "flags": [],
+      "ingredient_id": "romaine",
+      "raw": {
+        "description": "ROMAINE",
+        "extended_price": "7.17",
+        "pack_text": null,
+        "price_unit": "HD",
+        "qty": "3",
+        "unit": "HD",
+        "unit_price": "2.39"
+      },
+      "source_line": 14,
+      "unit_cost": 2.39
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_001.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 1
+}

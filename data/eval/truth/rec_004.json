@@ -1,0 +1,63 @@
+{
+  "case_id": "rec_004",
+  "dish": "philly",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "plain decimal quantities in the ingredient's unit"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "item_id": "philly",
+      "qty_per_serving": 1.0,
+      "raw": {
+        "ingredient_text": "burger bun",
+        "quantity_text": "20 ea"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "item_id": "philly",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "onion",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "provolone",
+      "item_id": "philly",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "provolone",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "item_id": "philly",
+      "qty_per_serving": 0.35,
+      "raw": {
+        "ingredient_text": "shaved beef",
+        "quantity_text": "7 lb"
+      },
+      "source_line": 7
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_004.txt",
+  "split": "dev",
+  "tier": 1
+}

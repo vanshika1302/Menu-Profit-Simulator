@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_008",
+  "effective_week": "2025-04-28",
+  "invoice_date": "2025-05-02",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "13.13",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "1.01"
+      },
+      "source_line": 8,
+      "unit_cost": 1.01
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "raw": {
+        "description": "GROUND BEEF",
+        "extended_price": "162.07",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "19",
+        "unit": "LB",
+        "unit_price": "8.53"
+      },
+      "source_line": 9,
+      "unit_cost": 8.53
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bacon",
+      "raw": {
+        "description": "BACON",
+        "extended_price": "18.86",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "2",
+        "unit": "LB",
+        "unit_price": "9.43"
+      },
+      "source_line": 10,
+      "unit_cost": 9.43
+    },
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "32.80",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "3.28"
+      },
+      "source_line": 11,
+      "unit_cost": 3.28
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chocolate",
+      "raw": {
+        "description": "CHOCOLATE",
+        "extended_price": "24.40",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "4",
+        "unit": "LB",
+        "unit_price": "6.10"
+      },
+      "source_line": 12,
+      "unit_cost": 6.1
+    },
+    {
+      "flags": [],
+      "ingredient_id": "tomato_sauce",
+      "raw": {
+        "description": "TOMATO SAUCE",
+        "extended_price": "24.48",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "6",
+        "unit": "QT",
+        "unit_price": "4.08"
+      },
+      "source_line": 13,
+      "unit_cost": 4.08
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "33.60",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "6",
+        "unit": "QT",
+        "unit_price": "5.60"
+      },
+      "source_line": 14,
+      "unit_cost": 5.6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "HEAVY CREAM",
+        "extended_price": "21.20",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "4",
+        "unit": "QT",
+        "unit_price": "5.30"
+      },
+      "source_line": 15,
+      "unit_cost": 5.3
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_008.txt",
+  "split": "dev",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 1
+}

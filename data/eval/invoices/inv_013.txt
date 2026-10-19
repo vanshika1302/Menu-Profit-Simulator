@@ -1,0 +1,15 @@
+GREENLINE PRODUCE
+INVOICE # 4013
+Date: 27 Jun 2025
+Ship to: Bistro on Third, 118 Third Street
+
+1. SOUP BASE - 6/#10 - qty 4 CS @ $61.89 = $247.56
+2. FLOUR - 2/10 LB - qty 4 CS @ $20.24 = $80.96
+3. DRY PASTA - 4/5 LB - qty 1 CS @ $38.28 = $38.28
+4. CALAMARI - 6/10# - qty 5 CS @ $476.92 = $2,384.60
+5. ROMAINE - 12 CT - qty 2 CS @ $28.23 = $56.46
+6. TORTILLA CHIPS - 4/5 LB - qty 2 CS @ $83.48 = $166.96
+7. GARLIC - 6/10# - qty 1 CS @ $242.83 = $242.83
+8. BEEF SHORT RIB - 6/10# - qty 1 CS @ $803.86 = $803.86
+
+TOTAL DUE: $4,021.51

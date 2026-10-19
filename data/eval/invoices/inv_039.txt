@@ -1,0 +1,14 @@
+HARBOR PROVISIONS
+INVOICE # 4039
+Date: 06/23/2025
+Ship to: Bistro on Third, 118 Third Street
+
+| DESCRIPTION | PACK | QTY | UOM | PRICE | EXT |
+|---|---|---|---|---|---|
+| BURGER BUN |  | 20 | EA | 0.72 | 14.40 |
+| SIRLOIN STEAK |  | 13 | LB | 14.68 | 190.84 |
+| DRY PASTA |  | 14 | LB | 1.91 | 26.74 |
+| GRAHAM CRACKERS |  | 3 | LB | 3.29 | 9.87 |
+| BEEF TOP SIRLOIN | CW | 2 | CS | 14.68 |  |
+
+TOTAL DUE: $241.85

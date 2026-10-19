@@ -1,0 +1,16 @@
+GREENLINE PRODUCE
+INVOICE # 4006
+Date: 04 Mar 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+FLOUR                                       17 LB        0.99      16.83
+SHRIMP                                       7 LB       14.22      99.54
+SIRLOIN STEAK                                1 LB       15.07      15.07
+MOZZARELLA                                  18 LB        6.57     118.26
+CREAM CHEESE                                14 LB        4.59      64.26
+VEGGIE PATTY                                11 EA        2.56      28.16
+COOKING OIL                                 14 GAL      13.94     195.16
+SOUP BASE                                    1 QT        2.99       2.99
+
+TOTAL DUE: $540.27

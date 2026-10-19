@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_016",
+  "effective_week": "2025-02-03",
+  "invoice_date": "2025-02-06",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "348.50",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "348.50"
+      },
+      "source_line": 6,
+      "unit_cost": 5.808333333333334
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "SIRLOIN STEAK",
+        "extended_price": "2,313.96",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "578.49"
+      },
+      "source_line": 7,
+      "unit_cost": 14.46225
+    },
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "17.08",
+        "pack_text": "24 CT",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "17.08"
+      },
+      "source_line": 8,
+      "unit_cost": 0.7116666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "graham",
+      "raw": {
+        "description": "GRAHAM CRACKERS",
+        "extended_price": "195.33",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "65.11"
+      },
+      "source_line": 9,
+      "unit_cost": 3.2555
+    },
+    {
+      "flags": [],
+      "ingredient_id": "calamari",
+      "raw": {
+        "description": "CALAMARI",
+        "extended_price": "1,948.44",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "487.11"
+      },
+      "source_line": 10,
+      "unit_cost": 8.1185
+    },
+    {
+      "flags": [],
+      "ingredient_id": "parmesan",
+      "raw": {
+        "description": "PARMESAN",
+        "extended_price": "1,107.92",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "276.98"
+      },
+      "source_line": 11,
+      "unit_cost": 13.849
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "505.40",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "252.70"
+      },
+      "source_line": 12,
+      "unit_cost": 12.635
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "raw": {
+        "description": "QUINOA",
+        "extended_price": "385.76",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "96.44"
+      },
+      "source_line": 13,
+      "unit_cost": 4.822
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_016.txt",
+  "split": "test",
+  "supplier": "Northgate Dairy & Dry",
+  "tier": 2
+}

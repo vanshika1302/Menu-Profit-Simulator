@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_006",
+  "effective_week": "2025-03-03",
+  "invoice_date": "2025-03-04",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "16.83",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "17",
+        "unit": "LB",
+        "unit_price": "0.99"
+      },
+      "source_line": 7,
+      "unit_cost": 0.99
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shrimp",
+      "raw": {
+        "description": "SHRIMP",
+        "extended_price": "99.54",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "7",
+        "unit": "LB",
+        "unit_price": "14.22"
+      },
+      "source_line": 8,
+      "unit_cost": 14.22
+    },
+    {
+      "flags": [],
+      "ingredient_id": "sirloin",
+      "raw": {
+        "description": "SIRLOIN STEAK",
+        "extended_price": "15.07",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "1",
+        "unit": "LB",
+        "unit_price": "15.07"
+      },
+      "source_line": 9,
+      "unit_cost": 15.07
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "MOZZARELLA",
+        "extended_price": "118.26",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "18",
+        "unit": "LB",
+        "unit_price": "6.57"
+      },
+      "source_line": 10,
+      "unit_cost": 6.57
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream_cheese",
+      "raw": {
+        "description": "CREAM CHEESE",
+        "extended_price": "64.26",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "14",
+        "unit": "LB",
+        "unit_price": "4.59"
+      },
+      "source_line": 11,
+      "unit_cost": 4.59
+    },
+    {
+      "flags": [],
+      "ingredient_id": "veggie_patty",
+      "raw": {
+        "description": "VEGGIE PATTY",
+        "extended_price": "28.16",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "11",
+        "unit": "EA",
+        "unit_price": "2.56"
+      },
+      "source_line": 12,
+      "unit_cost": 2.56
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "raw": {
+        "description": "COOKING OIL",
+        "extended_price": "195.16",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "14",
+        "unit": "GAL",
+        "unit_price": "13.94"
+      },
+      "source_line": 13,
+      "unit_cost": 13.94
+    },
+    {
+      "flags": [],
+      "ingredient_id": "soup_base",
+      "raw": {
+        "description": "SOUP BASE",
+        "extended_price": "2.99",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "1",
+        "unit": "QT",
+        "unit_price": "2.99"
+      },
+      "source_line": 14,
+      "unit_cost": 2.99
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_006.txt",
+  "split": "test",
+  "supplier": "Greenline Produce",
+  "tier": 1
+}

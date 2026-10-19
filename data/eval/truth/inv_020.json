@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_020",
+  "effective_week": "2025-12-08",
+  "invoice_date": "2025-12-12",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "pack notation count/size UNIT and case price (#10 cans, count packs)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "provolone",
+      "raw": {
+        "description": "PROVOLONE",
+        "extended_price": "541.73",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "541.73"
+      },
+      "source_line": 6,
+      "unit_cost": 9.028833333333333
+    },
+    {
+      "flags": [],
+      "ingredient_id": "onion",
+      "raw": {
+        "description": "ONION",
+        "extended_price": "152.60",
+        "pack_text": "6/10#",
+        "price_unit": "CS",
+        "qty": "2",
+        "unit": "CS",
+        "unit_price": "76.30"
+      },
+      "source_line": 7,
+      "unit_cost": 1.2716666666666667
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "raw": {
+        "description": "MIXED GREENS",
+        "extended_price": "313.89",
+        "pack_text": "50 LB",
+        "price_unit": "CS",
+        "qty": "1",
+        "unit": "CS",
+        "unit_price": "313.89"
+      },
+      "source_line": 8,
+      "unit_cost": 6.2778
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ground_beef",
+      "raw": {
+        "description": "GROUND BEEF",
+        "extended_price": "1,501.72",
+        "pack_text": "40 LB",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "375.43"
+      },
+      "source_line": 9,
+      "unit_cost": 9.38575
+    },
+    {
+      "flags": [],
+      "ingredient_id": "chicken_breast",
+      "raw": {
+        "description": "CHICKEN BREAST",
+        "extended_price": "519.30",
+        "pack_text": "2/10 LB",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "103.86"
+      },
+      "source_line": 10,
+      "unit_cost": 5.193
+    },
+    {
+      "flags": [],
+      "ingredient_id": "shaved_beef",
+      "raw": {
+        "description": "SHAVED BEEF",
+        "extended_price": "789.51",
+        "pack_text": "4/5 LB",
+        "price_unit": "CS",
+        "qty": "3",
+        "unit": "CS",
+        "unit_price": "263.17"
+      },
+      "source_line": 11,
+      "unit_cost": 13.1585
+    },
+    {
+      "flags": [],
+      "ingredient_id": "ice_cream",
+      "raw": {
+        "description": "VANILLA ICE CREAM",
+        "extended_price": "391.80",
+        "pack_text": "4/1 GAL",
+        "price_unit": "CS",
+        "qty": "4",
+        "unit": "CS",
+        "unit_price": "97.95"
+      },
+      "source_line": 12,
+      "unit_cost": 6.121875
+    },
+    {
+      "flags": [],
+      "ingredient_id": "veggie_patty",
+      "raw": {
+        "description": "VEGGIE PATTY",
+        "extended_price": "656.95",
+        "pack_text": "4/12 CT",
+        "price_unit": "CS",
+        "qty": "5",
+        "unit": "CS",
+        "unit_price": "131.39"
+      },
+      "source_line": 13,
+      "unit_cost": 2.7372916666666667
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_020.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 2
+}

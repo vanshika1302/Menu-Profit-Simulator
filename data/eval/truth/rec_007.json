@@ -1,0 +1,74 @@
+{
+  "case_id": "rec_007",
+  "dish": "salmon",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "mixed numbers, Unicode fractions and compound amounts (3 lb 6 oz)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "butter",
+      "item_id": "salmon",
+      "qty_per_serving": 0.0375,
+      "raw": {
+        "ingredient_text": "butter",
+        "quantity_text": "12 oz"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lemon",
+      "item_id": "salmon",
+      "qty_per_serving": 0.5,
+      "raw": {
+        "ingredient_text": "lemon",
+        "quantity_text": "10 ea"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "item_id": "salmon",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "mixed greens",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [],
+      "ingredient_id": "quinoa",
+      "item_id": "salmon",
+      "qty_per_serving": 0.15,
+      "raw": {
+        "ingredient_text": "quinoa",
+        "quantity_text": "3 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [],
+      "ingredient_id": "salmon",
+      "item_id": "salmon",
+      "qty_per_serving": 0.5,
+      "raw": {
+        "ingredient_text": "salmon fillet",
+        "quantity_text": "10 lb"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_007.txt",
+  "split": "dev",
+  "tier": 2
+}

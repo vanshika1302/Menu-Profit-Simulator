@@ -1,0 +1,140 @@
+{
+  "case_id": "inv_002",
+  "effective_week": "2025-11-10",
+  "invoice_date": "2025-11-13",
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "supplier layout and date format variants"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "raw": {
+        "description": "BURGER BUN",
+        "extended_price": "4.32",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "6",
+        "unit": "EA",
+        "unit_price": "0.72"
+      },
+      "source_line": 7,
+      "unit_cost": 0.72
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cod",
+      "raw": {
+        "description": "COD FILLET",
+        "extended_price": "96.50",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "9.65"
+      },
+      "source_line": 8,
+      "unit_cost": 9.65
+    },
+    {
+      "flags": [],
+      "ingredient_id": "short_rib",
+      "raw": {
+        "description": "BEEF SHORT RIB",
+        "extended_price": "140.30",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "10",
+        "unit": "LB",
+        "unit_price": "14.03"
+      },
+      "source_line": 9,
+      "unit_cost": 14.03
+    },
+    {
+      "flags": [],
+      "ingredient_id": "eggs",
+      "raw": {
+        "description": "EGGS",
+        "extended_price": "28.35",
+        "pack_text": null,
+        "price_unit": "DOZ",
+        "qty": "5",
+        "unit": "DOZ",
+        "unit_price": "5.67"
+      },
+      "source_line": 10,
+      "unit_cost": 5.67
+    },
+    {
+      "flags": [],
+      "ingredient_id": "lime",
+      "raw": {
+        "description": "LIME",
+        "extended_price": "3.41",
+        "pack_text": null,
+        "price_unit": "EA",
+        "qty": "11",
+        "unit": "EA",
+        "unit_price": "0.31"
+      },
+      "source_line": 11,
+      "unit_cost": 0.31
+    },
+    {
+      "flags": [],
+      "ingredient_id": "cream",
+      "raw": {
+        "description": "HEAVY CREAM",
+        "extended_price": "30.18",
+        "pack_text": null,
+        "price_unit": "QT",
+        "qty": "6",
+        "unit": "QT",
+        "unit_price": "5.03"
+      },
+      "source_line": 12,
+      "unit_cost": 5.03
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mozzarella",
+      "raw": {
+        "description": "MOZZARELLA",
+        "extended_price": "80.04",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "12",
+        "unit": "LB",
+        "unit_price": "6.67"
+      },
+      "source_line": 13,
+      "unit_cost": 6.67
+    },
+    {
+      "flags": [],
+      "ingredient_id": "flour",
+      "raw": {
+        "description": "FLOUR",
+        "extended_price": "14.17",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "13",
+        "unit": "LB",
+        "unit_price": "1.09"
+      },
+      "source_line": 14,
+      "unit_cost": 1.09
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_002.txt",
+  "split": "dev",
+  "supplier": "Greenline Produce",
+  "tier": 1
+}

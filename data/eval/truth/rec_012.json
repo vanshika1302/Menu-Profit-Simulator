@@ -1,0 +1,84 @@
+{
+  "case_id": "rec_012",
+  "dish": "veggie_burger",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed (restaurant recipe style unverified in the research)",
+      "type": "ranges and 'to taste'"
+    },
+    {
+      "basis": "grounded",
+      "type": "edible-portion yield remarks"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "bun",
+      "item_id": "veggie_burger",
+      "qty_per_serving": 1.0,
+      "raw": {
+        "ingredient_text": "burger bun",
+        "quantity_text": "20 ea"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "mixed_greens",
+      "item_id": "veggie_burger",
+      "qty_per_serving": 0.05,
+      "raw": {
+        "ingredient_text": "mixed greens",
+        "quantity_text": "1 lb"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [
+        "range_midpoint"
+      ],
+      "ingredient_id": "provolone",
+      "item_id": "veggie_burger",
+      "qty_per_serving": 0.1125,
+      "raw": {
+        "ingredient_text": "provolone",
+        "quantity_text": "2-2 1/2 lb"
+      },
+      "source_line": 6
+    },
+    {
+      "flags": [
+        "no_yield_applied"
+      ],
+      "ingredient_id": "tomato",
+      "item_id": "veggie_burger",
+      "qty_per_serving": 0.1,
+      "raw": {
+        "ingredient_text": "tomato",
+        "quantity_text": "2 lb"
+      },
+      "source_line": 7
+    },
+    {
+      "flags": [
+        "range_midpoint"
+      ],
+      "ingredient_id": "veggie_patty",
+      "item_id": "veggie_burger",
+      "qty_per_serving": 1.05,
+      "raw": {
+        "ingredient_text": "veggie patty",
+        "quantity_text": "20-22 ea"
+      },
+      "source_line": 8
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_012.txt",
+  "split": "dev",
+  "tier": 3
+}

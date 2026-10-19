@@ -1,0 +1,16 @@
+GREENLINE PRODUCE
+INVOICE # 4002
+Date: 13 Nov 2025
+Ship to: Bistro on Third, 118 Third Street
+
+DESCRIPTION                   PACK         QTY UOM      PRICE        EXT
+BURGER BUN                                   6 EA        0.72       4.32
+COD FILLET                                  10 LB        9.65      96.50
+BEEF SHORT RIB                              10 LB       14.03     140.30
+EGGS                                         5 DOZ       5.67      28.35
+LIME                                        11 EA        0.31       3.41
+HEAVY CREAM                                  6 QT        5.03      30.18
+MOZZARELLA                                  12 LB        6.67      80.04
+FLOUR                                       13 LB        1.09      14.17
+
+TOTAL DUE: $397.27

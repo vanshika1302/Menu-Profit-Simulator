@@ -1,0 +1,30 @@
+{
+  "case_id": "rec_001",
+  "dish": "soda",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "plain decimal quantities in the ingredient's unit"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "soda_syrup",
+      "item_id": "soda",
+      "qty_per_serving": 0.05,
+      "raw": {
+        "ingredient_text": "soda syrup",
+        "quantity_text": "1 gal"
+      },
+      "source_line": 4
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_001.txt",
+  "split": "dev",
+  "tier": 1
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "rec_010",
+  "dish": "wings",
+  "kind": "recipe",
+  "messiness": [
+    {
+      "basis": "grounded",
+      "type": "mixed numbers, Unicode fractions and compound amounts (3 lb 6 oz)"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [],
+      "ingredient_id": "chicken_wings",
+      "item_id": "wings",
+      "qty_per_serving": 1.0,
+      "raw": {
+        "ingredient_text": "chicken wings",
+        "quantity_text": "20 lb"
+      },
+      "source_line": 4
+    },
+    {
+      "flags": [],
+      "ingredient_id": "hot_sauce",
+      "item_id": "wings",
+      "qty_per_serving": 0.0625,
+      "raw": {
+        "ingredient_text": "wing sauce",
+        "quantity_text": "1¼ qt"
+      },
+      "source_line": 5
+    },
+    {
+      "flags": [],
+      "ingredient_id": "oil",
+      "item_id": "wings",
+      "qty_per_serving": 0.0125,
+      "raw": {
+        "ingredient_text": "cooking oil",
+        "quantity_text": "1/4 gal"
+      },
+      "source_line": 6
+    }
+  ],
+  "servings": 20,
+  "skipped": [],
+  "source_file": "recipes/rec_010.txt",
+  "split": "dev",
+  "tier": 2
+}

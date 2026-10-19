@@ -1,0 +1,9 @@
+{"case_id": "hw_03", "kind": "recipe", "dish": "grain_bowl", "servings": null,
+ "rows": [
+  {"source_line": 3, "item_id": "grain_bowl", "ingredient_id": "quinoa", "qty_per_serving": null, "flags": ["missing_servings"]},
+  {"source_line": 4, "item_id": "grain_bowl", "ingredient_id": "mixed_greens", "qty_per_serving": null, "flags": ["missing_servings"]},
+  {"source_line": 5, "item_id": "grain_bowl", "ingredient_id": "tomato", "qty_per_serving": null, "flags": ["missing_servings"]},
+  {"source_line": 6, "item_id": "grain_bowl", "ingredient_id": "chicken_breast", "qty_per_serving": null, "flags": ["missing_servings"]},
+  {"source_line": 7, "item_id": "grain_bowl", "ingredient_id": "oil", "qty_per_serving": null, "flags": ["missing_servings"]}],
+ "skipped": [], "new_ingredients": [],
+ "messiness": [{"type": "recipe with no serving count: per-serving quantities cannot be computed", "basis": "guessed"}]}

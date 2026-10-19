@@ -1,0 +1,89 @@
+{
+  "case_id": "inv_032",
+  "effective_week": null,
+  "invoice_date": null,
+  "kind": "invoice",
+  "messiness": [
+    {
+      "basis": "guessed",
+      "type": "adversarial trap: missing_date"
+    }
+  ],
+  "new_ingredients": [],
+  "rows": [
+    {
+      "flags": [
+        "missing_date"
+      ],
+      "ingredient_id": "cream_cheese",
+      "raw": {
+        "description": "CREAM CHEESE",
+        "extended_price": "84.60",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "18",
+        "unit": "LB",
+        "unit_price": "4.70"
+      },
+      "source_line": 5,
+      "unit_cost": 4.7
+    },
+    {
+      "flags": [
+        "missing_date"
+      ],
+      "ingredient_id": "sugar",
+      "raw": {
+        "description": "SUGAR",
+        "extended_price": "20.48",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "16",
+        "unit": "LB",
+        "unit_price": "1.28"
+      },
+      "source_line": 6,
+      "unit_cost": 1.28
+    },
+    {
+      "flags": [
+        "missing_date"
+      ],
+      "ingredient_id": "soda_syrup",
+      "raw": {
+        "description": "SODA SYRUP",
+        "extended_price": "44.58",
+        "pack_text": null,
+        "price_unit": "GAL",
+        "qty": "2",
+        "unit": "GAL",
+        "unit_price": "22.29"
+      },
+      "source_line": 7,
+      "unit_cost": 22.29
+    },
+    {
+      "flags": [
+        "missing_date"
+      ],
+      "ingredient_id": "chocolate",
+      "raw": {
+        "description": "CHOCOLATE",
+        "extended_price": "67.10",
+        "pack_text": null,
+        "price_unit": "LB",
+        "qty": "11",
+        "unit": "LB",
+        "unit_price": "6.10"
+      },
+      "source_line": 8,
+      "unit_cost": 6.1
+    }
+  ],
+  "skipped": [],
+  "source_file": "invoices/inv_032.txt",
+  "split": "dev",
+  "supplier": "Harbor Provisions",
+  "tier": 4,
+  "trap": "missing_date"
+}
