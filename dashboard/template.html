@@ -289,10 +289,11 @@
   function headBand() { return R.bands.medium !== undefined ? 'medium' : Object.keys(R.bands)[0]; }
 
   function matrixSVG() {
-    var W = 600, H = 380, m = { l: 46, r: 14, t: 14, b: 40 };
+    // Draw at the container's real width so text stays readable on a phone instead of shrinking.
+    var W = Math.max(300, Math.min(700, $('matrix').clientWidth || 600)), H = W < 500 ? 360 : 380, m = { l: 46, r: 14, t: 14, b: 40 };
     var X = function (v) { return m.l + (Math.min(v, 3) / 3) * (W - m.l - m.r); };
     var Y = function (v) { return H - m.b - (Math.min(v, 2) / 2) * (H - m.t - m.b); };
-    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Menu engineering matrix: popularity against margin">' + HATCH;
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" style="max-width:100%;height:auto" role="img" aria-label="Menu engineering matrix: popularity against margin">' + HATCH;
     s += '<line x1="' + X(1) + '" x2="' + X(1) + '" y1="' + m.t + '" y2="' + (H - m.b) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
     s += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(1) + '" y2="' + Y(1) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
     [['Puzzle', m.l + 6, m.t + 14, 'start'], ['Star', W - m.r - 6, m.t + 14, 'end'], ['Dog', m.l + 6, H - m.b - 8, 'start'], ['Plowhorse', W - m.r - 6, H - m.b - 8, 'end']]
@@ -536,6 +537,8 @@
     document.addEventListener('mouseover', function (e) { var t = e.target.closest('[data-tip]'); if (t) { tip.innerHTML = t.dataset.tip; tip.style.display = 'block'; } });
     document.addEventListener('mousemove', function (e) { tip.style.left = Math.min(e.clientX + 14, innerWidth - 270) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
     document.addEventListener('mouseout', function (e) { if (e.target.closest('[data-tip]')) tip.style.display = 'none'; });
+    var resizeTimer = null, lastW = 0;
+    addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(function () { var w = $('matrix').clientWidth; if (w !== lastW) { lastW = w; renderMatrix(); } }, 150); });
     $('theme').onclick = function () {
       var cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       var next = cur === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next);
