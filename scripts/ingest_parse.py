@@ -29,9 +29,13 @@ def make_client(args, kind: str):
         return mc.StubClient()
     model = args.model or mc.DEFAULT_MODEL
     if args.live:
-        print(f"Live run: up to 2 model calls for this document (one retry at most), cap {args.max_calls}, model {model}.")
-        return mc.LiveClient(live=True, model=model, max_calls=args.max_calls,
-                             record_dir=Path(args.record) if args.record else None, prompt_version=prompt_version)
+        print(f"Live run ({args.backend}): up to 2 model calls for this document (one retry at most), cap {args.max_calls}, model {model}.")
+        return mc.make_live_client(args.backend, live=True, model=model, max_calls=args.max_calls,
+                                   record_dir=Path(args.record) if args.record else None, prompt_version=prompt_version)
+    if not args.model:   # replay: use the model the recordings were made with, if they agree
+        summary = mc.recordings_summary(Path(args.recordings)) if Path(args.recordings).is_dir() else {"models": []}
+        if len(summary["models"]) == 1:
+            model = summary["models"][0]
     return mc.RecordedClient(Path(args.recordings), model=model, prompt_version=prompt_version)
 
 
@@ -39,7 +43,10 @@ def main(argv=None, client=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("file", type=Path)
     ap.add_argument("--kind", choices=["invoice", "recipe"], required=True)
-    ap.add_argument("--live", action="store_true", help="call the real model (needs ANTHROPIC_API_KEY; never in CI)")
+    ap.add_argument("--live", action="store_true", help="call the real model (never in CI)")
+    ap.add_argument("--backend", choices=["api", "claude-code"], default="api",
+                    help="with --live: the Anthropic API (default; needs ANTHROPIC_API_KEY) or Claude Code's headless mode "
+                         "(`claude -p`, all tools disabled, on a Claude Code subscription: no key)")
     ap.add_argument("--stub", action="store_true", help="use the empty stub client (plumbing check)")
     ap.add_argument("--record", help="with --live: also save each response as a recording in this directory")
     ap.add_argument("--recordings", default=str(ROOT / "data" / "recordings"), help="directory of recordings to replay")

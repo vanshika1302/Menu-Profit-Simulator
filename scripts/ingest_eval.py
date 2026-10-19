@@ -48,10 +48,15 @@ def differs(a, b, rel=1e-6) -> bool:
     return a != b
 
 
-def build_snapshot(mode: str, split: str, model: str, cases, outcome, variance=None) -> dict:
+def build_snapshot(mode: str, split: str, model: str, cases, outcome, variance=None, backend=None) -> dict:
+    note = "Synthetic cases rendered by the project's own generator: scores are not real-world accuracy."
+    if backend == "claude-code":
+        note += (" This model ran through Claude Code's headless mode (`claude -p`, all tools disabled) on a Claude Code "
+                 "subscription, not through the Anthropic API.")
     snap = {"mode": mode, "split": split, "model": model if mode != "stub" else "rule-based baseline",
-            "prompt_versions": mc.PROMPT_VERSIONS, "note": "Synthetic cases rendered by the project's own generator: scores are not real-world accuracy.",
-            "report": ev.report(cases, outcome)}
+            "prompt_versions": mc.PROMPT_VERSIONS, "note": note, "report": ev.report(cases, outcome)}
+    if backend:
+        snap["backend"] = backend
     if variance:
         snap["run_to_run_change"] = variance
     return _round(json.loads(json.dumps(snap)))
@@ -60,7 +65,8 @@ def build_snapshot(mode: str, split: str, model: str, cases, outcome, variance=N
 def print_card(snap: dict) -> None:
     r = snap["report"]
     o = r["scorecard"]["overall"]
-    print(f"\n{snap['mode']} run on the {snap['split']} set: {r['cases']} cases, {o['rows_produced']} rows produced, {o['truth_rows']} true rows")
+    via = f" via {snap['backend']}" if snap.get("backend") else ""
+    print(f"\n{snap['mode']}{via} run on the {snap['split']} set: {r['cases']} cases, {o['rows_produced']} rows produced, {o['truth_rows']} true rows")
     print(f"  rows: precision {_f(o['rows']['precision'])}  recall {_f(o['rows']['recall'])}  F1 {_f(o['rows']['f1'])}")
     print(f"  silent error rate {_f(o['silent_error_rate'])}   catch rate {_f(o['catch_rate'])}   over-cautious rows {o['over_cautious']}")
     b = o["buckets"]
@@ -87,7 +93,10 @@ def _f(x) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--stub", action="store_true", help="the rule-based baseline")
-    ap.add_argument("--live", action="store_true", help="the real model (needs ANTHROPIC_API_KEY; never in CI)")
+    ap.add_argument("--live", action="store_true", help="the real model (never in CI)")
+    ap.add_argument("--backend", choices=["api", "claude-code"], default="api",
+                    help="with --live: the Anthropic API (default; needs ANTHROPIC_API_KEY) or Claude Code's headless mode "
+                         "(`claude -p`, all tools disabled, on a Claude Code subscription: no key)")
     ap.add_argument("--record", action="store_true", help="with --live: save each response as a recording")
     ap.add_argument("--split", choices=["dev", "test", "all"], help="default: all (live: dev)")
     ap.add_argument("--final", action="store_true", help="required with --live --split test: the test set is scored once")
@@ -102,6 +111,9 @@ def main(argv=None) -> int:
     mode = "stub" if args.stub else "live" if args.live else "recorded"
     split = args.split or ("dev" if mode == "live" else "all")
     model = args.model or mc.DEFAULT_MODEL
+    backend = args.backend if mode == "live" else None
+    if args.backend != "api" and mode != "live":
+        ap.error("--backend only makes sense with --live")
     if args.record and mode != "live":
         ap.error("--record only makes sense with --live")
     if mode == "live" and split != "dev" and not args.final:
@@ -120,13 +132,22 @@ def main(argv=None) -> int:
         if mode == "stub":
             outcome = ev.run_evaluation(cases, ev.stub_client_for)
         elif mode == "recorded":
+            summary = mc.recordings_summary(args.recordings)
+            if args.model is None:
+                if len(summary["models"]) != 1:
+                    print(f"The recordings in {args.recordings} come from {len(summary['models'])} different models {summary['models']}: "
+                          "pick one with --model.", file=sys.stderr)
+                    return 2
+                model = summary["models"][0]
+            backend = summary["backends"][0] if len(summary["backends"]) == 1 else "mixed"
             outcome = ev.run_evaluation(cases, ev.recorded_client_for(args.recordings, model))
         else:
             budget = mc.CallBudget(args.max_calls)
             print(f"Live run: {len(cases)} documents x {args.repeats} repeat(s): up to {2 * len(cases) * args.repeats} model calls "
                   f"(one retry at most per document), cap {args.max_calls}, model {model}.")
-            clients = {k: mc.LiveClient(live=True, model=model, budget=budget, prompt_version=mc.PROMPT_VERSIONS[k],
-                                        record_dir=args.recordings if args.record else None) for k in ("invoice", "recipe")}
+            clients = {k: mc.make_live_client(args.backend, live=True, model=model, budget=budget, prompt_version=mc.PROMPT_VERSIONS[k],
+                                              record_dir=args.recordings if args.record else None) for k in ("invoice", "recipe")}
+            model = clients["invoice"].model          # the label recordings are keyed by (claude-code:<model> through Claude Code)
 
             def live_for(case):
                 return clients["invoice" if case.truth["kind"] == "invoice" else "recipe"]
@@ -139,7 +160,7 @@ def main(argv=None) -> int:
         return 1
 
     variance = ev.variance_report(repeats) if len(repeats) > 1 else None
-    snap = build_snapshot(mode, split, model, cases, outcome, variance)
+    snap = build_snapshot(mode, split, model, cases, outcome, variance, backend)
     print_card(snap)
 
     path = args.out_dir / SNAPSHOTS[mode]

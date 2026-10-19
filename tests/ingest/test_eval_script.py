@@ -146,3 +146,50 @@ def test_variance_report_counts_rows_that_change_between_repeats():
     assert diff["rows_compared"] == 2 and diff["rows_changed"] == 2 and diff["cases_with_any_change"] == 1
     missing = ev.variance_report([{"c": [row(1, 2.0)]}, {"c": []}])
     assert missing["rows_changed"] == 1
+
+
+# ---------------------------------------------------------------- the Claude Code backend and recording model detection
+def test_backend_only_applies_to_live_runs():
+    with pytest.raises(SystemExit):
+        ingest_eval.main(["--stub", "--backend", "claude-code"])
+
+
+def test_the_claude_code_backend_is_refused_under_pytest(tmp_path, capsys):
+    assert ingest_eval.main(["--live", "--backend", "claude-code", "--split", "dev", "--out-dir", str(tmp_path)]) == 1
+    assert "pytest or CI" in capsys.readouterr().err
+
+
+def test_a_recorded_run_uses_the_model_the_recordings_were_made_with(tmp_path, capsys):
+    cases = sc.load_eval_cases()[:3]
+    label = "claude-code:claude-sonnet-5-5"
+
+    class Rec(Recorder):
+        def __init__(self, directory, kind):
+            super().__init__(directory, kind)
+            self.model = label
+
+        def complete_json(self, system, user, schema):
+            out = rule_based_extractor(system, user, schema)
+            mc.write_recording(self.directory, system, user, schema, label, mc.PROMPT_VERSIONS[self.kind], out, {"backend": "claude-code"})
+            self.calls += 1
+            return out
+
+    ev.run_evaluation(cases, lambda c: Rec(tmp_path, "invoice" if c.truth["kind"] == "invoice" else "recipe"))
+    assert mc.recordings_summary(tmp_path)["models"] == [label]
+    # the command needs no --model: it reads it from the recordings (it then fails only because later cases have no recording)
+    code = ingest_eval.main(["--recordings", str(tmp_path), "--out-dir", str(tmp_path)])
+    assert code == 1 and "MissingRecording" in capsys.readouterr().err
+
+
+def test_recordings_from_two_models_must_be_disambiguated(tmp_path, capsys):
+    for model in ("claude-code:a", "claude-code:b"):
+        mc.write_recording(tmp_path, "s", "u", {"type": "object"}, model, "invoice-1", {})
+    assert ingest_eval.main(["--recordings", str(tmp_path), "--out-dir", str(tmp_path)]) == 2
+    assert "pick one with --model" in capsys.readouterr().err
+
+
+def test_a_claude_code_snapshot_says_how_it_ran():
+    snap = ingest_eval.build_snapshot("live", "dev", "claude-code:claude-sonnet-5-5", sc.load_eval_cases()[:2],
+                                      ev.run_evaluation(sc.load_eval_cases()[:2], ev.stub_client_for), backend="claude-code")
+    assert snap["backend"] == "claude-code" and "Claude Code" in snap["note"] and "not through the Anthropic API" in snap["note"]
+    assert "backend" not in ingest_eval.build_snapshot("stub", "all", "x", sc.load_eval_cases()[:1], ev.run_evaluation(sc.load_eval_cases()[:1], ev.stub_client_for))

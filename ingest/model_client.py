@@ -13,6 +13,9 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
+import subprocess
+import tempfile
 import time
 from pathlib import Path
 from typing import Callable, Protocol
@@ -142,16 +145,30 @@ class RecordedClient:
         return json.loads(path.read_text())["response"]
 
 
-def write_recording(directory: Path, system: str, user: str, schema: dict, model: str, prompt_version: str, response: dict) -> Path:
+def write_recording(directory: Path, system: str, user: str, schema: dict, model: str, prompt_version: str, response: dict,
+                    extra: dict | None = None) -> Path:
+    """Save one response. `extra` is informational metadata (backend, the model that served it); it is not part of the key."""
     key = recording_key(system, user, schema, model, prompt_version)
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / f"{key}.json"
-    path.write_text(json.dumps({
-        "key": key, "model": model, "prompt_version": prompt_version,
-        "request": {"system": system, "user": user, "schema": schema}, "response": response,
-    }, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+    body = {"key": key, "model": model, "prompt_version": prompt_version,
+            "request": {"system": system, "user": user, "schema": schema}, "response": response}
+    if extra:
+        body["extra"] = extra
+    path.write_text(json.dumps(body, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
     return path
+
+
+def recordings_summary(directory: Path) -> dict:
+    """Which models and backends made the recordings in a directory: {"models": [...], "backends": [...], "count": n}."""
+    models, backends, n = set(), set(), 0
+    for p in Path(directory).glob("*.json"):
+        body = json.loads(p.read_text())
+        models.add(body["model"])
+        backends.add(body.get("extra", {}).get("backend", "api"))
+        n += 1
+    return {"models": sorted(models), "backends": sorted(backends), "count": n}
 
 
 # ------------------------------------------------------------------ stub
@@ -244,7 +261,7 @@ class LiveClient:
         except json.JSONDecodeError as e:
             raise ModelAPIError(f"the response was not valid JSON: {e}") from e
         if self.record_dir is not None:
-            write_recording(self.record_dir, system, user, schema, self.model, self.prompt_version, data)
+            write_recording(self.record_dir, system, user, schema, self.model, self.prompt_version, data, {"backend": "api"})
         return data
 
     def _create(self, system: str, user: str, schema: dict):
@@ -266,3 +283,112 @@ class LiveClient:
             except a.APIError as e:
                 raise ModelAPIError(f"the API call failed: {e}") from e
         raise ModelAPIError("unreachable")
+
+
+# ------------------------------------------------------------------ live through Claude Code (headless)
+CLAUDE_CODE_PREFIX = "claude-code:"
+
+
+class ClaudeCodeClient:
+    """The live path through Claude Code's headless mode (`claude -p`) on a subscription, with no API key.
+
+    Every call runs with ALL TOOLS DISABLED (`--tools ""`), no skills, no MCP servers, no session saved, no
+    settings or project memory loaded and a temporary empty working directory, so the model can only read the
+    text it is sent and return JSON: it can never run a command or read a file. Anthropic API keys are removed
+    from the child's environment so the call uses the Claude Code login, not API credits.
+
+    The same guards as the API client apply: --live only, never under pytest or CI, a shared call budget.
+    The recording key's model is `claude-code:<model>` so replays never mix with API recordings.
+    """
+
+    mode = "live"
+    backend = "claude-code"
+
+    def __init__(self, live: bool = False, model: str | None = None, max_calls: int = DEFAULT_CALL_CAP,
+                 record_dir: Path | None = None, prompt_version: str = "", retry_wait: float = 5.0, timeout: float = 600.0,
+                 budget: CallBudget | None = None, claude_bin: str | None = None, _skip_environment_guard: bool = False):
+        if not live:
+            raise LiveRunNotAllowed("a live model call needs the --live flag")
+        if not _skip_environment_guard and ("PYTEST_CURRENT_TEST" in os.environ or os.environ.get("CI")):
+            raise LiveRunNotAllowed("live model calls never run under pytest or CI")
+        self.claude_bin = claude_bin or shutil.which("claude")
+        if not self.claude_bin:
+            raise LiveRunNotAllowed("the `claude` command (Claude Code) was not found on PATH")
+        self.base_model = model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL
+        self.model = CLAUDE_CODE_PREFIX + self.base_model
+        self.max_calls, self.budget, self.timeout, self.retry_wait = max_calls, budget, timeout, retry_wait
+        self.record_dir = Path(record_dir) if record_dir else None
+        self.prompt_version = prompt_version
+        self.calls = 0
+        self.api_retries = 0
+        self.cost_usd = 0.0
+
+    def command(self, system: str, schema: dict) -> list[str]:
+        """The exact argv. Tools are disabled with `--tools ""`; nothing here can turn them back on."""
+        return [self.claude_bin, "-p", "--output-format", "json", "--tools", "", "--disable-slash-commands", "--strict-mcp-config",
+                "--no-session-persistence", "--setting-sources", "", "--system-prompt", system, "--model", self.base_model,
+                "--json-schema", json.dumps(schema)]
+
+    def _env(self) -> dict:
+        env = {k: v for k, v in os.environ.items() if k not in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_BASE_URL")}
+        return env
+
+    def complete_json(self, system: str, user: str, schema: dict) -> dict:
+        if self.budget is not None:
+            self.budget.take()
+        elif self.calls >= self.max_calls:
+            raise CallCapExceeded(f"reached the call cap of {self.max_calls}; raise --max-calls to continue")
+        self.calls += 1
+        out = self._run(system, user, schema)
+        if out.get("permission_denials"):
+            raise ModelError(f"Claude Code reported a denied tool request ({out['permission_denials']}): the parser must never use tools")
+        if out.get("is_error"):
+            raise ModelAPIError(f"Claude Code returned an error: {str(out.get('result'))[:300]}")
+        if out.get("terminal_reason") not in (None, "completed"):
+            raise ModelTruncated(f"Claude Code stopped early: {out.get('terminal_reason')}")
+        self.cost_usd += float(out.get("total_cost_usd") or 0.0)
+        data = out.get("structured_output")
+        if data is None:
+            try:
+                data = json.loads(out.get("result") or "")
+            except json.JSONDecodeError as e:
+                raise ModelAPIError(f"the response was not valid JSON: {e}") from e
+        if self.record_dir is not None:
+            served = sorted((out.get("modelUsage") or {}))
+            write_recording(self.record_dir, system, user, schema, self.model, self.prompt_version, data,
+                            {"backend": "claude-code", "served_by": served})
+        return data
+
+    def _run(self, system: str, user: str, schema: dict) -> dict:
+        """Run `claude -p` once, with one retry after a short wait if it fails to start, times out or hits a transient API error."""
+        last = ""
+        for attempt in (0, 1):
+            with tempfile.TemporaryDirectory(prefix="ingest_cc_") as cwd:
+                try:
+                    proc = subprocess.run(self.command(system, schema), input=user, capture_output=True, text=True,
+                                          cwd=cwd, env=self._env(), timeout=self.timeout)
+                except subprocess.TimeoutExpired:
+                    proc, last = None, f"timed out after {self.timeout:.0f}s"
+                except OSError as e:
+                    raise ModelAPIError(f"could not run {self.claude_bin}: {e}") from e
+            if proc is not None:
+                try:
+                    out = json.loads(proc.stdout)
+                except json.JSONDecodeError:
+                    out = None
+                if out is not None and not (out.get("is_error") and out.get("api_error_status") in (429, 500, 502, 503, 529)):
+                    return out
+                last = (out or {}).get("result") or proc.stderr[:300] or f"exit code {proc.returncode} with no JSON"
+            if attempt == 0:
+                self.api_retries += 1
+                time.sleep(self.retry_wait)
+        raise ModelAPIError(f"Claude Code failed twice: {str(last)[:300]}")
+
+
+def make_live_client(backend: str, **kwargs):
+    """The live client for a backend: "api" (the Anthropic API, the default) or "claude-code" (headless `claude -p`)."""
+    if backend == "claude-code":
+        return ClaudeCodeClient(**kwargs)
+    if backend == "api":
+        return LiveClient(**kwargs)
+    raise ValueError(f"unknown backend {backend!r}")
