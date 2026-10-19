@@ -38,82 +38,82 @@
   "naive_history": {
     "detail": [
       {
-        "error": -0.080157174,
+        "error": 1.011457283,
         "item": "beer",
-        "naive": -0.557157174,
+        "naive": 0.534457283,
         "price_change_pct": 7.142857143,
         "true": -0.477,
         "week": 27
       },
       {
-        "error": -0.644118985,
+        "error": 0.100657971,
         "item": "cheesecake",
-        "naive": -1.634118985,
+        "naive": -0.889342029,
         "price_change_pct": -20.0,
         "true": -0.99,
         "week": 38
       },
       {
-        "error": -0.354894758,
+        "error": -0.299224227,
         "item": "cheesecake",
-        "naive": -1.344894758,
+        "naive": -1.289224227,
         "price_change_pct": 25.0,
         "true": -0.99,
         "week": 40
       },
       {
-        "error": 0.629940753,
+        "error": -0.871567444,
         "item": "chicken_parm",
-        "naive": -0.851059247,
+        "naive": -2.352567444,
         "price_change_pct": 6.818181818,
         "true": -1.481,
         "week": 24
       },
       {
-        "error": 2.122921205,
+        "error": 1.147385417,
         "item": "classic_burger",
-        "naive": 1.394921205,
+        "naive": 0.419385417,
         "price_change_pct": 6.666666667,
         "true": -0.728,
         "week": 26
       },
       {
-        "error": 0.282060595,
+        "error": -0.95861207,
         "item": "fries",
-        "naive": -0.040939405,
+        "naive": -1.28161207,
         "price_change_pct": 8.333333333,
         "true": -0.323,
         "week": 30
       },
       {
-        "error": 2.03100522,
+        "error": -1.696859004,
         "item": "salmon",
-        "naive": 0.69600522,
+        "naive": -3.031859004,
         "price_change_pct": 5.555555556,
         "true": -1.335,
         "week": 28
       },
       {
-        "error": -2.595432125,
+        "error": -0.691448598,
         "item": "wings",
-        "naive": -3.523432125,
+        "naive": -1.619448598,
         "price_change_pct": -15.0,
         "true": -0.928,
         "week": 14
       },
       {
-        "error": -1.609758393,
+        "error": -0.055569738,
         "item": "wings",
-        "naive": -2.537758393,
+        "naive": -0.983569738,
         "price_change_pct": 17.647058824,
         "true": -0.928,
         "week": 16
       }
     ],
     "events": 9,
-    "mean_abs_error": 1.150032134,
-    "median_abs_error": 0.644118985,
-    "outside_band_share": 0.555555556,
+    "mean_abs_error": 0.759197973,
+    "median_abs_error": 0.871567444,
+    "outside_band_share": 0.444444444,
     "wrong_sign_share": 0.222222222
   },
   "note": "Synthetic data and authored ground truth: shows where the method works and fails, not real-world accuracy.",

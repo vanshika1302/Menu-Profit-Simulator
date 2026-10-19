@@ -170,8 +170,8 @@ md("""## Takeaways
 
 * Margins and the matrix are descriptive and solid; they come straight from recipes, costs and sales.
 * A cost shock alone is unambiguous. A price change is not: its sign usually depends on an elasticity nobody has measured, so the output is a range plus a break-even.
-* Price history is confounded and gives a poor estimate (median error 0.64, two of nine with the wrong sign), which is why the project recommends experiments.
-* At one restaurant's noise level, no single-item price test fits in a quarter. The honest options are larger effects, pooled items or longer tests.
+* Price history is confounded and gives a poor estimate (median error 0.87, two of nine with the wrong sign), which is why the project recommends experiments.
+* At one restaurant's noise level, no single-item price test fits in a quarter; pooling a category with a larger price step gets close (about 16 weeks for the entrees at +15%). The honest options are larger effects, pooled items or longer tests.
 
 Limitations are listed in the README: synthetic data and authored truth, assumed elasticity bands, single-pass substitution, no waste or yield, total units as a traffic proxy, assumed carryover and noise, policy-choice guardrails, weak evidence for menu-design and portion tests."""),
 ]

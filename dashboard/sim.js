@@ -354,8 +354,10 @@
     return Math.sqrt(s / (n - 1));
   }
   function sigmaBlock(history, cm) {
-    if (history.length < 2) return 0.0;
-    return sampleStdev(history) * Math.abs(cm) / Math.sqrt(7);
+    if (history.length < 3) return 0.0;
+    var diffs = [];
+    for (var i = 1; i < history.length; i++) diffs.push(history[i] - history[i - 1]);
+    return sampleStdev(diffs) / Math.sqrt(2) * Math.abs(cm) / Math.sqrt(7);
   }
   function durationWeeks(sigma, delta, m) {
     if (m === undefined) m = CARRYOVER_M;
@@ -456,7 +458,11 @@
   }
 
   function rank(entries) {
-    function byScore(a, b) { return b.score - a.score; }
+    // Method-backed tests rank ahead of weak-prior tests; score orders within each group.
+    function byScore(a, b) {
+      var wa = a.evidence !== 'method-backed' ? 1 : 0, wb = b.evidence !== 'method-backed' ? 1 : 0;
+      return wa !== wb ? wa - wb : b.score - a.score;
+    }
     var feasible = entries.filter(function (e) { return e.feasible_alone; }).sort(byScore);
     var needs = entries.filter(function (e) { return !e.feasible_alone; }).sort(byScore);
     [feasible, needs].forEach(function (lst) { lst.forEach(function (e, i) { e.rank = i + 1; }); });

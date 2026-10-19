@@ -41,3 +41,4 @@ Left to the build (generator-owned detail, not a decision): the exact ingredient
 ## Comments
 
 - Following the simulation model ticket: the global bands (-0.5 / -1.0 / -1.8) mean about five items (mostly drinks and sides) fall outside the band, rather than the "two or three" stated above. Accepted as honest misses.
+- Build-time change (2026-10-19): the negative-binomial weekly dispersion was raised from 40 to 200 (a less noisy generator). The CSVs, validation snapshots and golden fixtures were regenerated. Single-item tests stay far over the 12-week cap, so the empty "Feasible now" list is a property of the problem and not of the noise setting.

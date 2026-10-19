@@ -131,31 +131,35 @@ match a fresh build.
 ## Key findings
 
 All figures are from the synthetic restaurant; weekly numbers are contribution profit (revenue
-minus ingredient cost). Baseline: **$19,364 a week on $28,942 of sales, 33% food cost.**
+minus ingredient cost). Baseline: **$18,906 a week on $28,223 of sales, 33% food cost.**
 
-**Margins and the matrix.** Chicken Parm is the largest single contributor ($1,860 a week). Per
-category, the 30 items split 12 Stars, 8 Plowhorses, 6 Dogs and 4 Puzzles (whole-menu view:
+**Margins and the matrix.** Chicken Parm is the largest single contributor ($1,812 a week). Per
+category, the 30 items split 11 Stars, 8 Plowhorses, 6 Dogs and 5 Puzzles (whole-menu view:
 8 / 8 / 7 / 7). Groups of four to seven items make the thresholds noisy, and the 70%-of-equal-share
 rule is lenient, so the class split depends on how concentrated sales are.
 
-**A cost shock is unambiguous.** Beef +20% hits the seven beef items and costs **$595 a week
-(about $31,000 a year)**. With no price change there is no demand response, so the result does not
+**A cost shock is unambiguous.** Beef +20% hits the seven beef items and costs **$561 a week
+(about $29,000 a year)**. With no price change there is no demand response, so the result does not
 depend on elasticity and all three bands agree.
 
 **A price change is not.** A +5% rise on Classic Burger has a break-even elasticity of **-1.62**:
 it pays off only if demand is less elastic than that, and the assumed band (-0.5 to -1.8)
 straddles it. Across 60 test price rises, **none** get a verdict of "pays off under all bands" or
 "loses money under all bands": the break-even almost always sits inside a band this wide. The
-headline is therefore a range, not a number. A +10% burger rise is worth between -$24 and +$137 a
-week with no substitution, and +$174 to +$196 if every lost buyer switches to a similar dish, so
+headline is therefore a range, not a number. A +10% burger rise is worth between -$25 and +$142 a
+week with no substitution, and +$179 to +$202 if every lost buyer switches to a similar dish, so
 the substitution assumption matters too.
 
-**Experiments, honestly priced.** At this restaurant's noise level (weekly item sales vary by
-about 16-18%), no single-item test fits in 12 weeks: a +5% burger test needs about 760 weeks, +15%
-about 86, and pooling all seven entrees at +10% about 56. The dashboard says so rather than hiding
-those tests: they go on a "Needs pooling or a larger effect" list, ranked by how close they are to
-feasible, and the "Feasible now" list is empty. The takeaway is that elasticity cannot be learned
-quickly from one item at one site: the options are a bigger effect, pooled items, or longer tests.
+**Experiments, honestly priced.** Weekly item sales at this restaurant move around by about 17%
+(median, seasonal drift included), and daily noise is assumed independent. On that basis no
+single-item test fits in 12 weeks: a +5% burger test needs about 610 weeks, +10% about 154, +15%
+about 69. Pooling helps a lot, because noise adds up more slowly than the effect: all seven
+entrees at +10% need about 34 weeks and at +15% about 16, close to the 12-week cap. The dashboard
+says so rather than hiding those tests: they go on a "Needs pooling or a larger effect" list,
+and the "Feasible now" list is empty. Method-backed price tests rank ahead of the weak-evidence
+portion and menu-design tests, whose stake is only an illustrative sizing. The takeaway is that
+elasticity cannot be learned quickly from one item at one site: the options are a bigger effect,
+pooled items, or longer tests.
 
 ## Validation
 
@@ -170,9 +174,9 @@ change, so a result can only move on purpose. Misses are shown.
 | Profit range covers the true profit change | **72%** (60 scenarios) | Every miss is on the optimistic side: the truth is better than the range's upper end. Drinks and sides cover 0% |
 | Medium-band headline has the right sign | **90%** | In 6 of 60 cases it says a rise pays off when it loses money |
 | Decisive verdicts | **0 of 60** | A band this wide leaves the break-even inside it, so "pays off under all bands" never fires |
-| Naive before/after estimate from price history | median error **0.64** | 9 historical price changes; two have the wrong sign (Classic Burger +1.39 against a truth of -0.73) |
-| Switchback test recovers the right call, 12-week cap | **56%** | 200 simulated tests per entry: about a coin flip, with a 90% interval about 10 elasticity units wide |
-| Same test run for its powered duration | **83%** | The duration is years, so it is not achievable in practice |
+| Naive before/after estimate from price history | median error **0.87** | 9 historical price changes; two have the wrong sign (Classic Burger +0.42 against a truth of -0.73) |
+| Switchback test recovers the right call, 12-week cap | **60%** | 200 simulated tests per entry: barely better than a coin flip, with a 90% interval about 8 elasticity units wide |
+| Same test run for its powered duration | **83%** | The duration is years (about 290 to 610 weeks), so it is not achievable in practice |
 
 This is the project's central claim in numbers: history alone gives a noisy, sometimes
 wrong-signed answer, and a feasible test does not resolve it either, so the honest output is a
@@ -189,7 +193,7 @@ works and where it fails, not real-world accuracy.
 - **No waste or yield modelling**, and the baseline (trailing 12 weeks, latest prices and costs) is not seasonally adjusted.
 - **Matrix groups of four to seven items are noisy**, and the 70% popularity rule is lenient.
 - **Total units stand in for traffic.** There are no covers, satisfaction, waste or staff-load measures.
-- **Carryover (one block) and daily noise are assumed.** Noise comes from the synthetic data, which is noisier than most real item-level sales. Guardrail thresholds (units down 3%, profit down 2%) are policy choices, not evidence.
+- **Carryover (one block) and daily noise are assumed.** Noise is estimated from the synthetic data's week-to-week changes, with days assumed independent. Guardrail thresholds (units down 3%, profit down 2%) are policy choices, not evidence.
 - **Menu-design and portion test evidence is weak**, and one widely cited label study has an integrity problem, so the backlog quotes no effect sizes for them. Their stake is an illustrative sizing, and their decision uncertainty is set to 1.0 because nothing supports a prior.
 - **No sequential stopping boundaries are claimed.** Results are read at the planned end with a randomization test; always-valid inference is a possible upgrade.
 - **Experiment results are not ingested back into the model.** A measured elasticity can be entered by hand per item in the dashboard.

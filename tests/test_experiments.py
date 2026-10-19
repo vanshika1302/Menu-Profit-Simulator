@@ -67,8 +67,16 @@ def test_duration_hand_computed():
 
 
 def test_sigma_block():
-    assert sigma_block([100, 120, 80, 100], 10) == pytest.approx(10 * 16.3299 / math.sqrt(7), rel=1e-4)
-    assert sigma_block([100], 10) == 0
+    # differences of [100, 120, 80, 100] are 20, -40, 20: sd 34.641; / sqrt(2) / sqrt(7) x |cm|
+    assert sigma_block([100, 120, 80, 100], 10) == pytest.approx(10 * 34.641016 / math.sqrt(2) / math.sqrt(7), rel=1e-6)
+    assert sigma_block([100, 120], 10) == 0
+
+
+def test_sigma_ignores_a_smooth_trend():
+    flat_noise = [100, 104, 98, 102, 99, 103]
+    drifting = [x + 10 * i for i, x in enumerate(flat_noise)]
+    # a linear drift adds a constant to every first difference: the spread is unchanged
+    assert sigma_block(drifting, 5) == pytest.approx(sigma_block(flat_noise, 5))
 
 
 def test_risk_is_normalised_by_item_size(base):
@@ -122,8 +130,12 @@ def test_two_lists_ranked(base):
     wide = build_backlog(base, r, {"cap_weeks": 10**7})
     assert wide["needs_pooling"] == [] and len(wide["feasible_now"]) > 10
     for lst in ("feasible_now", "needs_pooling"):
-        scores = [e["score"] for e in build_backlog(base, r)[lst]]
-        assert scores == sorted(scores, reverse=True)
+        entries = build_backlog(base, r)[lst]
+        backed = [e["score"] for e in entries if e["evidence"] == "method-backed"]
+        weak = [e["score"] for e in entries if e["evidence"] != "method-backed"]
+        assert backed == sorted(backed, reverse=True) and weak == sorted(weak, reverse=True)
+        kinds = [e["evidence"] == "method-backed" for e in entries]
+        assert kinds == sorted(kinds, reverse=True)  # every method-backed entry ahead of every weak one
     all_e = wide["feasible_now"]
     assert [e["rank"] for e in all_e] == list(range(1, len(all_e) + 1))
     assert all(e["feasible_alone"] for e in all_e)

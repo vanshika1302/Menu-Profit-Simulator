@@ -20,8 +20,8 @@ Design assumptions (all labelled assumed in each entry):
   - carryover m = 1 block: only the blocks whose previous block had the same arm are
     clean, a fraction 2**-m, so usable blocks = total blocks x 2**-m
   - n = 32 sigma^2 / delta^2 clean blocks per arm (95% confidence, 90% power)
-  - sigma_block = sd of weekly profit over the baseline window / sqrt(7) (days independent;
-    the window includes any seasonal drift, so this errs high)
+  - sigma_block = week-to-week noise in profit (sd of first differences / sqrt(2)) / sqrt(7), so
+    slow seasonal drift in the baseline window is not counted as noise (days independent)
   - delta (the effect to resolve) = the gap between the low-band and high-band profit
     change, per block: the test has to tell the ends of the assumed band apart
 """
@@ -79,10 +79,15 @@ def share_losing(rise: bool, eps_star: float, band_low: float, band_high: float)
 
 
 def sigma_block(units_history: list[float], cm: float) -> float:
-    """sd of weekly contribution profit / sqrt(7). Assumed: days independent."""
-    if len(units_history) < 2:
+    """Week-to-week noise in contribution profit, per day: sd(first differences) / sqrt(2) / sqrt(7).
+
+    First differences remove slow seasonal drift and trend from the baseline window, which
+    plain sd would count as noise. Assumed: days independent within a week.
+    """
+    if len(units_history) < 3:
         return 0.0
-    return statistics.stdev(units_history) * abs(cm) / math.sqrt(7)
+    diffs = [b - a for a, b in zip(units_history, units_history[1:])]
+    return statistics.stdev(diffs) / math.sqrt(2) * abs(cm) / math.sqrt(7)
 
 
 def duration_weeks(sigma: float, delta: float, m: int = CARRYOVER_M) -> int | None:
@@ -285,9 +290,17 @@ def _pooled_price_entry(cat, ids, tests, result, baseline, items, history, band_
     )
 
 
+def _order(e: dict) -> tuple:
+    """Method-backed tests rank ahead of weak-prior tests inside each list; score orders within
+    each evidence group. The weak tests' stake is an illustrative sizing and their decision
+    uncertainty is 1.0 by construction, so their scores are not comparable evidence with the
+    price tests' (no weights are tuned: the score is still shown on every entry)."""
+    return (e["evidence"] != "method-backed", -e["score"])
+
+
 def _rank(entries: list[dict]) -> dict:
-    feasible = sorted((e for e in entries if e["feasible_alone"]), key=lambda e: -e["score"])
-    needs = sorted((e for e in entries if not e["feasible_alone"]), key=lambda e: -e["score"])
+    feasible = sorted((e for e in entries if e["feasible_alone"]), key=_order)
+    needs = sorted((e for e in entries if not e["feasible_alone"]), key=_order)
     for lst in (feasible, needs):
         for r, e in enumerate(lst, 1):
             e["rank"] = r

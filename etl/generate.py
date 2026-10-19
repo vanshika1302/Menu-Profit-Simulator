@@ -119,7 +119,7 @@ CATEGORY_ELASTICITY = {
     "Entrees": -1.4,
 }
 CROSS_CATEGORY_SHARE = 0.10
-NB_DISPERSION = 40.0
+NB_DISPERSION = 200.0
 
 # Mid-year rises (item_id: (week index it takes effect, multiplier)) and short promos.
 PRICE_RISES = {
