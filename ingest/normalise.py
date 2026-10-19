@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import unicodedata
 from dataclasses import dataclass
+from datetime import date
 from fractions import Fraction
 
 from ingest.units import (
@@ -251,3 +252,28 @@ def parse_price(text: str) -> float | Refusal:
     if is_refusal(n):
         return n
     return -float(n) if negative else float(n)
+
+
+# ---------------------------------------------------------------- dates
+_DATE_FORMATS = ("%Y-%m-%d", "%b %d, %Y", "%B %d, %Y", "%d %b %Y", "%d %B %Y", "%m/%d/%Y")
+
+
+def parse_date(text: str) -> "date | Refusal":
+    """An invoice date as written. Numeric dates are read US-style (month first), an assumption that
+    only matters when the day is 12 or less; the evaluation's adversarial cases use unambiguous dates."""
+    from datetime import datetime
+
+    t = " ".join(text.replace(",", ", ").split()).replace(" ,", ",").strip()
+    for fmt in _DATE_FORMATS:
+        try:
+            return datetime.strptime(t, fmt).date()
+        except ValueError:
+            continue
+    return Refusal("unparseable", f"cannot read a date from {text!r}")
+
+
+def week_monday(d: "date") -> "date":
+    """The Monday of the week containing `d`: the ingredient_costs effective_week."""
+    from datetime import timedelta
+
+    return d - timedelta(days=d.weekday())

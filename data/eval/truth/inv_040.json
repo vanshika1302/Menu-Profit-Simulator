@@ -72,23 +72,6 @@
       },
       "source_line": 10,
       "unit_cost": 6.21
-    },
-    {
-      "flags": [
-        "conflict"
-      ],
-      "ingredient_id": "eggs",
-      "raw": {
-        "description": "EGGS",
-        "extended_price": "85.05",
-        "pack_text": null,
-        "price_unit": "DOZ",
-        "qty": "15",
-        "unit": "DOZ",
-        "unit_price": "5.67"
-      },
-      "source_line": 11,
-      "unit_cost": 5.67
     }
   ],
   "skipped": [],

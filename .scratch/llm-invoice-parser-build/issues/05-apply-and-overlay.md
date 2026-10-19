@@ -1,6 +1,6 @@
 # Review step, approved overlay and loader option
 
-Status: ready-for-agent
+Status: claimed
 Blocked by: 02
 
 ## What to build

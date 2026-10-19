@@ -315,7 +315,7 @@ def gen_adversarial(idx, case_id, cat, rng, doc, style, supplier, week, d, truth
     header(doc, supplier, 4000 + idx, d if has_date else None, 3 if d.day > 12 else 0, rng)
     column_header(doc, style)
     plain_pool = [i for i in pool if i not in ("cream", "tomato_sauce", "cheddar", "mozzarella", "oil")]
-    rows, others, skipped, new_ings = [], [], [], []
+    rows, others, skipped, new_ings, extra_ext = [], [], [], [], []
     for n, ing in enumerate(rng.sample(plain_pool, 4), 1):
         r = make_row_clean(rng, doc, style, n, cat, ing, week)
         if not has_date:
@@ -371,13 +371,14 @@ def gen_adversarial(idx, case_id, cat, rng, doc, style, supplier, week, d, truth
     elif trap == "duplicate_ingredient":
         ing = rows[0]["ingredient_id"]
         r2 = make_row_clean(rng, doc, style, n, cat, ing, week)
-        r2["flags"] = ["conflict"]
+        # one staged row per ingredient and week: the truth is a single flagged row at the first line,
+        # at the quantity-weighted average (both lines carry the same price, so it equals that price)
         rows[0]["flags"] = list(set(rows[0]["flags"]) | {"conflict"})
-        rows.append(r2)
+        extra_ext.append(r2["ext"])
     elif trap == "missing_date":
         pass
     truth.update({"effective_week": week if has_date else None, "invoice_date": d.isoformat() if has_date else None})
-    finish_invoice(doc, [r for r in rows if r["ext"]], others, style)
+    finish_invoice(doc, [r for r in rows if r["ext"]] + [{"ext": e} for e in extra_ext], others, style)
     truth.update({"rows": strip_internal(rows), "skipped": skipped, "new_ingredients": new_ings, "messiness": messiness, "trap": trap})
     return doc.text(), truth
 
