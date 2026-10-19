@@ -31,3 +31,5 @@
 **Class uncertain**: a flag on an item whose menu engineering class differs between the low, medium and high elasticity bands.
 
 **Validation scorecard**: the aggregate measures, computed against the ground truth, of how well the simulator's bands, ranges and verdicts hold up on the synthetic restaurant.
+
+**Staged row**: a row the invoice or recipe parser proposes for the ingredient, recipe or cost data, held in a staging file with a flag and a reason on anything uncertain. It changes nothing until a person approves it.
