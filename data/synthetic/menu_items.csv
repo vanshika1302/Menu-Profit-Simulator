@@ -1,0 +1,31 @@
+item_id,name,category,base_price
+wings,Wings,Starters,13.0000
+calamari,Fried Calamari,Starters,14.0000
+nachos,Loaded Nachos,Starters,13.0000
+soup,Soup of the Day,Starters,8.0000
+caesar,Caesar Salad,Starters,11.0000
+classic_burger,Classic Burger,Burgers and sandwiches,15.0000
+bacon_burger,Bacon Cheeseburger,Burgers and sandwiches,17.0000
+veggie_burger,Veggie Burger,Burgers and sandwiches,14.0000
+chicken_sandwich,Chicken Sandwich,Burgers and sandwiches,14.0000
+philly,Philly Cheesesteak,Burgers and sandwiches,16.0000
+ribeye,Ribeye,Entrees,38.0000
+sirloin,Sirloin,Entrees,28.0000
+salmon,Salmon,Entrees,27.0000
+chicken_parm,Chicken Parm,Entrees,22.0000
+short_rib,Short Rib,Entrees,31.0000
+mac_cheese,Mac and Cheese,Entrees,16.0000
+fish_chips,Fish and Chips,Entrees,20.0000
+bolognese,Spaghetti Bolognese,Pasta and bowls,19.0000
+scampi,Shrimp Scampi,Pasta and bowls,24.0000
+alfredo,Chicken Alfredo,Pasta and bowls,20.0000
+grain_bowl,Grain Bowl,Pasta and bowls,16.0000
+cheesecake,Cheesecake,Desserts,9.0000
+sundae,Brownie Sundae,Desserts,9.0000
+key_lime,Key Lime Pie,Desserts,8.0000
+churros,Churros,Desserts,8.0000
+fries,Fries,Drinks and sides,6.0000
+side_salad,Side Salad,Drinks and sides,6.0000
+soda,Soda,Drinks and sides,3.5000
+beer,Draft Beer,Drinks and sides,7.0000
+wine,House Wine,Drinks and sides,9.0000

@@ -1,0 +1,46 @@
+ingredient_id,name,unit
+ribeye,Ribeye steak,lb
+sirloin,Sirloin steak,lb
+short_rib,Beef short rib,lb
+ground_beef,Ground beef,lb
+shaved_beef,Shaved beef,lb
+bacon,Bacon,lb
+chicken_breast,Chicken breast,lb
+chicken_wings,Chicken wings,lb
+salmon,Salmon fillet,lb
+cod,Cod fillet,lb
+shrimp,Shrimp,lb
+calamari,Calamari,lb
+pasta,Dry pasta,lb
+quinoa,Quinoa,lb
+potato,Potato,lb
+cheddar,Cheddar,lb
+mozzarella,Mozzarella,lb
+parmesan,Parmesan,lb
+provolone,Provolone,lb
+cream,Heavy cream,qt
+butter,Butter,lb
+eggs,Eggs,doz
+flour,Flour,lb
+sugar,Sugar,lb
+romaine,Romaine,head
+mixed_greens,Mixed greens,lb
+tomato,Tomato,lb
+onion,Onion,lb
+bun,Burger bun,each
+veggie_patty,Veggie patty,each
+tortilla_chips,Tortilla chips,lb
+soup_base,Soup base,qt
+cream_cheese,Cream cheese,lb
+graham,Graham crackers,lb
+ice_cream,Vanilla ice cream,qt
+chocolate,Chocolate,lb
+lime,Lime,each
+oil,Cooking oil,gal
+tomato_sauce,Tomato sauce,qt
+garlic,Garlic,lb
+lemon,Lemon,each
+hot_sauce,Wing sauce,qt
+soda_syrup,Soda syrup,gal
+draft_beer,Draft beer,oz
+house_wine,House wine,oz

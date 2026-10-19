@@ -1,0 +1,7 @@
+pandas
+numpy
+duckdb
+matplotlib
+jupyter
+nbconvert
+pytest

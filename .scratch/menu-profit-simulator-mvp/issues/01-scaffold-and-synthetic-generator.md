@@ -1,6 +1,6 @@
 # Scaffold the repo and generate the synthetic restaurant
 
-Status: ready-for-agent
+Status: done
 Blocked by: 
 
 ## What to build
