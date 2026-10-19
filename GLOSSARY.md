@@ -37,3 +37,5 @@
 **Pack size**: how a supplier packages a purchase: a count of units of a given size in one case, written like `4/5 LB` (four 5-lb units). A case price is the price of the whole case, not of one unit.
 
 **Catch weight**: an item billed by the weight actually received rather than by the case count, so the cost per pound comes from received weight.
+
+**Approved overlay**: the person-approved rows from the invoice and recipe parser, kept apart from the generated synthetic data and merged over it only when asked for.
