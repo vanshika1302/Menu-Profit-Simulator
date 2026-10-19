@@ -24,7 +24,7 @@ def merge_approved(con: duckdb.DuckDBPyConnection, approved_dir: Path) -> None:
     approved_dir = Path(approved_dir)
     f = {name: approved_dir / f"{name}.csv" for name in ("ingredients", "ingredient_costs", "recipes")}
     if f["ingredients"].exists():
-        con.execute(f"INSERT INTO raw_ingredients BY NAME SELECT o.* FROM read_csv('{f['ingredients'].as_posix()}', header = true) o "
+        con.execute(f"INSERT INTO raw_ingredients BY NAME SELECT DISTINCT ON (o.ingredient_id) o.* FROM read_csv('{f['ingredients'].as_posix()}', header = true) o "
                     "WHERE o.ingredient_id NOT IN (SELECT ingredient_id FROM raw_ingredients)")
     if f["ingredient_costs"].exists():
         src = f"read_csv('{f['ingredient_costs'].as_posix()}', header = true)"

@@ -180,6 +180,19 @@ class StubClient:
 
 
 # ------------------------------------------------------------------ live
+class CallBudget:
+    """One call cap shared by several live clients (a run that uses a client per document kind)."""
+
+    def __init__(self, max_calls: int = DEFAULT_CALL_CAP):
+        self.max_calls = max_calls
+        self.used = 0
+
+    def take(self) -> None:
+        if self.used >= self.max_calls:
+            raise CallCapExceeded(f"reached the call cap of {self.max_calls}; raise --max-calls to continue")
+        self.used += 1
+
+
 class LiveClient:
     """The Anthropic API through structured outputs (`output_config.format`, a JSON schema).
 
@@ -191,7 +204,7 @@ class LiveClient:
 
     def __init__(self, live: bool = False, model: str | None = None, max_calls: int = DEFAULT_CALL_CAP,
                  record_dir: Path | None = None, prompt_version: str = "", retry_wait: float = 2.0,
-                 _skip_environment_guard: bool = False):
+                 budget: CallBudget | None = None, _skip_environment_guard: bool = False):
         if not live:
             raise LiveRunNotAllowed("a live model call needs the --live flag")
         if not _skip_environment_guard and ("PYTEST_CURRENT_TEST" in os.environ or os.environ.get("CI")):
@@ -205,6 +218,7 @@ class LiveClient:
         self._client = anthropic.Anthropic(api_key=key)
         self.model = model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL
         self.max_calls = max_calls
+        self.budget = budget
         self.record_dir = Path(record_dir) if record_dir else None
         self.prompt_version = prompt_version
         self.retry_wait = retry_wait
@@ -212,7 +226,9 @@ class LiveClient:
         self.api_retries = 0
 
     def complete_json(self, system: str, user: str, schema: dict) -> dict:
-        if self.calls >= self.max_calls:
+        if self.budget is not None:
+            self.budget.take()
+        elif self.calls >= self.max_calls:
             raise CallCapExceeded(f"reached the call cap of {self.max_calls}; raise --max-calls to continue")
         self.calls += 1
         response = self._create(system, user, schema)

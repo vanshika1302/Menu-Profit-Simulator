@@ -170,7 +170,8 @@ def test_a_perfect_parser_scores_perfectly_on_every_committed_case():
     assert all(v["precision"] == 1 and v["recall"] == 1 for v in o["per_flag"].values())
     assert o["skipped_lines"]["fp"] == 0 and o["skipped_lines"]["fn"] == 0 and o["skipped_lines"]["category_ok"] == o["skipped_lines"]["tp"] > 0
     assert o["new_ingredients"]["tp"] == o["new_ingredients"]["unit_ok"] > 0
-    assert set(card["by_tier"]) == {"1", "2", "3", "4", "handwritten"} and set(card["by_split"]) == {"dev", "test"}
+    assert set(card["by_tier"]) == {"invoice 1", "invoice 2", "invoice 3", "invoice 4", "invoice handwritten", "recipe 1", "recipe 2", "recipe 3", "recipe handwritten"}
+    assert set(card["by_split"]) == {"dev", "test"}
     assert set(card["by_kind"]) == {"invoice", "recipe"}
 
 

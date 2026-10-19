@@ -299,3 +299,11 @@ def test_the_pipeline_flag_is_off_by_default():
     import sys
     out = subprocess.run([sys.executable, "etl/run_pipeline.py", "--help"], cwd=ROOT, capture_output=True, text=True).stdout
     assert "--with-approved" in out and "off by default" in out
+
+
+def test_duplicate_new_ingredient_ids_in_an_overlay_do_not_break_the_loader(tmp_path):
+    approved = tmp_path / "approved"
+    approved.mkdir()
+    (approved / "ingredients.csv").write_text("ingredient_id,name,unit\ntruffle_oil,Truffle Oil,gal\ntruffle_oil,Truffle Oil,gal\n")
+    con = build(approved, with_approved=True)
+    assert con.execute("SELECT COUNT(*) FROM raw_ingredients WHERE ingredient_id='truffle_oil'").fetchone()[0] == 1

@@ -206,10 +206,11 @@ def summarise(case_scores: list[dict]) -> dict:
 def scorecard(case_scores: list[dict]) -> dict:
     """Overall, per tier, per kind and per split."""
     out = {"overall": summarise(case_scores), "by_tier": {}, "by_kind": {}, "by_split": {}}
-    for field_, key in (("tier", "by_tier"), ("kind", "by_kind"), ("split", "by_split")):
+    for key, label in (("by_tier", lambda c: f"{c['kind']} {c['tier']}"), ("by_kind", lambda c: str(c["kind"])),
+                       ("by_split", lambda c: str(c["split"]))):
         groups = collections.defaultdict(list)
         for c in case_scores:
-            groups[str(c[field_])].append(c)
+            groups[label(c)].append(c)
         out[key] = {g: summarise(v) for g, v in sorted(groups.items())}
     return out
 
@@ -257,7 +258,8 @@ def _parsed_overlay(rows_by_case: dict[str, list[StagedRow]], mode: str, week: s
             if mode == "unflagged" and (r.status != "proposed" or r.flags):
                 continue
             if r.kind == "ingredient":
-                ings.append({"ingredient_id": r.ingredient_id, "name": r.name, "unit": r.unit})
+                if not any(i["ingredient_id"] == r.ingredient_id for i in ings):  # two documents may propose the same new id
+                    ings.append({"ingredient_id": r.ingredient_id, "name": r.name, "unit": r.unit})
             elif r.kind == "cost" and r.unit_cost is not None and r.ingredient_id:
                 costs[(r.ingredient_id, week)] = r.unit_cost
             elif r.kind == "recipe_line" and r.qty_per_serving is not None and r.item_id and r.ingredient_id:
