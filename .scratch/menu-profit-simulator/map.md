@@ -4,7 +4,7 @@ Label: wayfinder:map
 
 ## Destination
 
-A **build-ready spec** (PRD plus a sequenced list of implementation slices) for the Menu Profitability Simulator MVP, which later AFK sessions execute. Done when nothing is left to decide before someone goes and builds it. This effort plans; it does not build.
+**Reached.** A **build-ready spec** (PRD plus a sequenced list of implementation slices) for the Menu Profitability Simulator MVP, which later AFK sessions execute. Done when nothing is left to decide before someone goes and builds it. This effort plans; it does not build.
 
 ## Notes
 
@@ -27,12 +27,12 @@ A **build-ready spec** (PRD plus a sequenced list of implementation slices) for 
 - [Menu engineering matrix rules](issues/02-menu-engineering-matrix-rules.md): classified per category by default (whole-menu toggle), CM in dollars per unit, trailing 12 weeks, under 50 units = insufficient data; popular = share >= 70% of equal share, high margin = at or above unit-weighted average CM; thresholds recomputed under a scenario with class moves shown; headline class uses the medium band with a "class uncertain" badge; action wording per class matches the backlog mapping.
 - [Validation strategy](issues/09-validation-strategy.md): identity-based formula tests, data/SQL cross-checks, runtime leakage tests, wide golden-fixture parity (1e-9); ground-truth scorecard (band hit rate, profit-range coverage, verdict accuracy, naive-history error) plus a modest Monte Carlo experiment-recovery check; no pass/fail bounds on findings, committed result snapshots instead; results shown in README, notebook and dashboard (aggregates only); small GitHub Actions workflow for tests and export drift.
 - [Dashboard UX prototype](issues/07-dashboard-ux-prototype.md): hybrid chosen by the agent under user delegation: story frame (A) -> sticky assumption banner and cockpit grid (B) -> per-item rows with break-even drawn against the hatched assumed band (C); hatching = depends on assumed elasticity; backlog split into "feasible now" and "needs pooling"; amendments recorded on the backlog ticket.
+- [Spec: Menu Profitability Simulator (MVP)](../menu-profit-simulator-mvp/spec.md): the destination. Gathers every decision above, includes the README outline and Limitations list, and points at 14 ordered build slices in `../menu-profit-simulator-mvp/issues/` (the last, enabling GitHub Pages, needs a person).
 - Destination, scope and priorities were settled in the charting grill (no ticket): spec as the endpoint, parser out of scope, audience = DS/analytics hiring managers, all six features with the priority order above.
 
 ## Not yet specified
 
-- **README / case-study narrative and Limitations section**: structure and claims. Depends on most of the above.
-- **Spec assembly and slice ordering**: turning the decisions into the PRD and ordered implementation issues. Final step once the frontier clears.
+Nothing. The README narrative and Limitations section and the spec assembly are written (see the spec). The map is complete.
 
 ## Out of scope
 
