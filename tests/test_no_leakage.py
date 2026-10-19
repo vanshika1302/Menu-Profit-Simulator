@@ -20,7 +20,7 @@ ALLOWED = {
     "etl/run_pipeline.py",          # regenerates the CSV set when files are missing
     "sql/schema.sql",               # defines the separate validation schema
     "scripts/run_validation.py",    # runs the scorecard
-    "tests/test_generate.py", "tests/test_dashboard.py", "tests/test_validation.py", "tests/test_no_leakage.py", "tests/test_warehouse.py",
+    "tests/test_generate.py", "tests/test_dashboard.py", "tests/test_notebook.py", "tests/test_validation.py", "tests/test_no_leakage.py", "tests/test_warehouse.py",
 }
 MARKERS = re.compile(r"ground_truth|true_elasticity|sim\.validation|from sim import .*validation|within_category_switch_share")
 
