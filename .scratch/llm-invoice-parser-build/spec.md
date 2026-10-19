@@ -42,7 +42,7 @@ The model reads text and copies raw fields as strings, plus a verbatim source qu
 ## Model interface and runtime (ticket: model interface and runtime)
 
 - One function `complete_json(system, user, schema) -> dict` behind an interface with **live**, **recorded** and **stub** clients; the parser never imports the SDK.
-- Strict structured outputs (`output_config.format`, `strict: true`); default `claude-sonnet-5-5`, overridable by an environment variable; prompt and JSON schema are versioned files; re-check structured-output support on the chosen model at build time.
+- Structured outputs (`output_config.format` with `type: json_schema`; the docs show `strict` only for tool definitions, so it is not set here); default `claude-sonnet-5-5`, overridable by an environment variable; prompt and JSON schema are versioned files; re-check structured-output support on the chosen model at build time.
 - Tests and CI use the recorded client. A recording is keyed by a hash of prompt, schema, model and prompt version; a missing one fails loudly. `--live` refreshes recordings and scores the real model; its snapshot is checked by the command, not pytest.
 - Code checks after the schema: the ticket-03 checks and **the quoted source line must be found in the document text**. At most one retry, only for semantic failures (quote not found, line total mismatch). The live evaluation reports retry rate and how often a retry helps.
 - Injected instructions: the document goes in a delimited data block marked as data only; schema and catalogue checks limit possible output; source quotes show beside each row; adversarial invoices are in the evaluation set; the README says this reduces the risk and does not remove it.

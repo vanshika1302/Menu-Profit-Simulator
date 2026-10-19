@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "supplier": {"type": ["string", "null"]},
+    "invoice_date": {"type": ["string", "null"]},
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line_no": {"type": "integer"},
+          "description": {"type": "string"},
+          "pack_text": {"type": ["string", "null"]},
+          "qty_ordered": {"type": ["string", "null"]},
+          "qty_received": {"type": ["string", "null"]},
+          "unit_text": {"type": ["string", "null"]},
+          "unit_price": {"type": ["string", "null"]},
+          "price_unit_text": {"type": ["string", "null"]},
+          "extended_price": {"type": ["string", "null"]},
+          "matched_ingredient_id": {"type": "string"},
+          "status": {"type": "string", "enum": ["ok", "ambiguous", "missing"]},
+          "source_quote": {"type": "string"}
+        },
+        "required": ["line_no", "description", "pack_text", "qty_ordered", "qty_received", "unit_text", "unit_price", "price_unit_text", "extended_price", "matched_ingredient_id", "status", "source_quote"],
+        "additionalProperties": false
+      }
+    },
+    "other_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line_no": {"type": "integer"},
+          "category": {"type": "string", "enum": ["fee", "discount", "deposit", "credit", "other"]},
+          "description": {"type": "string"},
+          "amount": {"type": ["string", "null"]},
+          "source_quote": {"type": "string"}
+        },
+        "required": ["line_no", "category", "description", "amount", "source_quote"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["supplier", "invoice_date", "lines", "other_lines"],
+  "additionalProperties": false
+}

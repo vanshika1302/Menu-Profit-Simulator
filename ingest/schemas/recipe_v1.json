@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "dish_name": {"type": ["string", "null"]},
+    "matched_item_id": {"type": ["string", "null"]},
+    "servings": {"type": ["string", "null"]},
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line_no": {"type": "integer"},
+          "quantity_text": {"type": ["string", "null"]},
+          "unit_text": {"type": ["string", "null"]},
+          "ingredient_text": {"type": "string"},
+          "matched_ingredient_id": {"type": "string"},
+          "note": {"type": ["string", "null"]},
+          "status": {"type": "string", "enum": ["ok", "ambiguous", "missing"]},
+          "source_quote": {"type": "string"}
+        },
+        "required": ["line_no", "quantity_text", "unit_text", "ingredient_text", "matched_ingredient_id", "note", "status", "source_quote"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["dish_name", "matched_item_id", "servings", "lines"],
+  "additionalProperties": false
+}
