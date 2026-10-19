@@ -199,6 +199,10 @@ works and where it fails, not real-world accuracy.
 - **Experiment results are not ingested back into the model.** A measured elasticity can be entered by hand per item in the dashboard.
 - **Out of scope:** the LLM invoice/recipe-to-cost parser (the recipe and ingredient-cost schema is kept narrow for it), real datasets, multi-location restaurants and POS integration.
 
+## Presenting it
+
+`docs/walkthrough.md` is a 7-minute live walkthrough script with the exact clicks, talking points and answers to likely questions.
+
 ## Planning trail
 
 The design decisions were made as tickets before any code was written; they live under
