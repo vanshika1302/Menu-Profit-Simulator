@@ -10,7 +10,7 @@ What do high-trust primary sources (academic papers, industry studies) report fo
 
 ## Answer
 
-Findings are on the throwaway branch `research/elasticity-benchmarks` (commit b07495f, not pushed), file `.scratch/menu-profit-simulator/research/elasticity-benchmarks.md`, in the worktree `.claude/worktrees/agent-acae1044e4b0755b8`. Bands were deliberately not decided here.
+Findings are on the throwaway branch `research/elasticity-benchmarks` (commit b07495f, pushed to origin), file `.scratch/menu-profit-simulator/research/elasticity-benchmarks.md`, in the worktree `.claude/worktrees/agent-acae1044e4b0755b8`. Bands were deliberately not decided here.
 
 Gist:
 - Pooled food-away-from-home own-price elasticity: mean -0.81, range -0.23 to -1.76 (N=13; Andreyeva, Long & Brownell 2010, verified in the paper's table).

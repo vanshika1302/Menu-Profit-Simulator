@@ -34,7 +34,7 @@ The prototype's code is not carried into the real dashboard; the build rewrites 
 
 ## Comments
 
-- Prototype built, awaiting the user's reaction (ticket not resolved yet). Throwaway branch `prototype/dashboard-ux` (local, not pushed), files under `prototype/`: `index.html` (loader), `model.js` (fake data + JS port of the decided math), `shared.js` (tokens, controls, charts, switcher), `variant-a.js`, `variant-b.js`, `variant-c.js`. Worktree: `.claude/worktrees/prototype-dashboard-ux/`. Open `prototype/index.html`; switch with `?variant=A|B|C`, the bottom bar, or the arrow keys.
+- Prototype built, awaiting the user's reaction (ticket not resolved yet). Throwaway branch `prototype/dashboard-ux` (pushed to origin), files under `prototype/`: `index.html` (loader), `model.js` (fake data + JS port of the decided math), `shared.js` (tokens, controls, charts, switcher), `variant-a.js`, `variant-b.js`, `variant-c.js`. Worktree: `.claude/worktrees/prototype-dashboard-ux/`. Open `prototype/index.html`; switch with `?variant=A|B|C`, the bottom bar, or the arrow keys.
   - A: scrolling case study (story order, "what this assumes" note under every section).
   - B: one-screen cockpit (levers left, matrix and price checks centre, profit tiles, class changes and backlog right; permanent hatched assumption banner).
   - C: table-first workbench (30 sortable rows, each with its own break-even against the hatched assumed band; matrix and backlog as tabs; item drawer).

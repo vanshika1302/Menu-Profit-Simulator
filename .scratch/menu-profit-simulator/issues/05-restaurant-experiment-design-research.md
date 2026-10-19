@@ -10,7 +10,7 @@ What do high-trust sources say about running price and menu experiments in a sin
 
 ## Answer
 
-Findings are on the throwaway branch `research/experiment-design` (commit 7d38222, not pushed), file `.scratch/menu-profit-simulator/research/experiment-design.md`. The branch lives in the worktree `.claude/worktrees/agent-a678cdd8d3a615432`.
+Findings are on the throwaway branch `research/experiment-design` (commit 7d38222, pushed to origin), file `.scratch/menu-profit-simulator/research/experiment-design.md`. The branch lives in the worktree `.claude/worktrees/agent-a678cdd8d3a615432`.
 
 Gist:
 - Switchback: precision depends on the number of time blocks, not covers. Carryover is modelled as m periods (Bojinov, Simchi-Levi, Zhao 2023). No source gives a restaurant-specific m.
