@@ -20,14 +20,14 @@ ALLOWED = {
     "etl/run_pipeline.py",          # regenerates the CSV set when files are missing
     "sql/schema.sql",               # defines the separate validation schema
     "scripts/run_validation.py",    # runs the scorecard
-    "tests/test_generate.py", "tests/test_validation.py", "tests/test_no_leakage.py", "tests/test_warehouse.py",
+    "tests/test_generate.py", "tests/test_dashboard.py", "tests/test_validation.py", "tests/test_no_leakage.py", "tests/test_warehouse.py",
 }
 MARKERS = re.compile(r"ground_truth|true_elasticity|sim\.validation|from sim import .*validation|within_category_switch_share")
 
 
 def test_only_allowed_modules_mention_ground_truth():
     offenders = []
-    for path in list(ROOT.glob("**/*.py")) + list(ROOT.glob("**/*.sql")) + list(ROOT.glob("**/*.js")):
+    for path in list(ROOT.glob("**/*.py")) + list(ROOT.glob("**/*.sql")) + list(ROOT.glob("**/*.js")) + list(ROOT.glob("**/*.html")) + list(ROOT.glob("**/*.mjs")):
         rel = path.relative_to(ROOT).as_posix()
         if rel in ALLOWED or ".venv" in rel or ".claude" in rel or rel.startswith("node_modules"):
             continue

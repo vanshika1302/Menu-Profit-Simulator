@@ -1,6 +1,6 @@
 # Dashboard template and export to root index.html
 
-Status: ready-for-agent
+Status: done
 Blocked by: 07, 09
 
 ## What to build

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Profit Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#f9f9f7; --surface:#fcfcfb; --raised:#ffffff; --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#6f6d67;
+    --hairline:#e1e0d9; --accent:#2a78d6; --accent-wash:#eaf1fb; --hatch:#6f6d67;
+    --c-star:#2a78d6; --c-plow:#eb6834; --c-puzzle:#1baf7a; --c-dog:#d9467e;
+    --good:#0a7d0a; --bad:#c23030;
+    --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+    --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --page:#0d0d0d; --surface:#1a1a19; --raised:#202020; --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#a3a198;
+      --hairline:#2c2c2a; --accent:#3987e5; --accent-wash:rgba(57,135,229,.14); --hatch:#a3a198;
+      --c-star:#3987e5; --c-plow:#d95926; --c-puzzle:#199e70; --c-dog:#d55181; --good:#4cc24c; --bad:#e66767; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page:#0d0d0d; --surface:#1a1a19; --raised:#202020; --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#a3a198;
+    --hairline:#2c2c2a; --accent:#3987e5; --accent-wash:rgba(57,135,229,.14); --hatch:#a3a198;
+    --c-star:#3987e5; --c-plow:#d95926; --c-puzzle:#199e70; --c-dog:#d55181; --good:#4cc24c; --bad:#e66767; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--font-display);line-height:1.2;margin:0;font-weight:600}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,tr:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 16px}
+  .num{font-variant-numeric:tabular-nums}
+  .mono{font-family:var(--font-mono)}
+  .muted{color:var(--ink-2)} .tiny{font-size:12px;color:var(--ink-3)}
+  .hatched{background:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--hatch) 30%,transparent) 5px 6px)}
+  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--ink-3);color:var(--ink-2)}
+  .pill.plain{background:none}
+  button{font:inherit}
+  .btn{background:var(--raised);color:var(--ink);border:1px solid var(--hairline);border-radius:6px;padding:4px 10px;cursor:pointer}
+  .btn:hover{border-color:var(--ink-3)}
+
+  header.story{padding:28px 0 18px}
+  header.story .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  header.story h1{font-size:clamp(26px,4vw,40px);margin:8px 0 10px}
+  header.story p{max-width:70ch;margin:0 0 8px;color:var(--ink-2)}
+  .eyebrow{font:500 12px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+
+  #banner{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--ink-3);background-color:var(--surface)}
+  #banner .in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;padding:8px 0}
+  #banner .lead{font-weight:600;font-size:13px}
+  .bandbox{display:flex;gap:6px;align-items:center;font-size:12px}
+  .bandbox input{width:64px}
+  input[type=number],select{background:var(--raised);color:var(--ink);border:1px solid var(--hairline);border-radius:6px;padding:4px 6px;font:inherit}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .subbox{display:flex;gap:8px;align-items:center;font-size:12px;min-width:210px}
+  .subbox input[type=range]{width:110px}
+
+  .cockpit{display:grid;grid-template-columns:260px minmax(0,1fr) 360px;gap:18px;padding:18px 0 28px;align-items:start}
+  .col{display:grid;gap:14px;min-width:0}
+  .card{background:var(--raised);border:1px solid var(--hairline);border-radius:10px;padding:14px 16px;min-width:0}
+  .card h2{font-size:18px;margin-bottom:8px}
+  .card h3{font-size:15px;margin:0 0 6px}
+  .ctl{display:grid;gap:4px;margin:0 0 14px}
+  .ctl>label{font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+  .seg{display:flex;border:1px solid var(--hairline);border-radius:6px;overflow:hidden}
+  .seg button{flex:1;border:0;background:var(--raised);color:var(--ink-2);padding:4px 6px;cursor:pointer;font-size:12px}
+  .seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+
+  .tiles{display:grid;gap:8px}
+  .tile{border:1px solid var(--hairline);border-radius:8px;padding:8px 10px}
+  .tile.hatched{border-color:var(--ink-3)}
+  .tile .k{font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+  .tile .v{font:600 22px var(--font-display)}
+  .pos{color:var(--good)} .neg{color:var(--bad)}
+  .note{font-size:12px;color:var(--ink-2);margin:8px 0 0}
+
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-2);margin:6px 0 0}
+  .legend span{display:inline-flex;gap:5px;align-items:center}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%}
+  th{font-size:12px;text-align:left;color:var(--ink-2);font-weight:600;border-bottom:1px solid var(--hairline);padding:6px 8px}
+  #items td:first-child{min-width:120px}
+  #items td:nth-child(4){min-width:190px}
+  #items td:last-child{min-width:140px}
+  svg text.lbl{paint-order:stroke;stroke:var(--raised);stroke-width:3px;stroke-linejoin:round}
+  th button{all:unset;cursor:pointer}
+  th button:focus-visible{outline:2.5px solid var(--accent)}
+  td{padding:6px 8px;border-bottom:1px solid var(--hairline);vertical-align:middle;font-size:13px}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--accent-wash)}
+  .cls{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .badge{font-size:11px;padding:0 6px;border-radius:4px;border:1px dashed var(--ink-2);color:var(--ink-2);white-space:nowrap}
+  .verdict{font-size:12px}
+
+  .bl h3{display:flex;justify-content:space-between;gap:8px}
+  .entry{border:1px solid var(--hairline);border-radius:8px;margin:0 0 8px;padding:8px 10px;font-size:13px}
+  .entry summary{cursor:pointer;list-style:none}
+  .entry summary::-webkit-details-marker{display:none}
+  .entry .t{font-weight:600}
+  .entry dl{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px}
+  .entry dt{color:var(--ink-3)} .entry dd{margin:0}
+  .empty{font-size:13px;color:var(--ink-2);border:1px dashed var(--ink-3);border-radius:8px;padding:10px}
+
+  #drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--raised);border-left:1px solid var(--hairline);z-index:80;padding:16px;overflow:auto;transform:translateX(105%);transition:transform .2s;box-shadow:-6px 0 24px rgba(0,0,0,.18)}
+  #drawer.open{transform:none}
+  #drawer h2{font-size:20px;margin-right:60px}
+  #drawer .x{position:absolute;top:12px;right:12px}
+  #drawer table td{font-size:12px}
+  #tip{position:fixed;z-index:90;pointer-events:none;background:var(--ink);color:var(--page);padding:6px 9px;border-radius:6px;font-size:12px;max-width:260px;display:none}
+
+  section.below{padding:8px 0 40px}
+  section.below h2{font-size:24px;margin:20px 0 8px}
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  ul.lim{margin:0;padding-left:20px;color:var(--ink-2)} ul.lim li{margin:3px 0}
+  footer{border-top:1px solid var(--hairline);padding:16px 0 40px;font-size:12px;color:var(--ink-3)}
+
+  @media (max-width:1180px){.cockpit{grid-template-columns:260px minmax(0,1fr)}.cockpit .right{grid-column:1 / -1;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+  @media (max-width:760px){
+    .cockpit{grid-template-columns:minmax(0,1fr)}
+    .cockpit .right{grid-template-columns:minmax(0,1fr)}
+    #banner{position:static}
+    header.story .top{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header class="story"><div class="wrap">
+  <div class="top">
+    <div>
+      <span class="eyebrow">Portfolio project · synthetic restaurant</span>
+      <h1>Which menu changes make a restaurant more profit, and how sure can we be?</h1>
+      <p>A 30-item bistro, simulated. Change an ingredient cost or a price and see what happens to contribution profit, the menu engineering matrix, and the experiments worth running next.</p>
+      <p><strong>Elasticity is an assumption here, not a measurement.</strong> Every number that depends on it is hatched, and shown as a range across a low, medium and high band you can edit. The ranked experiment backlog is how you would measure it.</p>
+    </div>
+    <div><span class="pill hatched">Synthetic data</span> <button class="btn" id="theme" aria-label="Toggle dark mode">Theme</button></div>
+  </div>
+</div></header>
+
+<div id="banner" class="hatched"><div class="wrap"><div class="in">
+  <span class="lead">Assumed, not measured:</span>
+  <span class="bandbox">Demand barely reacts <input type="number" step="0.1" max="-0.01" id="b-low" aria-label="Low elasticity band"></span>
+  <span class="bandbox">Medium <input type="number" step="0.1" max="-0.01" id="b-medium" aria-label="Medium elasticity band"></span>
+  <span class="bandbox">Reacts a lot <input type="number" step="0.1" max="-0.01" id="b-high" aria-label="High elasticity band"></span>
+  <span class="subbox"><label for="sub">Lost buyers who switch to a similar dish</label><input type="range" id="sub" min="0" max="100" step="5"><b class="num" id="sub-out"></b></span>
+</div></div></div>
+
+<main class="wrap">
+<div class="cockpit">
+  <!-- levers -->
+  <div class="col">
+    <div class="card" id="levers">
+      <h2>Levers</h2>
+      <div class="ctl"><label for="shock-group">Ingredient cost shock</label><select id="shock-group"></select></div>
+      <div class="ctl"><label for="shock">Change <span class="num" id="shock-out"></span></label><input type="range" id="shock" min="-20" max="60" step="5"></div>
+      <div class="ctl"><label for="price">Price change <span class="num" id="price-out"></span></label><input type="range" id="price" min="-15" max="15" step="1"></div>
+      <div class="ctl"><label for="scope-sel">Price change applies to</label><select id="scope-sel"></select></div>
+      <div class="ctl"><label>Matrix compares items</label>
+        <div class="seg" role="group" aria-label="Matrix scope"><button data-mscope="category" aria-pressed="true">Within category</button><button data-mscope="menu" aria-pressed="false">Whole menu</button></div></div>
+      <div class="ctl"><label for="pass">Pass shock into price <span class="num" id="pass-out"></span></label><input type="range" id="pass" min="0" max="100" step="25"></div>
+      <button class="btn" id="reset">Reset levers</button>
+      <p class="note">A cost shock alone does not depend on elasticity: nothing is hatched until a price changes.</p>
+    </div>
+    <div class="card">
+      <h3>How to read this</h3>
+      <div class="legend" id="legend"></div>
+      <p class="note"><span class="pill hatched">hatched</span> = depends on the assumed elasticity. Not hatched = it does not. A dashed ring means the class changes across the three bands. A dashed tail means the item moved class in the scenario.</p>
+    </div>
+  </div>
+
+  <!-- centre -->
+  <div class="col">
+    <div class="card"><h2>Menu engineering matrix</h2>
+      <p class="muted" style="margin:0 0 4px;font-size:13px" id="matrix-sub"></p>
+      <div id="matrix"></div></div>
+    <div class="card"><h2>Items</h2>
+      <p class="muted" style="margin:0 0 6px;font-size:13px">Click a row for the detail. The black line is the break-even elasticity of the price change; the hatched band is the assumed elasticity.</p>
+      <div class="scroll"><table id="items"><thead></thead><tbody></tbody></table></div></div>
+  </div>
+
+  <!-- right -->
+  <div class="col right">
+    <div class="card"><h2>Weekly contribution profit</h2>
+      <div class="muted" style="font-size:13px" id="baseline-line"></div>
+      <div class="tiles" id="tiles" style="margin-top:8px"></div>
+      <p class="note" id="tiles-note"></p></div>
+    <div class="card"><h2>Class changes</h2><div id="moves"></div></div>
+    <div class="card bl"><h2>Experiment backlog</h2>
+      <p class="muted" style="font-size:13px;margin:0 0 8px">What to test to measure elasticity instead of assuming it. Scores combine stake, how uncertain the decision is, feasibility and risk.</p>
+      <details style="margin-bottom:10px"><summary class="tiny" style="cursor:pointer">Experiment assumptions (editable)</summary>
+        <div class="ctl" style="margin-top:8px"><label for="cap">Longest acceptable test, weeks</label><input type="number" id="cap" min="1" max="520"></div>
+        <div class="ctl"><label for="carry">Carryover blocks (assumed)</label><input type="number" id="carry" min="0" max="3"></div></details>
+      <div id="backlog"></div></div>
+  </div>
+</div>
+</main>
+
+<aside id="drawer" role="dialog" aria-label="Item detail" aria-hidden="true"><button class="btn x" id="close">Close</button><div id="drawer-body"></div></aside>
+<div id="tip"></div>
+
+<section class="below"><div class="wrap">
+  <h2>How well does this work? (synthetic data)</h2>
+  <p class="muted" style="max-width:75ch">The restaurant's true demand is authored in the generator, so the simulator can be scored against it. This shows where the method works and where it fails on synthetic data. It is not real-world accuracy. Aggregates only.</p>
+  <div class="two" id="validation"></div>
+  <h2>Limitations</h2>
+  <ul class="lim" id="limits"></ul>
+</div></section>
+<footer><div class="wrap">Synthetic data, authored ground truth, demand model and experiment design documented in the repository README. Generated from <span class="mono">dashboard/template.html</span>.</div></footer>
+
+<script>/* JS port of sim/model.py, sim/matrix.py, sim/scenarios.py and sim/experiments.py.
+ *
+ * Python is the reference. This file must reproduce its outputs: tests/parity.mjs checks every
+ * number to 1e-9 relative and every string, class and rank exactly against golden fixtures.
+ * Keep the structure and names parallel to the Python so the two are easy to diff.
+ *
+ * Works in the browser (global `Sim`) and in Node (module.exports).
+ */
+(function (root) {
+  'use strict';
+
+  var WEEKS_PER_YEAR = 52;
+  var DEFAULT_BANDS = { low: -0.5, medium: -1.0, high: -1.8 };
+
+  // ---------------------------------------------------------------- helpers
+  function keys(o) { return Object.keys(o || {}); }
+  function has(o, k) { return o != null && Object.prototype.hasOwnProperty.call(o, k); }
+  function get(o, k, d) { return has(o, k) ? o[k] : d; }
+  function sum(a) { var s = 0; for (var i = 0; i < a.length; i++) s += a[i]; return s; }
+  function isMap(x) { return x !== null && typeof x === 'object'; }
+  function fmt2(x) { return x.toFixed(2); }
+
+  // ------------------------------------------------------------------ model
+  function unitCosts(recipes, ingredientCosts, costShock) {
+    var shock = costShock || {};
+    var out = {};
+    keys(recipes).forEach(function (item) {
+      var recipe = recipes[item], t = 0;
+      keys(recipe).forEach(function (ing) {
+        t += recipe[ing] * ingredientCosts[ing] * (1 + get(shock, ing, 0.0));
+      });
+      out[item] = t;
+    });
+    return out;
+  }
+
+  function epsOf(elasticity, itemId) { return isMap(elasticity) ? elasticity[itemId] : elasticity; }
+  function demand(units, ratio, elasticity) { return units * Math.pow(ratio, elasticity); }
+
+  function rowOf(price, cost, units) {
+    return {
+      price: price, unit_cost: cost, units: units, revenue: price * units,
+      ingredient_cost: cost * units, cm: price - cost,
+      food_cost_pct: price ? cost / price : null, profit: (price - cost) * units
+    };
+  }
+  function totalOf(rows) {
+    var o = {};
+    ['units', 'revenue', 'ingredient_cost', 'profit'].forEach(function (k) {
+      o[k] = sum(rows.map(function (r) { return r[k]; }));
+    });
+    return o;
+  }
+
+  function simulate(items, recipes, ingredientCosts, priceChange, costShock, elasticity, substitution) {
+    priceChange = priceChange || {};
+    if (elasticity === undefined) elasticity = -1.0;
+    if (substitution === undefined) substitution = 0.25;
+    var baseCost = unitCosts(recipes, ingredientCosts);
+    var newCost = unitCosts(recipes, ingredientCosts, costShock);
+
+    var own = {}, inflow = {};
+    items.forEach(function (it) {
+      var ratio = 1 + get(priceChange, it.item_id, 0.0);
+      own[it.item_id] = demand(it.units, ratio, epsOf(elasticity, it.item_id));
+      inflow[it.item_id] = 0.0;
+    });
+    items.forEach(function (j) {
+      var lost = j.units - own[j.item_id];
+      if (lost === 0) return;
+      var others = items.filter(function (k) { return k.category === j.category && k.item_id !== j.item_id; });
+      var pop = sum(others.map(function (k) { return k.units; }));
+      if (pop === 0) return;
+      others.forEach(function (k) { inflow[k.item_id] += substitution * lost * k.units / pop; });
+    });
+
+    var rows = {};
+    items.forEach(function (it) {
+      var i = it.item_id;
+      var price0 = it.price, price1 = it.price * (1 + get(priceChange, i, 0.0));
+      var units0 = it.units, units1 = Math.max(0.0, own[i] + inflow[i]);
+      var row = rowOf(price1, newCost[i], units1);
+      var base = rowOf(price0, baseCost[i], units0);
+      row.baseline = base;
+      row.profit_change = row.profit - base.profit;
+      row.profit_change_pct = base.profit ? row.profit_change / base.profit : null;
+      rows[i] = row;
+    });
+
+    var vals = keys(rows).map(function (k) { return rows[k]; });
+    var total = totalOf(vals);
+    var baseTotal = totalOf(vals.map(function (r) { return r.baseline; }));
+    total.baseline = baseTotal;
+    total.profit_change = total.profit - baseTotal.profit;
+    total.profit_change_pct = baseTotal.profit ? total.profit_change / baseTotal.profit : null;
+    total.annual_profit_change = total.profit_change * WEEKS_PER_YEAR;
+    return { items: rows, total: total };
+  }
+
+  function breakEvenElasticity(p0, p1, cost) {
+    if (p0 === p1 || p0 <= cost || p1 <= cost) return null;
+    return Math.log((p0 - cost) / (p1 - cost)) / Math.log(p1 / p0);
+  }
+  function breakEvenDrop(p0, p1, cost) {
+    var dp = p1 - p0;
+    return dp / ((p0 - cost) + dp);
+  }
+  function breakEvenDropNet(p0, p1, cost, substitution, cmDest) {
+    var dp = p1 - p0;
+    return dp / ((p0 - cost) + dp - substitution * cmDest);
+  }
+  function destinationCm(items, costs, itemId) {
+    var me = items.filter(function (i) { return i.item_id === itemId; })[0];
+    var others = items.filter(function (k) { return k.category === me.category && k.item_id !== itemId; });
+    var pop = sum(others.map(function (k) { return k.units; }));
+    if (pop === 0) return null;
+    return sum(others.map(function (k) { return k.units * (k.price - costs[k.item_id]); })) / pop;
+  }
+  function passThroughPriceChange(before, after, price, share) { return share * (after - before) / price; }
+  function annualize(w) { return w * WEEKS_PER_YEAR; }
+
+  // ----------------------------------------------------------------- matrix
+  var INSUFFICIENT = 'Insufficient data';
+  var ACTIONS = {
+    'Star': 'Protect. Keep price and portion; watch guardrails.',
+    'Plowhorse': 'Improve margin. Test a small price rise or a smaller portion.',
+    'Puzzle': 'Improve visibility. Test a label, description or position.',
+    'Dog': 'Reprice or rework. Test a price change or portion change; consider removal.',
+    'Insufficient data': 'Not enough sales in the window to classify.'
+  };
+
+  function classify(items, scope, popularityFactor, minUnits) {
+    scope = scope || 'category';
+    if (popularityFactor === undefined) popularityFactor = 0.7;
+    if (minUnits === undefined) minUnits = 50;
+    if (scope !== 'category' && scope !== 'menu') throw new Error("scope must be 'category' or 'menu'");
+    var groups = {}, order = [];
+    items.forEach(function (it) {
+      var k = scope === 'category' ? it.category : 'menu';
+      if (!has(groups, k)) { groups[k] = []; order.push(k); }
+      groups[k].push(it);
+    });
+    var rows = {}, thresholds = {};
+    order.forEach(function (key) {
+      var members = groups[key];
+      var ok = members.filter(function (m) { return m.units >= minUnits; });
+      var total = sum(ok.map(function (m) { return m.units; }));
+      var n = ok.length;
+      var popThr = n ? popularityFactor / n : null;
+      var marginThr = total ? sum(ok.map(function (m) { return m.units * m.cm; })) / total : null;
+      thresholds[key] = { n: n, total_units: total, popularity_threshold: popThr, margin_threshold: marginThr };
+      members.forEach(function (m) {
+        if (m.units < minUnits) {
+          rows[m.item_id] = { 'class': INSUFFICIENT, share: null, popularity_threshold: null, margin_threshold: null, scope_key: key };
+          return;
+        }
+        var share = m.units / total;
+        var popular = share >= popThr;
+        var high = m.cm >= marginThr;
+        var cls = popular ? (high ? 'Star' : 'Plowhorse') : (high ? 'Puzzle' : 'Dog');
+        rows[m.item_id] = { 'class': cls, share: share, popularity_threshold: popThr, margin_threshold: marginThr, scope_key: key };
+      });
+    });
+    return { items: rows, thresholds: thresholds };
+  }
+
+  function classMoves(baseline, scenario) {
+    var out = {};
+    keys(baseline.items).forEach(function (i) {
+      var b = baseline.items[i], s = scenario.items[i];
+      out[i] = {
+        baseline_class: b['class'], scenario_class: s['class'], moved: b['class'] !== s['class'],
+        baseline_thresholds: { popularity: b.popularity_threshold, margin: b.margin_threshold },
+        scenario_thresholds: { popularity: s.popularity_threshold, margin: s.margin_threshold }
+      };
+    });
+    return out;
+  }
+
+  function classAcrossBands(scenarioByBand, headlineBand) {
+    headlineBand = headlineBand || 'medium';
+    var head = scenarioByBand[headlineBand].items, out = {};
+    keys(head).forEach(function (i) {
+      var byBand = {}, seen = {};
+      keys(scenarioByBand).forEach(function (b) { byBand[b] = scenarioByBand[b].items[i]['class']; seen[byBand[b]] = true; });
+      out[i] = {
+        'class': head[i]['class'], class_by_band: byBand,
+        class_uncertain: keys(seen).length > 1, action: ACTIONS[head[i]['class']]
+      };
+    });
+    return out;
+  }
+
+  // -------------------------------------------------------------- scenarios
+  function expandPriceChanges(baseline, scenario, newCosts, oldCosts) {
+    var changes = {};
+    var byCat = scenario.category_price_change || {};
+    var explicit = scenario.price_change || {};
+    var share = scenario.pass_through;
+    baseline.items.forEach(function (it) {
+      var i = it.item_id;
+      if (has(explicit, i)) changes[i] = explicit[i];
+      else if (has(byCat, it.category)) changes[i] = byCat[it.category];
+      else if (share && newCosts[i] !== oldCosts[i]) changes[i] = passThroughPriceChange(oldCosts[i], newCosts[i], it.price, share);
+    });
+    var out = {};
+    keys(changes).forEach(function (i) { if (changes[i] !== 0) out[i] = changes[i]; });
+    return out;
+  }
+
+  function effectiveElasticity(items, bandEps, override) {
+    var out = {};
+    items.forEach(function (it) {
+      out[it.item_id] = has(override, it.item_id) ? override[it.item_id]
+        : has(override, it.category) ? override[it.category] : bandEps;
+    });
+    return out;
+  }
+
+  function matrixItems(resultItems, items, weeks, baselineSide) {
+    return items.map(function (it) {
+      var r = resultItems[it.item_id];
+      if (baselineSide) r = r.baseline;
+      return { item_id: it.item_id, category: it.category, units: r.units * weeks, cm: r.cm };
+    });
+  }
+
+  function verdict(rise, epsStar, pays) {
+    var flags = keys(pays).map(function (b) { return pays[b]; });
+    if (flags.every(function (f) { return f; })) return 'pays off under all bands';
+    if (!flags.some(function (f) { return f; })) return 'loses money under all bands';
+    return 'pays off only if demand is ' + (rise ? 'less' : 'more') + ' elastic than ' + fmt2(epsStar);
+  }
+
+  function priceTest(it, p1, cost, eff, substitution, items, newCosts) {
+    var p0 = it.price, units = it.units, rise = p1 > p0;
+    var epsStar = breakEvenElasticity(p0, p1, cost);
+    var okMargin = p1 > cost && p0 > cost;
+    var beDrop = okMargin ? breakEvenDrop(p0, p1, cost) : null;
+    var cmDest = destinationCm(items, newCosts, it.item_id);
+    var beNet = (okMargin && cmDest !== null && ((p0 - cost) + (p1 - p0) - substitution * cmDest) > 0)
+      ? breakEvenDropNet(p0, p1, cost, substitution, cmDest) : null;
+    var ratio = p1 / p0, byBand = {}, pays = {};
+    keys(eff).forEach(function (band) {
+      var e = eff[band];
+      var ownUnits = demand(units, ratio, e);
+      var change = (p1 - cost) * ownUnits - (p0 - cost) * units;
+      byBand[band] = { elasticity: e, predicted_drop: 1 - Math.pow(ratio, e), own_profit_change: change };
+      pays[band] = change > 0;
+    });
+    return {
+      p0: p0, p1: p1, unit_cost: cost, break_even_elasticity: epsStar, break_even_drop: beDrop,
+      break_even_drop_net: beNet, by_band: byBand, verdict: verdict(rise, epsStar, pays)
+    };
+  }
+
+  function runScenario(baseline, scenario) {
+    scenario = scenario || {};
+    var items = baseline.items;
+    var bands = scenario.bands || DEFAULT_BANDS;
+    var s = has(scenario, 'substitution') ? scenario.substitution : 0.25;
+    var override = scenario.elasticity_override || {};
+    var weeks = get(baseline, 'window_weeks', 12);
+    var minUnits = get(baseline, 'min_units', 50);
+    var factor = get(baseline, 'popularity_factor', 0.7);
+    var scope = get(scenario, 'scope', 'category');
+
+    var oldCosts = unitCosts(baseline.recipes, baseline.ingredient_costs);
+    var newCosts = unitCosts(baseline.recipes, baseline.ingredient_costs, scenario.cost_shock);
+    var changes = expandPriceChanges(baseline, scenario, newCosts, oldCosts);
+
+    var byBand = {};
+    keys(bands).forEach(function (band) {
+      byBand[band] = simulate(items, baseline.recipes, baseline.ingredient_costs, changes, scenario.cost_shock,
+        effectiveElasticity(items, bands[band], override), s);
+    });
+    var bandNames = keys(bands);
+    var first = byBand[bandNames[0]];
+    var baseMatrix = classify(matrixItems(first.items, items, weeks, true), scope, factor, minUnits);
+    var scenMatrix = {};
+    bandNames.forEach(function (b) { scenMatrix[b] = classify(matrixItems(byBand[b].items, items, weeks, false), scope, factor, minUnits); });
+    var head = has(scenMatrix, 'medium') ? 'medium' : bandNames[0];
+    var classes = classAcrossBands(scenMatrix, head);
+    var moves = classMoves(baseMatrix, scenMatrix[head]);
+
+    var outItems = {};
+    items.forEach(function (it) {
+      var i = it.item_id;
+      var perBand = {};
+      bandNames.forEach(function (b) {
+        var r = byBand[b].items[i];
+        perBand[b] = {};
+        ['units', 'revenue', 'ingredient_cost', 'profit', 'cm', 'food_cost_pct', 'profit_change', 'profit_change_pct']
+          .forEach(function (k) { perBand[b][k] = r[k]; });
+      });
+      var m = {}, k;
+      for (k in classes[i]) m[k] = classes[i][k];
+      for (k in moves[i]) m[k] = moves[i][k];
+      var row = {
+        name: has(it, 'name') ? it.name : null, category: it.category, baseline: first.items[i].baseline,
+        by_band: perBand, matrix: m, price_test: null
+      };
+      if (has(changes, i)) {
+        var eff = {};
+        bandNames.forEach(function (b) { eff[b] = effectiveElasticity([it], bands[b], override)[i]; });
+        row.price_test = priceTest(it, it.price * (1 + changes[i]), newCosts[i], eff, s, items, newCosts);
+        row.price_test.price_change = changes[i];
+      }
+      outItems[i] = row;
+    });
+
+    var totals = {}, weekly = [];
+    bandNames.forEach(function (b) { totals[b] = byBand[b].total; weekly.push(byBand[b].total.profit_change); });
+    var lo = Math.min.apply(null, weekly), hi = Math.max.apply(null, weekly);
+    var bandsOut = {};
+    bandNames.forEach(function (b) { bandsOut[b] = bands[b]; });
+    return {
+      bands: bandsOut, substitution: s, price_changes: changes, items: outItems,
+      total: {
+        baseline: first.total.baseline, by_band: totals,
+        profit_change_range: { low: lo, high: hi },
+        annual_profit_change_range: { low: annualize(lo), high: annualize(hi) }
+      },
+      matrix: { baseline_thresholds: baseMatrix.thresholds, scenario_thresholds: scenMatrix[head].thresholds, scope: scope }
+    };
+  }
+
+  // ------------------------------------------------------------ experiments
+  var CAP_WEEKS = 12, CARRYOVER_M = 1, MIN_WEEKS = 2, EXPOSED_SHARE = 0.5;
+  var FEASIBILITY_OVER_CAP = 0.02, DEFAULT_PRICE_STEP = 0.05;
+  var PORTION_CUT = 0.10, DESIGN_LIFT = 0.05, WEAK_VOLUME_LOSS = 0.05;
+  var GUARDRAILS = {
+    metrics: [
+      { name: 'Total units sold (traffic proxy)', stop_if_down_pct: 3.0 },
+      { name: 'Menu-total contribution profit per week', stop_if_down_pct: 2.0 },
+      { name: 'Same-category units (cannibalization)', stop_if_down_pct: null }
+    ],
+    label: 'policy choice, not evidence'
+  };
+  var STOP_RULES = {
+    harm: 'Stop if a guardrail is beyond its threshold at two consecutive weekly looks, after at least one full week of each arm.',
+    cap: 'Stop at the planned duration or the 12-week cap, whichever comes first.',
+    success: 'No early success stop. Read the result only at the planned end with the design-matched randomization test.'
+  };
+
+  function decisionUncertainty(p) { return 4 * p * (1 - p); }
+  function shareLosing(rise, epsStar, bandLow, bandHigh) {
+    var f = Math.min(1.0, Math.max(0.0, (epsStar - bandHigh) / (bandLow - bandHigh)));
+    return rise ? f : 1 - f;
+  }
+  function sampleStdev(a) {
+    var n = a.length, m = sum(a) / n, s = 0;
+    for (var i = 0; i < n; i++) s += (a[i] - m) * (a[i] - m);
+    return Math.sqrt(s / (n - 1));
+  }
+  function sigmaBlock(history, cm) {
+    if (history.length < 2) return 0.0;
+    return sampleStdev(history) * Math.abs(cm) / Math.sqrt(7);
+  }
+  function durationWeeks(sigma, delta, m) {
+    if (m === undefined) m = CARRYOVER_M;
+    if (delta <= 0) return null;
+    var nClean = 32 * (sigma * sigma) / (delta * delta);
+    var blocks = 2 * nClean / Math.pow(2, -m);
+    return Math.max(MIN_WEEKS, Math.ceil(blocks / 7));
+  }
+  function feasibility(weeks, cap) {
+    if (cap === undefined) cap = CAP_WEEKS;
+    if (weeks === null) return 0.0;
+    if (weeks > cap) return FEASIBILITY_OVER_CAP * cap / weeks;
+    return 1 - weeks / (2 * cap);
+  }
+  function score(stake, uncertainty, feas, riskNorm) { return stake * uncertainty * feas / (1 + riskNorm); }
+
+  function makeEntry(o) {
+    var weeks = durationWeeks(o.sigma, o.delta, o.m);
+    var feas = feasibility(weeks, o.cap);
+    var ok = weeks !== null && weeks <= o.cap;
+    var assumptions = {};
+    keys(o.assumptions).forEach(function (k) { assumptions[k] = { value: o.assumptions[k], label: 'assumed' }; });
+    return {
+      target: o.target, target_name: o.target_name, type: o.etype, evidence: o.evidence,
+      score: score(o.stake, o.unc, feas, o.risk_norm),
+      factors: { stake: o.stake, decision_uncertainty: o.unc, feasibility: feas, normalised_risk: o.risk_norm },
+      hypothesis: o.hypothesis,
+      design: {
+        arms: ['control', 'treatment'], block: 'one day', assignment: 'randomized by day, whole weeks only',
+        carryover_blocks: o.m, clean_block_share: Math.pow(2, -o.m)
+      },
+      duration_weeks: weeks, feasible_alone: ok,
+      feasibility_note: ok ? null : 'Not feasible alone: pool the category or accept a larger detectable effect.',
+      primary_metric: 'Contribution profit per day for the target',
+      mde: { per_block: o.delta, pct_of_block_profit: o.weekly_profit ? o.delta / (o.weekly_profit / 7) : null },
+      guardrails: GUARDRAILS, stop_rules: STOP_RULES, decision_rule: o.decision, assumptions: assumptions
+    };
+  }
+
+  function maxAbs(a) { return Math.max.apply(null, a.map(Math.abs)); }
+
+  function priceEntry(it, test, weeklyProfit, sigma, bandLow, bandHigh, cap, m, assumptions) {
+    var rise = test.p1 > test.p0, eps = test.break_even_elasticity;
+    var changes = keys(test.by_band).map(function (b) { return test.by_band[b].own_profit_change; });
+    var p = shareLosing(rise, eps, bandLow, bandHigh);
+    var pct = Math.abs(test.p1 / test.p0 - 1) * 100;
+    var risk = Math.max(0.0, -Math.min.apply(null, changes)) * EXPOSED_SHARE;
+    var delta = (Math.max.apply(null, changes) - Math.min.apply(null, changes)) / 7;
+    var name = it.name || it.item_id;
+    var entry = makeEntry({
+      target: it.item_id, target_name: name, etype: 'Price switchback test', evidence: 'method-backed',
+      stake: maxAbs(changes) * WEEKS_PER_YEAR, unc: decisionUncertainty(p),
+      risk_norm: weeklyProfit ? risk / weeklyProfit : 0.0, sigma: sigma, delta: delta, weekly_profit: weeklyProfit,
+      hypothesis: 'Demand for ' + name + ' is ' + (rise ? 'less' : 'more') + ' elastic than ' + fmt2(eps) +
+        ', so a ' + (rise ? '+' : '-') + pct.toFixed(0) + '% price change raises profit.',
+      decision: 'If the measured elasticity is ' + (rise ? 'above' : 'below') + ' ' + fmt2(eps) +
+        ', roll out the change; otherwise revert.',
+      assumptions: assumptions, cap: cap, m: m
+    });
+    entry.price_change = { p0: test.p0, p1: test.p1, ratio: test.p1 / test.p0, rise: rise, break_even_elasticity: eps };
+    return entry;
+  }
+
+  function merge(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
+
+  function pooledPriceEntry(cat, ids, tests, result, baseline, items, history, bandLow, bandHigh, cap, m) {
+    var bandNames = keys(result.bands);
+    var pooled = bandNames.map(function (b) {
+      return sum(ids.map(function (i) { return tests[i].by_band[b].own_profit_change; }));
+    });
+    var grid = [];
+    for (var k = 0; k <= 100; k++) grid.push(bandHigh + (bandLow - bandHigh) * k / 100);
+    function pooledChange(eps) {
+      return sum(ids.map(function (i) {
+        var t = tests[i];
+        return (t.p1 - t.unit_cost) * items[i].units * Math.pow(t.p1 / t.p0, eps) - (t.p0 - t.unit_cost) * items[i].units;
+      }));
+    }
+    var p = grid.filter(function (e) { return pooledChange(e) < 0; }).length / grid.length;
+    var weeklyProfit = sum(ids.map(function (i) { return result.items[i].baseline.profit; }));
+    var v = sum(ids.map(function (i) {
+      var s = sigmaBlock(get(history, i, []), result.items[i].baseline.cm); return s * s;
+    }));
+    var sigma = Math.sqrt(v);
+    var risk = Math.max(0.0, -Math.min.apply(null, pooled)) * EXPOSED_SHARE;
+    var delta = (Math.max.apply(null, pooled) - Math.min.apply(null, pooled)) / 7;
+    var names = ids.map(function (i) { return items[i].name || i; }).join(', ');
+    return makeEntry({
+      target: cat, target_name: cat + ' (pooled: ' + names + ')', etype: 'Price switchback test (category pooled)',
+      evidence: 'method-backed', stake: maxAbs(pooled) * WEEKS_PER_YEAR, unc: decisionUncertainty(p),
+      risk_norm: weeklyProfit ? risk / weeklyProfit : 0.0, sigma: sigma, delta: delta, weekly_profit: weeklyProfit,
+      hypothesis: 'The combined price changes on ' + names + ' raise category contribution profit.',
+      decision: "If measured category profit per day rises beyond the guardrails' tolerance, roll out all the changes; otherwise revert.",
+      assumptions: { elasticity_band: [bandHigh, bandLow], sigma_per_day: sigma, carryover_blocks: m, cap_weeks: cap,
+        pooling: 'item sigmas combined as independent' },
+      cap: cap, m: m
+    });
+  }
+
+  function rank(entries) {
+    function byScore(a, b) { return b.score - a.score; }
+    var feasible = entries.filter(function (e) { return e.feasible_alone; }).sort(byScore);
+    var needs = entries.filter(function (e) { return !e.feasible_alone; }).sort(byScore);
+    [feasible, needs].forEach(function (lst) { lst.forEach(function (e, i) { e.rank = i + 1; }); });
+    return { feasible_now: feasible, needs_pooling: needs, all: feasible.concat(needs) };
+  }
+
+  function buildBacklog(baseline, result, params) {
+    params = params || {};
+    var cap = get(params, 'cap_weeks', CAP_WEEKS);
+    var m = get(params, 'carryover_m', CARRYOVER_M);
+    var step = get(params, 'default_price_step', DEFAULT_PRICE_STEP);
+    var bands = result.bands;
+    var bandVals = keys(bands).map(function (b) { return bands[b]; });
+    var bandLow = Math.max.apply(null, bandVals), bandHigh = Math.min.apply(null, bandVals);
+    var history = baseline.weekly_units_history || {};
+    var items = {};
+    baseline.items.forEach(function (i) { items[i.item_id] = i; });
+    var costs = unitCosts(baseline.recipes, baseline.ingredient_costs);
+    var head = has(bands, 'medium') ? 'medium' : keys(bands)[0];
+    var newCosts = {};
+    keys(result.items).forEach(function (i) {
+      var bb = result.items[i].by_band[head];
+      newCosts[i] = bb.units ? bb.ingredient_cost / bb.units : costs[i];
+    });
+
+    var entries = [], scenarioTests = {}, scenarioOrder = [];
+    keys(result.items).forEach(function (i) {
+      var row = result.items[i], it = items[i], base = row.baseline;
+      var weeklyProfit = base.profit;
+      var sigma = sigmaBlock(get(history, i, []), base.cm);
+      var assumptions = {
+        elasticity_band: [bandHigh, bandLow], sigma_per_day: sigma, carryover_blocks: m, cap_weeks: cap,
+        substitution_share: result.substitution
+      };
+      var test = row.price_test, cls = row.matrix.baseline_class;
+      if (test !== null && test.break_even_elasticity !== null) {
+        scenarioTests[i] = test; scenarioOrder.push(i);
+        entries.push(priceEntry(it, test, weeklyProfit, sigma, bandLow, bandHigh, cap, m, assumptions));
+      } else if (test === null && (cls === 'Plowhorse' || cls === 'Dog')) {
+        var eff = {};
+        keys(bands).forEach(function (b) { eff[b] = bands[b]; });
+        var t = priceTest(it, it.price * (1 + step), newCosts[i], eff, result.substitution, baseline.items, newCosts);
+        if (t.break_even_elasticity !== null) entries.push(priceEntry(it, t, weeklyProfit, sigma, bandLow, bandHigh, cap, m, assumptions));
+      }
+      var name = it.name || i;
+      if (cls === 'Plowhorse' || cls === 'Dog') {
+        var saving = PORTION_CUT * costs[i] * it.units;
+        var loss = WEAK_VOLUME_LOSS * weeklyProfit * EXPOSED_SHARE;
+        entries.push(makeEntry({
+          target: i, target_name: name, etype: 'Portion test', evidence: 'weak prior',
+          stake: saving * WEEKS_PER_YEAR, unc: 1.0, risk_norm: weeklyProfit ? loss / weeklyProfit : 0.0,
+          sigma: sigma, delta: saving / 7, weekly_profit: weeklyProfit,
+          hypothesis: 'A ' + Math.round(PORTION_CUT * 100) + '% smaller portion of ' + name +
+            ' raises profit per unit without losing buyers. Effect unknown: test to measure it.',
+          decision: 'If volume holds within the guardrails, keep the smaller portion; otherwise revert.',
+          assumptions: merge(assumptions, { illustrative_portion_cut: PORTION_CUT, illustrative_volume_loss: WEAK_VOLUME_LOSS,
+            decision_uncertainty: '1.0 by construction: no evidence supports a prior' }),
+          cap: cap, m: m
+        }));
+      }
+      if (cls === 'Puzzle') {
+        var gain = DESIGN_LIFT * weeklyProfit;
+        var loss2 = WEAK_VOLUME_LOSS * weeklyProfit * EXPOSED_SHARE;
+        entries.push(makeEntry({
+          target: i, target_name: name, etype: 'Menu-design test', evidence: 'weak prior',
+          stake: gain * WEEKS_PER_YEAR, unc: 1.0, risk_norm: weeklyProfit ? loss2 / weeklyProfit : 0.0,
+          sigma: sigma, delta: gain / 7, weekly_profit: weeklyProfit,
+          hypothesis: 'A clearer label, description or position lifts volume of ' + name + '. Effect unknown: test to measure it.',
+          decision: 'If the lift is positive and the guardrails hold, keep the new design; otherwise revert.',
+          assumptions: merge(assumptions, { illustrative_volume_lift: DESIGN_LIFT, illustrative_volume_loss: WEAK_VOLUME_LOSS,
+            decision_uncertainty: '1.0 by construction: no evidence supports a prior' }),
+          cap: cap, m: m
+        }));
+      }
+    });
+
+    var byCat = {}, catOrder = [];
+    scenarioOrder.forEach(function (i) {
+      var c = items[i].category;
+      if (!has(byCat, c)) { byCat[c] = []; catOrder.push(c); }
+      byCat[c].push(i);
+    });
+    catOrder.forEach(function (cat) {
+      if (byCat[cat].length < 2) return;
+      entries.push(pooledPriceEntry(cat, byCat[cat], scenarioTests, result, baseline, items, history, bandLow, bandHigh, cap, m));
+    });
+    return rank(entries);
+  }
+
+  var Sim = {
+    DEFAULT_BANDS: DEFAULT_BANDS, ACTIONS: ACTIONS, GUARDRAILS: GUARDRAILS, STOP_RULES: STOP_RULES,
+    unitCosts: unitCosts, demand: demand, simulate: simulate,
+    breakEvenElasticity: breakEvenElasticity, breakEvenDrop: breakEvenDrop, breakEvenDropNet: breakEvenDropNet,
+    destinationCm: destinationCm, passThroughPriceChange: passThroughPriceChange, annualize: annualize,
+    classify: classify, classMoves: classMoves, classAcrossBands: classAcrossBands,
+    runScenario: runScenario, priceTest: priceTest, verdict: verdict,
+    buildBacklog: buildBacklog, decisionUncertainty: decisionUncertainty, shareLosing: shareLosing,
+    sigmaBlock: sigmaBlock, durationWeeks: durationWeeks, feasibility: feasibility, score: score
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = Sim;
+  else root.Sim = Sim;
+})(typeof self !== 'undefined' ? self : this);
+</script>
+<script id="data" type="application/json">{"baseline":{"items":[{"item_id":"alfredo","name":"Chicken Alfredo","category":"Pasta and bowls","price":20.0,"units":69.33333333333333},{"item_id":"bacon_burger","name":"Bacon Cheeseburger","category":"Burgers and sandwiches","price":17.0,"units":124.41666666666667},{"item_id":"beer","name":"Draft Beer","category":"Drinks and sides","price":7.5,"units":142.83333333333334},{"item_id":"bolognese","name":"Spaghetti Bolognese","category":"Pasta and bowls","price":19.0,"units":72.41666666666667},{"item_id":"caesar","name":"Caesar Salad","category":"Starters","price":11.0,"units":27.5},{"item_id":"calamari","name":"Fried Calamari","category":"Starters","price":14.0,"units":43.333333333333336},{"item_id":"cheesecake","name":"Cheesecake","category":"Desserts","price":9.0,"units":28.583333333333332},{"item_id":"chicken_parm","name":"Chicken Parm","category":"Entrees","price":23.5,"units":101.41666666666667},{"item_id":"chicken_sandwich","name":"Chicken Sandwich","category":"Burgers and sandwiches","price":14.0,"units":87.58333333333333},{"item_id":"churros","name":"Churros","category":"Desserts","price":8.0,"units":31.833333333333332},{"item_id":"classic_burger","name":"Classic Burger","category":"Burgers and sandwiches","price":16.0,"units":128.0},{"item_id":"fish_chips","name":"Fish and Chips","category":"Entrees","price":20.0,"units":86.66666666666667},{"item_id":"fries","name":"Fries","category":"Drinks and sides","price":6.5,"units":182.25},{"item_id":"grain_bowl","name":"Grain Bowl","category":"Pasta and bowls","price":16.0,"units":28.666666666666668},{"item_id":"key_lime","name":"Key Lime Pie","category":"Desserts","price":8.0,"units":22.333333333333332},{"item_id":"mac_cheese","name":"Mac and Cheese","category":"Entrees","price":16.0,"units":37.25},{"item_id":"nachos","name":"Loaded Nachos","category":"Starters","price":13.0,"units":88.41666666666667},{"item_id":"philly","name":"Philly Cheesesteak","category":"Burgers and sandwiches","price":16.0,"units":49.583333333333336},{"item_id":"ribeye","name":"Ribeye","category":"Entrees","price":38.0,"units":37.25},{"item_id":"salmon","name":"Salmon","category":"Entrees","price":28.5,"units":42.5},{"item_id":"scampi","name":"Shrimp Scampi","category":"Pasta and bowls","price":24.0,"units":32.916666666666664},{"item_id":"short_rib","name":"Short Rib","category":"Entrees","price":31.0,"units":41.083333333333336},{"item_id":"side_salad","name":"Side Salad","category":"Drinks and sides","price":6.0,"units":40.0},{"item_id":"sirloin","name":"Sirloin","category":"Entrees","price":28.0,"units":41.833333333333336},{"item_id":"soda","name":"Soda","category":"Drinks and sides","price":3.5,"units":132.83333333333334},{"item_id":"soup","name":"Soup of the Day","category":"Starters","price":8.0,"units":56.166666666666664},{"item_id":"sundae","name":"Brownie Sundae","category":"Desserts","price":9.0,"units":52.833333333333336},{"item_id":"veggie_burger","name":"Veggie Burger","category":"Burgers and sandwiches","price":14.0,"units":31.0},{"item_id":"wine","name":"House Wine","category":"Drinks and sides","price":9.0,"units":80.0},{"item_id":"wings","name":"Wings","category":"Starters","price":13.0,"units":90.41666666666667}],"recipes":{"alfredo":{"butter":0.04,"chicken_breast":0.4,"cream":0.2,"parmesan":0.1,"pasta":0.4},"bacon_burger":{"bacon":0.08,"bun":1.0,"cheddar":0.1,"ground_beef":0.5,"tomato":0.1},"beer":{"draft_beer":16.0},"bolognese":{"ground_beef":0.3,"onion":0.1,"parmesan":0.05,"pasta":0.4,"tomato_sauce":0.15},"caesar":{"eggs":0.05,"garlic":0.02,"oil":0.01,"parmesan":0.1,"romaine":1.0},"calamari":{"calamari":0.5,"flour":0.1,"lemon":0.5,"oil":0.02,"tomato_sauce":0.05},"cheesecake":{"cream_cheese":0.3,"eggs":0.1,"graham":0.1,"sugar":0.1},"chicken_parm":{"chicken_breast":0.6,"flour":0.08,"mozzarella":0.15,"pasta":0.3,"tomato_sauce":0.1},"chicken_sandwich":{"bun":1.0,"chicken_breast":0.45,"flour":0.1,"oil":0.02,"tomato":0.08},"churros":{"chocolate":0.1,"eggs":0.1,"flour":0.3,"oil":0.04,"sugar":0.15},"classic_burger":{"bun":1.0,"cheddar":0.06,"ground_beef":0.5,"onion":0.05,"tomato":0.1},"fish_chips":{"cod":0.5,"flour":0.15,"lemon":0.5,"oil":0.03,"potato":0.5},"fries":{"oil":0.06,"potato":0.9},"grain_bowl":{"chicken_breast":0.25,"mixed_greens":0.15,"oil":0.01,"quinoa":0.3,"tomato":0.15},"key_lime":{"cream":0.1,"eggs":0.1,"graham":0.1,"lime":3.0,"sugar":0.1},"mac_cheese":{"butter":0.04,"cheddar":0.3,"cream":0.1,"pasta":0.4},"nachos":{"cheddar":0.3,"hot_sauce":0.03,"onion":0.1,"tomato":0.15,"tortilla_chips":0.4},"philly":{"bun":1.0,"onion":0.1,"provolone":0.1,"shaved_beef":0.35},"ribeye":{"butter":0.06,"mixed_greens":0.1,"potato":0.4,"ribeye":0.625},"salmon":{"butter":0.04,"lemon":0.5,"mixed_greens":0.1,"quinoa":0.15,"salmon":0.5},"scampi":{"butter":0.08,"garlic":0.04,"lemon":0.5,"pasta":0.4,"shrimp":0.45},"short_rib":{"cream":0.05,"onion":0.1,"potato":0.4,"short_rib":0.75},"side_salad":{"mixed_greens":0.2,"onion":0.03,"tomato":0.1},"sirloin":{"butter":0.05,"mixed_greens":0.1,"potato":0.4,"sirloin":0.625},"soda":{"soda_syrup":0.05},"soup":{"butter":0.03,"cream":0.1,"onion":0.15,"soup_base":0.4},"sundae":{"butter":0.05,"chocolate":0.15,"flour":0.1,"ice_cream":0.12,"sugar":0.1},"veggie_burger":{"bun":1.0,"mixed_greens":0.05,"provolone":0.1,"tomato":0.1,"veggie_patty":1.0},"wine":{"house_wine":6.0},"wings":{"chicken_wings":1.0,"hot_sauce":0.06,"oil":0.01}},"ingredient_costs":{"bacon":9.3878,"bun":0.7295,"butter":6.7595,"calamari":8.4522,"cheddar":8.1458,"chicken_breast":5.193,"chicken_wings":4.6017,"chocolate":6.1617,"cod":9.6201,"cream":4.9908,"cream_cheese":4.5389,"draft_beer":0.143,"eggs":5.622,"flour":1.0997,"garlic":4.3324,"graham":3.427,"ground_beef":9.3858,"hot_sauce":5.9529,"house_wine":0.5405,"ice_cream":6.1221,"lemon":0.5223,"lime":0.3172,"mixed_greens":6.2777,"mozzarella":6.7735,"oil":16.265,"onion":1.2717,"parmesan":13.1969,"pasta":1.8745,"potato":1.1181,"provolone":9.0288,"quinoa":4.9459,"ribeye":21.6199,"romaine":2.308,"salmon":15.1433,"shaved_beef":13.1583,"short_rib":14.6212,"shrimp":14.4198,"sirloin":15.4051,"soda_syrup":22.2853,"soup_base":3.0754,"sugar":1.2706,"tomato":2.8639,"tomato_sauce":3.8143,"tortilla_chips":4.2943,"veggie_patty":2.7373},"weekly_units_history":{"alfredo":[62.0,43.0,37.0,53.0,79.0,78.0,57.0,94.0,74.0,80.0,95.0,80.0],"bacon_burger":[101.0,101.0,149.0,153.0,142.0,121.0,111.0,96.0,151.0,176.0,77.0,115.0],"beer":[197.0,176.0,195.0,158.0,107.0,154.0,124.0,180.0,122.0,73.0,138.0,90.0],"bolognese":[63.0,58.0,100.0,61.0,90.0,57.0,70.0,89.0,59.0,82.0,81.0,59.0],"caesar":[31.0,33.0,26.0,26.0,33.0,36.0,31.0,29.0,27.0,14.0,22.0,22.0],"calamari":[48.0,44.0,43.0,47.0,41.0,39.0,39.0,41.0,45.0,52.0,52.0,29.0],"cheesecake":[37.0,33.0,24.0,45.0,30.0,30.0,22.0,19.0,20.0,30.0,20.0,33.0],"chicken_parm":[89.0,118.0,85.0,128.0,110.0,129.0,91.0,85.0,118.0,86.0,97.0,81.0],"chicken_sandwich":[88.0,81.0,95.0,107.0,94.0,108.0,62.0,65.0,79.0,137.0,81.0,54.0],"churros":[31.0,14.0,37.0,36.0,33.0,39.0,38.0,29.0,29.0,34.0,26.0,36.0],"classic_burger":[94.0,112.0,121.0,125.0,167.0,127.0,115.0,152.0,139.0,142.0,134.0,108.0],"fish_chips":[87.0,64.0,95.0,77.0,84.0,80.0,68.0,78.0,80.0,133.0,117.0,77.0],"fries":[213.0,163.0,245.0,171.0,247.0,190.0,190.0,158.0,176.0,118.0,165.0,151.0],"grain_bowl":[30.0,20.0,43.0,23.0,34.0,22.0,24.0,35.0,28.0,30.0,33.0,22.0],"key_lime":[18.0,19.0,31.0,24.0,25.0,25.0,17.0,18.0,30.0,19.0,27.0,15.0],"mac_cheese":[25.0,33.0,33.0,45.0,37.0,63.0,32.0,40.0,34.0,33.0,40.0,32.0],"nachos":[102.0,99.0,78.0,98.0,96.0,83.0,68.0,86.0,117.0,103.0,63.0,68.0],"philly":[48.0,32.0,68.0,58.0,36.0,61.0,60.0,63.0,43.0,47.0,44.0,35.0],"ribeye":[51.0,34.0,41.0,34.0,36.0,38.0,39.0,49.0,32.0,31.0,35.0,27.0],"salmon":[57.0,24.0,55.0,51.0,36.0,42.0,38.0,40.0,63.0,34.0,40.0,30.0],"scampi":[48.0,29.0,34.0,26.0,23.0,36.0,28.0,21.0,53.0,25.0,46.0,26.0],"short_rib":[40.0,48.0,43.0,49.0,47.0,42.0,33.0,40.0,39.0,33.0,48.0,31.0],"side_salad":[51.0,51.0,53.0,36.0,47.0,36.0,37.0,37.0,27.0,39.0,46.0,20.0],"sirloin":[30.0,51.0,31.0,37.0,53.0,51.0,35.0,48.0,57.0,37.0,41.0,31.0],"soda":[169.0,149.0,118.0,156.0,141.0,177.0,94.0,117.0,132.0,131.0,115.0,95.0],"soup":[47.0,31.0,51.0,70.0,54.0,75.0,64.0,45.0,56.0,65.0,61.0,55.0],"sundae":[45.0,67.0,59.0,53.0,65.0,59.0,48.0,40.0,49.0,56.0,54.0,39.0],"veggie_burger":[37.0,33.0,27.0,49.0,30.0,29.0,20.0,27.0,18.0,29.0,43.0,30.0],"wine":[93.0,121.0,62.0,101.0,72.0,78.0,55.0,81.0,66.0,82.0,74.0,75.0],"wings":[98.0,109.0,91.0,103.0,98.0,111.0,83.0,98.0,75.0,105.0,44.0,70.0]},"window_weeks":12,"min_units":50,"popularity_factor":0.7},"validation":{"band_hit":{"by_category":{"Burgers and sandwiches":{"inside":5,"of":5},"Desserts":{"inside":4,"of":4},"Drinks and sides":{"inside":1,"of":5},"Entrees":{"inside":7,"of":7},"Pasta and bowls":{"inside":4,"of":4},"Starters":{"inside":5,"of":5}},"inside_band":26,"items":30,"rate":0.866666667},"scenarios":60,"coverage":{"by_category":{"Burgers and sandwiches":0.7,"Desserts":1.0,"Drinks and sides":0.0,"Entrees":1.0,"Pasta and bowls":0.75,"Starters":0.8},"rate":0.716666667,"truth_above_range":0.283333333,"truth_below_range":0.0},"verdicts":{"costly_errors_pays_when_truth_loses":0,"decisive_accuracy":null,"depends_on_elasticity":60,"loses_under_all_bands":0,"medium_band_says_loses_when_truth_pays":0,"medium_band_says_pays_when_truth_loses":6,"medium_band_sign_accuracy":0.9,"missed_wins_loses_when_truth_pays":0,"pays_off_under_all_bands":0,"total":60,"truth_pays_share":0.9},"naive":{"events":9,"median_abs_error":0.644118985,"mean_abs_error":1.150032134,"wrong_sign_share":0.222222222,"outside_band_share":0.555555556},"recovery":{"reps":200,"mean_decision_accuracy":{"at_cap":0.557,"planned_duration":0.828},"mean_interval_width_at_cap":10.548997678000001,"mean_interval_width_planned":1.0802646294}},"ingredient_groups":{"beef":["ribeye","sirloin","short_rib","ground_beef","shaved_beef"],"poultry":["chicken_breast","chicken_wings"],"seafood":["salmon","cod","shrimp","calamari"],"pork":["bacon"],"dairy":["cheddar","mozzarella","parmesan","provolone","cream","butter","eggs","cream_cheese","ice_cream"],"produce":["potato","romaine","mixed_greens","tomato","onion","garlic","lemon","lime","quinoa"],"dry":["pasta","flour","sugar","bun","tortilla_chips","graham","chocolate","oil","soup_base","tomato_sauce","hot_sauce","veggie_patty"],"drinks":["soda_syrup","draft_beer","house_wine"],"all":["bacon","bun","butter","calamari","cheddar","chicken_breast","chicken_wings","chocolate","cod","cream","cream_cheese","draft_beer","eggs","flour","garlic","graham","ground_beef","hot_sauce","house_wine","ice_cream","lemon","lime","mixed_greens","mozzarella","oil","onion","parmesan","pasta","potato","provolone","quinoa","ribeye","romaine","salmon","shaved_beef","short_rib","shrimp","sirloin","soda_syrup","soup_base","sugar","tomato","tomato_sauce","tortilla_chips","veggie_patty"]},"group_labels":{"beef":"Beef (all cuts)","poultry":"Chicken","seafood":"Seafood","pork":"Bacon","dairy":"Dairy and eggs","produce":"Produce and grains","dry":"Dry goods, buns and oil","drinks":"Drinks","all":"Every ingredient"}}</script>
+<script>
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var BASE = D.baseline, V = D.validation, GROUPS = D.ingredient_groups;
+  var ITEMS = BASE.items, BYID = {};
+  ITEMS.forEach(function (i) { BYID[i.item_id] = i; });
+  var CATS = []; ITEMS.forEach(function (i) { if (CATS.indexOf(i.category) < 0) CATS.push(i.category); });
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  var DEFAULTS = { shockGroup: 'beef', shock: 20, price: 5, scope: 'item:classic_burger', pass: 0, sub: 25, mscope: 'category',
+    bands: { low: -0.5, medium: -1.0, high: -1.8 }, cap: 12, carry: 1, override: {} };
+  var S = JSON.parse(JSON.stringify(DEFAULTS));
+  var sortKey = 'profit', sortDir = 1, R = null, BL = null;
+
+  var CLS = { 'Star': ['--c-star', 'circle'], 'Plowhorse': ['--c-plow', 'square'], 'Puzzle': ['--c-puzzle', 'diamond'], 'Dog': ['--c-dog', 'triangle'] };
+  var usd0 = function (x) { return (x < 0 ? '-$' : '$') + Math.abs(Math.round(x)).toLocaleString('en-US'); };
+  var usd2 = function (x) { return (x < 0 ? '-$' : '$') + Math.abs(x).toFixed(2); };
+  var sgn0 = function (x) { return (x >= 0 ? '+' : '-') + '$' + Math.abs(Math.round(x)).toLocaleString('en-US'); };
+  var pct1 = function (x) { return (x * 100).toFixed(1) + '%'; };
+  var cls = function (x) { return x > 0.5 ? 'pos' : x < -0.5 ? 'neg' : ''; };
+
+  // ---------------------------------------------------------------- scenario
+  function scenario() {
+    var shock = {}, g = GROUPS[S.shockGroup];
+    if (g && S.shock !== 0) g.forEach(function (ing) { shock[ing] = S.shock / 100; });
+    var sc = { cost_shock: shock, substitution: S.sub / 100, bands: JSON.parse(JSON.stringify(S.bands)), scope: S.mscope };
+    if (S.price !== 0) {
+      var p = S.price / 100;
+      if (S.scope === 'all') { sc.category_price_change = {}; CATS.forEach(function (c) { sc.category_price_change[c] = p; }); }
+      else if (S.scope.indexOf('item:') === 0) sc.price_change = (function () { var o = {}; o[S.scope.slice(5)] = p; return o; })();
+      else { sc.category_price_change = {}; sc.category_price_change[S.scope.slice(4)] = p; }
+    }
+    if (S.pass > 0) sc.pass_through = S.pass / 100;
+    var ov = {}, any = false;
+    Object.keys(S.override).forEach(function (k) { ov[k] = S.override[k]; any = true; });
+    if (any) sc.elasticity_override = ov;
+    return sc;
+  }
+  function compute() {
+    R = Sim.runScenario(BASE, scenario());
+    BL = Sim.buildBacklog(BASE, R, { cap_weeks: S.cap, carryover_m: S.carry });
+  }
+
+  // ------------------------------------------------------------------ svg bits
+  var HATCH = '<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="1.5"/></pattern></defs>';
+  function marker(c, x, y, r, extra) {
+    var spec = CLS[c]; if (!spec) return '';
+    var f = 'fill="var(' + spec[0] + ')" stroke="var(--raised)" stroke-width="2" ' + (extra || '');
+    if (spec[1] === 'circle') return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" ' + f + '/>';
+    if (spec[1] === 'square') return '<rect x="' + (x - r) + '" y="' + (y - r) + '" width="' + 2 * r + '" height="' + 2 * r + '" rx="1" ' + f + '/>';
+    if (spec[1] === 'diamond') return '<polygon points="' + x + ',' + (y - r - 1) + ' ' + (x + r + 1) + ',' + y + ' ' + x + ',' + (y + r + 1) + ' ' + (x - r - 1) + ',' + y + '" ' + f + '/>';
+    return '<polygon points="' + x + ',' + (y - r - 1) + ' ' + (x + r + 1) + ',' + (y + r) + ' ' + (x - r - 1) + ',' + (y + r) + '" ' + f + '/>';
+  }
+  function clsLabel(c) {
+    if (!CLS[c]) return '<span class="tiny">' + esc(c) + '</span>';
+    return '<span class="cls"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">' + marker(c, 7, 7, 4.5) + '</svg>' + c + '</span>';
+  }
+
+  // matrix position of an item relative to its group's thresholds (1.0 = threshold)
+  function position(i, side) {
+    var key = R.matrix.scope === 'menu' ? 'menu' : BYID[i].category;
+    var t = (side === 'base' ? R.matrix.baseline_thresholds : R.matrix.scenario_thresholds)[key];
+    var weeks = BASE.window_weeks;
+    var row = side === 'base' ? R.items[i].baseline : R.items[i].by_band[headBand()];
+    var units = row.units * weeks;
+    if (!t || !t.total_units || units < BASE.min_units) return null;
+    return { x: (units / t.total_units) / t.popularity_threshold, y: row.cm / t.margin_threshold };
+  }
+  function headBand() { return R.bands.medium !== undefined ? 'medium' : Object.keys(R.bands)[0]; }
+
+  function matrixSVG() {
+    var W = 600, H = 380, m = { l: 46, r: 14, t: 14, b: 40 };
+    var X = function (v) { return m.l + (Math.min(v, 3) / 3) * (W - m.l - m.r); };
+    var Y = function (v) { return H - m.b - (Math.min(v, 2) / 2) * (H - m.t - m.b); };
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Menu engineering matrix: popularity against margin">' + HATCH;
+    s += '<line x1="' + X(1) + '" x2="' + X(1) + '" y1="' + m.t + '" y2="' + (H - m.b) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
+    s += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(1) + '" y2="' + Y(1) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
+    [['Puzzle', m.l + 6, m.t + 14, 'start'], ['Star', W - m.r - 6, m.t + 14, 'end'], ['Dog', m.l + 6, H - m.b - 8, 'start'], ['Plowhorse', W - m.r - 6, H - m.b - 8, 'end']]
+      .forEach(function (q) { s += '<text x="' + q[1] + '" y="' + q[2] + '" text-anchor="' + q[3] + '" font-size="12" font-weight="700" fill="var(--ink-3)">' + q[0].toUpperCase() + '</text>'; });
+    s += '<text x="' + ((W + m.l) / 2) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="12" fill="var(--ink-2)">Popularity vs its group (1.0 = threshold) →</text>';
+    s += '<text transform="translate(13 ' + ((H - m.b) / 2) + ') rotate(-90)" text-anchor="middle" font-size="12" fill="var(--ink-2)">Margin vs group average →</text>';
+    var pts = [];
+    ITEMS.forEach(function (it) {
+      var mt = R.items[it.item_id].matrix, a = position(it.item_id, 'scen');
+      if (!a || mt.scenario_class === 'Insufficient data') return;
+      pts.push({ it: it, mt: mt, a: a, b: mt.moved ? position(it.item_id, 'base') : null });
+    });
+    pts.forEach(function (p) { if (p.b) s += '<line x1="' + X(p.b.x) + '" y1="' + Y(p.b.y) + '" x2="' + X(p.a.x) + '" y2="' + Y(p.a.y) + '" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="3 3"/>'; });
+    pts.forEach(function (p) {
+      var x = X(p.a.x), y = Y(p.a.y), mt = p.mt;
+      var tip = '<b>' + esc(p.it.name) + '</b><br>' + mt.scenario_class + (mt.moved ? ' (was ' + mt.baseline_class + ')' : '') +
+        (mt.class_uncertain ? '<br>Class depends on elasticity: ' + Object.keys(mt.class_by_band).map(function (b) { return b + ' ' + mt.class_by_band[b]; }).join(', ') : '');
+      s += '<g data-tip="' + esc(tip) + '">';
+      if (mt.class_uncertain) s += '<circle cx="' + x + '" cy="' + y + '" r="12" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/>';
+      s += marker(mt.scenario_class, x, y, 6) + '<circle cx="' + x + '" cy="' + y + '" r="13" fill="transparent"/></g>';
+      if (mt.moved || mt.class_uncertain) {
+        var flip = x > W - 130;
+        s += '<text x="' + (flip ? x - 10 : x + 10) + '" y="' + (y - 8) + '" text-anchor="' + (flip ? 'end' : 'start') + '" font-size="11" fill="var(--ink-2)" class="lbl">' + esc(p.it.name) + '</text>';
+      }
+    });
+    return s + '</svg>';
+  }
+
+  function epsAxis(test) {
+    var w = 190, lo = Math.min(S.bands.low, S.bands.medium, S.bands.high), hi = Math.max(S.bands.low, S.bands.medium, S.bands.high);
+    var X = function (e) { return 6 + ((Math.max(-2.4, Math.min(0, e)) + 2.4) / 2.4) * (w - 12); };
+    var s = '<svg viewBox="0 0 ' + w + ' 26" width="' + w + '" height="26" role="img" aria-label="Break-even elasticity against assumed band">' + HATCH;
+    s += '<line x1="6" x2="' + (w - 6) + '" y1="13" y2="13" stroke="var(--hairline)"/>';
+    s += '<rect x="' + X(lo) + '" y="6" width="' + (X(hi) - X(lo)) + '" height="14" fill="url(#hatch)" stroke="var(--hatch)"/>';
+    if (test && test.break_even_elasticity !== null) { var x = X(test.break_even_elasticity); s += '<line x1="' + x + '" x2="' + x + '" y1="2" y2="24" stroke="var(--ink)" stroke-width="2.5"/>'; }
+    return s + '</svg>';
+  }
+
+  function profitBar(row, scale) {
+    var w = 130, vals = Object.keys(row.by_band).map(function (b) { return row.by_band[b].profit_change; });
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    var X = function (v) { return w / 2 + (v / scale) * (w / 2 - 6); };
+    var s = '<svg viewBox="0 0 ' + w + ' 22" width="' + w + '" height="22" role="img" aria-label="Weekly profit change range">' + HATCH;
+    s += '<line x1="' + X(0) + '" x2="' + X(0) + '" y1="2" y2="20" stroke="var(--ink-3)"/>';
+    var med = row.by_band[headBand()].profit_change;
+    if (hi - lo > 0.5) s += '<rect x="' + X(lo) + '" y="6" width="' + Math.max(X(hi) - X(lo), 2) + '" height="10" fill="url(#hatch)" stroke="var(--hatch)"/>';
+    s += '<circle cx="' + X(med) + '" cy="11" r="4" fill="var(--accent)" stroke="var(--raised)" stroke-width="1.5"/></svg>';
+    return s;
+  }
+
+  // ------------------------------------------------------------------ panels
+  function renderMatrix() {
+    $('matrix').innerHTML = matrixSVG();
+    $('matrix-sub').textContent = (R.matrix.scope === 'menu' ? 'Items compared across the whole menu.' : 'Each item compared with its own category.') +
+      ' Class shown is the medium-band scenario.';
+  }
+
+  function tiles() {
+    var t = R.total, bnames = Object.keys(R.bands);
+    var range = t.profit_change_range, flat = Math.abs(range.high - range.low) < 1e-9;
+    $('baseline-line').textContent = 'Baseline ' + usd0(t.baseline.profit) + ' a week on ' + usd0(t.baseline.revenue) + ' of sales (food cost ' + pct1(t.baseline.ingredient_cost / t.baseline.revenue) + ').';
+    var h = '';
+    if (flat) {
+      var v = t.by_band[bnames[0]].profit_change;
+      h = '<div class="tile"><div class="k"><span>Weekly change</span></div><div class="v num ' + cls(v) + '">' + sgn0(v) + '</div><div class="tiny num">' + sgn0(v * 52) + ' a year. Does not depend on elasticity.</div></div>';
+    } else {
+      var label = { low: 'If demand barely reacts', medium: 'Medium', high: 'If demand reacts a lot' };
+      bnames.forEach(function (b) {
+        var v = t.by_band[b].profit_change;
+        h += '<div class="tile hatched"><div class="k"><span>' + (label[b] || b) + '</span><span class="pill plain">assumed ' + R.bands[b] + '</span></div><div class="v num ' + cls(v) + '">' + sgn0(v) + '</div><div class="tiny num">per week · ' + sgn0(v * 52) + ' a year</div></div>';
+      });
+    }
+    $('tiles').innerHTML = h;
+    $('tiles-note').textContent = flat ? 'A pure cost shock changes margin at current prices, with no demand response modelled.' :
+      'This assumes demand responds to price at the elasticity shown on each tile, and ' + Math.round(R.substitution * 100) + '% of lost buyers switch to a similar dish. Neither is measured.';
+  }
+
+  function moves() {
+    var rows = [];
+    ITEMS.forEach(function (it) { var m = R.items[it.item_id].matrix; if (m.moved || m.class_uncertain) rows.push([it, m]); });
+    if (!rows.length) { $('moves').innerHTML = '<p class="muted" style="margin:0;font-size:13px">No item changes class, and none depends on the elasticity band.</p>'; return; }
+    $('moves').innerHTML = '<table><tbody>' + rows.map(function (r) {
+      var it = r[0], m = r[1];
+      return '<tr data-open="' + it.item_id + '" tabindex="0"><td>' + esc(it.name) + '</td><td>' + (m.moved ? clsLabel(m.baseline_class) + ' → ' + clsLabel(m.scenario_class) : clsLabel(m.scenario_class)) + '</td><td>' + (m.class_uncertain ? '<span class="badge" data-tip="' + esc('Class differs across bands: ' + Object.keys(m.class_by_band).map(function (b) { return b + ' ' + m.class_by_band[b]; }).join(', ')) + '">class uncertain</span>' : '') + '</td></tr>';
+    }).join('') + '</tbody></table>';
+  }
+
+  function itemRows() {
+    var scale = 1;
+    ITEMS.forEach(function (it) { Object.keys(R.items[it.item_id].by_band).forEach(function (b) { scale = Math.max(scale, Math.abs(R.items[it.item_id].by_band[b].profit_change)); }); });
+    var list = ITEMS.map(function (it) {
+      var r = R.items[it.item_id], t = r.price_test, m = r.matrix, bb = r.by_band[headBand()];
+      return { it: it, r: r, t: t, m: m, name: it.name, cat: it.category, price: t ? t.p1 : r.baseline.price, cm: bb.cm, eps: t ? t.break_even_elasticity : null,
+        profit: bb.profit_change, cls: m.scenario_class };
+    });
+    list.sort(function (a, b) {
+      var va = a[sortKey], vb = b[sortKey];
+      if (va === null || va === undefined) return 1; if (vb === null || vb === undefined) return -1;
+      return (typeof va === 'string' ? va.localeCompare(vb) : va - vb) * sortDir;
+    });
+    var cols = [['name', 'Item'], ['cls', 'Class'], ['price', 'Price, CM'], ['eps', 'Break-even elasticity, verdict'], ['profit', 'Weekly profit change']];
+    $('items').querySelector('thead').innerHTML = '<tr>' + cols.map(function (c) {
+      var arrow = sortKey === c[0] ? (sortDir > 0 ? ' ▲' : ' ▼') : '';
+      return '<th scope="col" aria-sort="' + (sortKey === c[0] ? (sortDir > 0 ? 'ascending' : 'descending') : 'none') + '"><button data-sort="' + c[0] + '">' + c[1] + arrow + '</button></th>';
+    }).join('') + '</tr>';
+    $('items').querySelector('tbody').innerHTML = list.map(function (x) {
+      var m = x.m, cl = m.moved ? clsLabel(m.baseline_class) + ' → ' + clsLabel(m.scenario_class) : clsLabel(m.scenario_class);
+      if (m.class_uncertain) cl += ' <span class="badge">uncertain</span>';
+      return '<tr data-open="' + x.it.item_id + '" tabindex="0"><td>' + esc(x.name) + '<div class="tiny">' + esc(x.cat) + '</div></td><td>' + cl + '</td><td class="num">' + usd2(x.price) +
+        (x.t ? ' <span class="tiny">was ' + usd2(x.t.p0) + '</span>' : '') + '<div class="tiny">CM ' + usd2(x.cm) + '</div></td><td>' +
+        (x.t ? epsAxis(x.t) + '<div class="verdict"><span class="num">' + (x.eps === null ? 'undefined' : x.eps.toFixed(2)) + '</span> · ' + esc(x.t.verdict) + '</div>' : '<span class="tiny">no price change</span>') +
+        '</td><td>' + profitBar(x.r, scale) + '<div class="tiny num">' + sgn0(x.profit) + ' medium</div></td></tr>';
+    }).join('');
+  }
+
+  function entryHTML(e) {
+    var f = e.factors, a = e.assumptions;
+    var sub = e.type + ' · ' + e.evidence;
+    var dur = e.duration_weeks === null ? 'not estimable' : e.duration_weeks + ' weeks';
+    var assum = Object.keys(a).map(function (k) { var v = a[k].value; return k.replace(/_/g, ' ') + ': ' + (Array.isArray(v) ? v.map(function (x) { return typeof x === 'number' ? +x.toFixed(2) : x; }).join(' to ') : typeof v === 'number' ? +v.toFixed(3) : v); }).join('; ');
+    return '<details class="entry"><summary><span class="t">#' + e.rank + ' ' + esc(e.target_name) + '</span><div class="tiny">' + esc(sub) + ' · ' + dur + '</div><div style="margin-top:4px">' + esc(e.hypothesis) + '</div></summary>' +
+      '<dl><dt>Score</dt><dd class="num">' + Math.round(e.score).toLocaleString('en-US') + ' = stake ' + usd0(f.stake) + '/yr × uncertainty ' + f.decision_uncertainty.toFixed(2) + ' × feasibility ' + f.feasibility.toFixed(2) + ' ÷ (1 + risk ' + f.normalised_risk.toFixed(3) + ')</dd>' +
+      '<dt>Design</dt><dd>Two arms, ' + e.design.block + ' blocks, ' + esc(e.design.assignment) + '; carryover ' + e.design.carryover_blocks + ' block (assumed), so ' + Math.round(e.design.clean_block_share * 100) + '% of blocks are clean.</dd>' +
+      '<dt>Metric</dt><dd>' + esc(e.primary_metric) + '. Detectable effect ' + usd2(e.mde.per_block) + ' a day' + (e.mde.pct_of_block_profit !== null ? ' (' + pct1(e.mde.pct_of_block_profit) + ' of daily profit)' : '') + '.</dd>' +
+      '<dt>Guardrails</dt><dd>' + e.guardrails.metrics.map(function (g) { return esc(g.name) + (g.stop_if_down_pct ? ' (stop if down ' + g.stop_if_down_pct + '%)' : ''); }).join('; ') + ' <span class="tiny">(' + esc(e.guardrails.label) + ')</span></dd>' +
+      '<dt>Stop rules</dt><dd>' + esc(e.stop_rules.harm) + ' ' + esc(e.stop_rules.cap) + ' ' + esc(e.stop_rules.success) + '</dd>' +
+      '<dt>Decision</dt><dd>' + esc(e.decision_rule) + '</dd><dt>Assumed</dt><dd>' + esc(assum) + '</dd>' +
+      (e.feasibility_note ? '<dt>Note</dt><dd>' + esc(e.feasibility_note) + '</dd>' : '') + '</dl></details>';
+  }
+  function backlog() {
+    var f = BL.feasible_now, n = BL.needs_pooling, h = '';
+    h += '<h3>Feasible now <span class="tiny">≤ ' + S.cap + ' weeks · ' + f.length + '</span></h3>';
+    h += f.length ? f.slice(0, 8).map(entryHTML).join('') : '<div class="empty">Nothing fits in ' + S.cap + ' weeks. At this restaurant\'s daily noise, even a 15% price change takes far longer than a quarter to read. That is the finding: elasticity cannot be learned quickly from one item at one site, so the options are a bigger effect, pooled items, or a longer test.</div>';
+    h += '<h3 style="margin-top:14px">Needs pooling or a larger effect <span class="tiny">' + n.length + '</span></h3>';
+    h += n.slice(0, 8).map(entryHTML).join('') + (n.length > 8 ? '<p class="tiny">' + (n.length - 8) + ' more, lower scores.</p>' : '');
+    $('backlog').innerHTML = h;
+  }
+
+  function drawer(id) {
+    var it = BYID[id], r = R.items[id], t = r.price_test, m = r.matrix, bn = Object.keys(R.bands);
+    var h = '<h2>' + esc(it.name) + '</h2><p class="muted" style="margin:4px 0 10px">' + esc(it.category) + ' · baseline ' + usd2(r.baseline.price) + ', cost ' + usd2(r.baseline.unit_cost) + ', ' + Math.round(r.baseline.units) + ' a week</p>';
+    h += '<h3>Class</h3><p>' + clsLabel(m.baseline_class) + (m.moved ? ' → ' + clsLabel(m.scenario_class) : '') + '</p><p class="muted" style="font-size:13px">' + esc(m.action) + '</p>';
+    h += '<div class="scroll"><table><thead><tr><th>Band</th><th>Class</th><th>Weekly profit</th><th>Change</th></tr></thead><tbody>' + bn.map(function (b) {
+      var x = r.by_band[b]; return '<tr><td>' + b + ' (' + R.bands[b] + ')</td><td>' + clsLabel(m.class_by_band[b]) + '</td><td class="num">' + usd0(x.profit) + '</td><td class="num">' + sgn0(x.profit_change) + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+    if (t) {
+      h += '<h3 style="margin-top:14px">Price change ' + (t.price_change >= 0 ? '+' : '') + (t.price_change * 100).toFixed(1) + '%</h3>';
+      h += '<p><b>' + esc(t.verdict) + '.</b></p><div class="hatched" style="padding:4px;border:1px solid var(--ink-3);border-radius:6px;display:inline-block">' + epsAxis(t) + '</div>';
+      h += '<p class="tiny">Break-even elasticity ' + (t.break_even_elasticity === null ? 'undefined' : t.break_even_elasticity.toFixed(2)) + '. The change pays off if demand is ' + (t.p1 > t.p0 ? 'less' : 'more') + ' elastic than that.</p>';
+      h += '<table><tbody><tr><td>Break-even volume drop</td><td class="num">' + (t.break_even_drop === null ? '—' : pct1(t.break_even_drop)) + '</td></tr><tr><td>Net of substitution</td><td class="num">' + (t.break_even_drop_net === null ? '—' : pct1(t.break_even_drop_net)) + '</td></tr>' +
+        bn.map(function (b) { return '<tr><td>Predicted drop, ' + b + '</td><td class="num">' + pct1(t.by_band[b].predicted_drop) + '</td></tr>'; }).join('') + '</tbody></table>';
+    }
+    var mine = BL.all.filter(function (e) { return e.target === id; });
+    h += '<h3 style="margin-top:14px">Tests proposed</h3>' + (mine.length ? mine.map(entryHTML).join('') : '<p class="muted" style="font-size:13px">None: a Star is protected unless a price change is in the scenario.</p>');
+    var ov = S.override[id];
+    h += '<h3 style="margin-top:14px">Measured elasticity</h3><p class="tiny">If you have measured this item, enter it. It replaces the assumed band for this item in every band.</p>' +
+      '<div class="ctl"><input type="number" step="0.1" max="-0.01" id="ov" value="' + (ov === undefined ? '' : ov) + '" placeholder="e.g. -1.3" aria-label="Override elasticity"> <button class="btn" id="ov-clear">Clear</button></div>';
+    $('drawer-body').innerHTML = h;
+    $('drawer').classList.add('open'); $('drawer').setAttribute('aria-hidden', 'false');
+    $('drawer').dataset.item = id;
+  }
+  function closeDrawer() { $('drawer').classList.remove('open'); $('drawer').setAttribute('aria-hidden', 'true'); delete $('drawer').dataset.item; }
+
+  function validation() {
+    var b = V.band_hit, c = V.coverage, v = V.verdicts, n = V.naive, r = V.recovery;
+    var pct = function (x) { return Math.round(x * 100) + '%'; };
+    var cats = Object.keys(b.by_category).map(function (k) { return k + ' ' + b.by_category[k].inside + '/' + b.by_category[k].of; }).join(', ');
+    function card(title, big, text) { return '<div class="card"><h3>' + title + '</h3><div class="num" style="font:600 28px var(--font-display)">' + big + '</div><p class="muted" style="font-size:13px;margin:4px 0 0">' + text + '</p></div>'; }
+    $('validation').innerHTML =
+      card('Is the true elasticity inside the band?', pct(b.rate), b.inside_band + ' of ' + b.items + ' items. By category: ' + esc(cats) + '. Drinks and sides are less elastic than the low band, by construction of the global bands.') +
+      card('Does the profit range cover the truth?', pct(c.rate), 'Across ' + V.scenarios + ' price rises (+5% and +10% on each item). When it misses, the truth is better than the range\'s upper end (' + pct(c.truth_above_range) + ' of cases), never worse.') +
+      card('Does the medium-band headline have the right sign?', pct(v.medium_band_sign_accuracy), 'In ' + v.medium_band_says_pays_when_truth_loses + ' of ' + v.total + ' cases it says a price rise pays off when it loses money. ' + v.depends_on_elasticity + ' of ' + v.total + ' verdicts are "depends on elasticity": with a band this wide, the break-even usually sits inside it.') +
+      card('What does a naive before/after estimate give?', n.median_abs_error.toFixed(2), 'Median absolute error in elasticity over ' + n.events + ' historical price changes; ' + pct(n.wrong_sign_share) + ' have the wrong sign. History is confounded with seasonality and trend, which is why an experiment is needed.') +
+      card('Can a switchback test recover it?', pct(r.mean_decision_accuracy.at_cap), 'Share of simulated tests at the 12-week cap that make the right roll-out call (' + pct(r.mean_decision_accuracy.planned_duration) + ' if run for the powered duration, which is years). ' + r.reps + ' replications per entry. The 90% interval on the measured elasticity is about ' + r.mean_interval_width_at_cap.toFixed(0) + ' units wide at the cap.');
+  }
+  var LIMITS = [
+    'Synthetic data and an authored ground truth: this shows the method works and where it fails, not real-world accuracy.',
+    'Elasticity is assumed. The bands come from published ranges, item-level evidence is thin, and some research figures were not independently verified.',
+    'The global bands miss several items by design (mostly drinks and sides), so some profit ranges do not cover the truth.',
+    'Price changes are meant to stay within about ±15%. Substitution is single-pass and stays in the same category; there are no other cross-price effects.',
+    'No waste or yield modelling, and the baseline is not seasonally adjusted.',
+    'Matrix groups of four to seven items are noisy, and the 70% rule is lenient.',
+    'Total units stand in for traffic: there are no covers, satisfaction, waste or staff-load measures.',
+    'The carryover assumption (m = 1) and daily noise are assumed. Guardrail thresholds are policy choices, not evidence.',
+    'Menu-design and portion test evidence is weak, and no effect sizes are claimed. No sequential stopping boundaries are claimed.',
+    'Experiment results are not ingested back into the model; a measured elasticity can be entered by hand per item.'
+  ];
+
+  // ------------------------------------------------------------------ wiring
+  function renderAll() { compute(); renderMatrix(); tiles(); moves(); itemRows(); backlog();
+    var id = $('drawer').dataset.item; if (id) { var keep = $('drawer').scrollTop; drawer(id); $('drawer').scrollTop = keep; } }
+
+  function syncControls() {
+    $('shock-out').textContent = (S.shock >= 0 ? '+' : '') + S.shock + '%';
+    $('price-out').textContent = (S.price >= 0 ? '+' : '') + S.price + '%';
+    $('sub-out').textContent = S.sub + '%';
+    $('pass-out').textContent = S.pass + '%';
+  }
+  function init() {
+    $('shock-group').innerHTML = Object.keys(GROUPS).map(function (g) { return '<option value="' + esc(g) + '">' + esc(D.group_labels[g]) + '</option>'; }).join('');
+    $('scope-sel').innerHTML = '<option value="all">All items</option>' + CATS.map(function (c) { return '<option value="cat:' + esc(c) + '">' + esc(c) + '</option>'; }).join('') +
+      '<optgroup label="Single item">' + ITEMS.map(function (i) { return '<option value="item:' + esc(i.item_id) + '">' + esc(i.name) + '</option>'; }).join('') + '</optgroup>';
+    $('legend').innerHTML = Object.keys(CLS).map(function (c) { return clsLabel(c); }).join('');
+    $('limits').innerHTML = LIMITS.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('');
+    function load() {
+      $('shock-group').value = S.shockGroup; $('shock').value = S.shock; $('price').value = S.price; $('scope-sel').value = S.scope;
+      $('sub').value = S.sub; $('pass').value = S.pass; $('cap').value = S.cap; $('carry').value = S.carry;
+      ['low', 'medium', 'high'].forEach(function (b) { $('b-' + b).value = S.bands[b]; });
+      document.querySelectorAll('[data-mscope]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.mscope === S.mscope ? 'true' : 'false'); });
+      syncControls();
+    }
+    load();
+    $('shock-group').onchange = function () { S.shockGroup = this.value; renderAll(); };
+    $('scope-sel').onchange = function () { S.scope = this.value; renderAll(); };
+    [['shock', 'shock'], ['price', 'price'], ['sub', 'sub'], ['pass', 'pass']].forEach(function (p) {
+      $(p[0]).oninput = function () { S[p[1]] = +this.value; syncControls(); renderAll(); };
+    });
+    ['low', 'medium', 'high'].forEach(function (b) {
+      $('b-' + b).oninput = function () { var v = parseFloat(this.value); if (!isNaN(v) && v < 0) { S.bands[b] = v; renderAll(); } };
+    });
+    $('cap').oninput = function () { var v = parseInt(this.value, 10); if (v >= 1) { S.cap = v; renderAll(); } };
+    $('carry').oninput = function () { var v = parseInt(this.value, 10); if (v >= 0 && v <= 3) { S.carry = v; renderAll(); } };
+    document.querySelectorAll('[data-mscope]').forEach(function (b) { b.onclick = function () { S.mscope = b.dataset.mscope; load(); renderAll(); }; });
+    $('reset').onclick = function () { var ov = S.override; S = JSON.parse(JSON.stringify(DEFAULTS)); S.override = ov; load(); renderAll(); };
+    document.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-open]'); if (row) { drawer(row.dataset.open); return; }
+      var so = e.target.closest('[data-sort]'); if (so) { var k = so.dataset.sort; if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = k === 'name' || k === 'cls' ? 1 : -1; } itemRows(); return; }
+      if (e.target.id === 'close') closeDrawer();
+      if (e.target.id === 'ov-clear') { delete S.override[$('drawer').dataset.item]; renderAll(); }
+    });
+    document.addEventListener('input', function (e) {
+      if (e.target.id === 'ov') { var id = $('drawer').dataset.item, v = parseFloat(e.target.value);
+        if (!isNaN(v) && v < 0) S.override[id] = v; else delete S.override[id];
+        compute(); renderMatrix(); tiles(); moves(); itemRows(); backlog(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrawer();
+      if (e.key === 'Enter' && e.target.matches && e.target.matches('[data-open]')) drawer(e.target.dataset.open);
+    });
+    var tip = $('tip');
+    document.addEventListener('mouseover', function (e) { var t = e.target.closest('[data-tip]'); if (t) { tip.innerHTML = t.dataset.tip; tip.style.display = 'block'; } });
+    document.addEventListener('mousemove', function (e) { tip.style.left = Math.min(e.clientX + 14, innerWidth - 270) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+    document.addEventListener('mouseout', function (e) { if (e.target.closest('[data-tip]')) tip.style.display = 'none'; });
+    $('theme').onclick = function () {
+      var cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = cur === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (err) { /* storage can be unavailable */ }
+    };
+    try { var th = localStorage.getItem('theme'); if (th) document.documentElement.setAttribute('data-theme', th); } catch (err) { /* ignore */ }
+    validation();
+    renderAll();
+  }
+  init();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Profit Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#f9f9f7; --surface:#fcfcfb; --raised:#ffffff; --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#6f6d67;
+    --hairline:#e1e0d9; --accent:#2a78d6; --accent-wash:#eaf1fb; --hatch:#6f6d67;
+    --c-star:#2a78d6; --c-plow:#eb6834; --c-puzzle:#1baf7a; --c-dog:#d9467e;
+    --good:#0a7d0a; --bad:#c23030;
+    --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+    --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --page:#0d0d0d; --surface:#1a1a19; --raised:#202020; --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#a3a198;
+      --hairline:#2c2c2a; --accent:#3987e5; --accent-wash:rgba(57,135,229,.14); --hatch:#a3a198;
+      --c-star:#3987e5; --c-plow:#d95926; --c-puzzle:#199e70; --c-dog:#d55181; --good:#4cc24c; --bad:#e66767; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page:#0d0d0d; --surface:#1a1a19; --raised:#202020; --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#a3a198;
+    --hairline:#2c2c2a; --accent:#3987e5; --accent-wash:rgba(57,135,229,.14); --hatch:#a3a198;
+    --c-star:#3987e5; --c-plow:#d95926; --c-puzzle:#199e70; --c-dog:#d55181; --good:#4cc24c; --bad:#e66767; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--font-display);line-height:1.2;margin:0;font-weight:600}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,tr:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 16px}
+  .num{font-variant-numeric:tabular-nums}
+  .mono{font-family:var(--font-mono)}
+  .muted{color:var(--ink-2)} .tiny{font-size:12px;color:var(--ink-3)}
+  .hatched{background:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--hatch) 30%,transparent) 5px 6px)}
+  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--ink-3);color:var(--ink-2)}
+  .pill.plain{background:none}
+  button{font:inherit}
+  .btn{background:var(--raised);color:var(--ink);border:1px solid var(--hairline);border-radius:6px;padding:4px 10px;cursor:pointer}
+  .btn:hover{border-color:var(--ink-3)}
+
+  header.story{padding:28px 0 18px}
+  header.story .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  header.story h1{font-size:clamp(26px,4vw,40px);margin:8px 0 10px}
+  header.story p{max-width:70ch;margin:0 0 8px;color:var(--ink-2)}
+  .eyebrow{font:500 12px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+
+  #banner{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--ink-3);background-color:var(--surface)}
+  #banner .in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;padding:8px 0}
+  #banner .lead{font-weight:600;font-size:13px}
+  .bandbox{display:flex;gap:6px;align-items:center;font-size:12px}
+  .bandbox input{width:64px}
+  input[type=number],select{background:var(--raised);color:var(--ink);border:1px solid var(--hairline);border-radius:6px;padding:4px 6px;font:inherit}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .subbox{display:flex;gap:8px;align-items:center;font-size:12px;min-width:210px}
+  .subbox input[type=range]{width:110px}
+
+  .cockpit{display:grid;grid-template-columns:260px minmax(0,1fr) 360px;gap:18px;padding:18px 0 28px;align-items:start}
+  .col{display:grid;gap:14px;min-width:0}
+  .card{background:var(--raised);border:1px solid var(--hairline);border-radius:10px;padding:14px 16px;min-width:0}
+  .card h2{font-size:18px;margin-bottom:8px}
+  .card h3{font-size:15px;margin:0 0 6px}
+  .ctl{display:grid;gap:4px;margin:0 0 14px}
+  .ctl>label{font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+  .seg{display:flex;border:1px solid var(--hairline);border-radius:6px;overflow:hidden}
+  .seg button{flex:1;border:0;background:var(--raised);color:var(--ink-2);padding:4px 6px;cursor:pointer;font-size:12px}
+  .seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+
+  .tiles{display:grid;gap:8px}
+  .tile{border:1px solid var(--hairline);border-radius:8px;padding:8px 10px}
+  .tile.hatched{border-color:var(--ink-3)}
+  .tile .k{font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+  .tile .v{font:600 22px var(--font-display)}
+  .pos{color:var(--good)} .neg{color:var(--bad)}
+  .note{font-size:12px;color:var(--ink-2);margin:8px 0 0}
+
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-2);margin:6px 0 0}
+  .legend span{display:inline-flex;gap:5px;align-items:center}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%}
+  th{font-size:12px;text-align:left;color:var(--ink-2);font-weight:600;border-bottom:1px solid var(--hairline);padding:6px 8px}
+  #items td:first-child{min-width:120px}
+  #items td:nth-child(4){min-width:190px}
+  #items td:last-child{min-width:140px}
+  svg text.lbl{paint-order:stroke;stroke:var(--raised);stroke-width:3px;stroke-linejoin:round}
+  th button{all:unset;cursor:pointer}
+  th button:focus-visible{outline:2.5px solid var(--accent)}
+  td{padding:6px 8px;border-bottom:1px solid var(--hairline);vertical-align:middle;font-size:13px}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--accent-wash)}
+  .cls{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .badge{font-size:11px;padding:0 6px;border-radius:4px;border:1px dashed var(--ink-2);color:var(--ink-2);white-space:nowrap}
+  .verdict{font-size:12px}
+
+  .bl h3{display:flex;justify-content:space-between;gap:8px}
+  .entry{border:1px solid var(--hairline);border-radius:8px;margin:0 0 8px;padding:8px 10px;font-size:13px}
+  .entry summary{cursor:pointer;list-style:none}
+  .entry summary::-webkit-details-marker{display:none}
+  .entry .t{font-weight:600}
+  .entry dl{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px}
+  .entry dt{color:var(--ink-3)} .entry dd{margin:0}
+  .empty{font-size:13px;color:var(--ink-2);border:1px dashed var(--ink-3);border-radius:8px;padding:10px}
+
+  #drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--raised);border-left:1px solid var(--hairline);z-index:80;padding:16px;overflow:auto;transform:translateX(105%);transition:transform .2s;box-shadow:-6px 0 24px rgba(0,0,0,.18)}
+  #drawer.open{transform:none}
+  #drawer h2{font-size:20px;margin-right:60px}
+  #drawer .x{position:absolute;top:12px;right:12px}
+  #drawer table td{font-size:12px}
+  #tip{position:fixed;z-index:90;pointer-events:none;background:var(--ink);color:var(--page);padding:6px 9px;border-radius:6px;font-size:12px;max-width:260px;display:none}
+
+  section.below{padding:8px 0 40px}
+  section.below h2{font-size:24px;margin:20px 0 8px}
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  ul.lim{margin:0;padding-left:20px;color:var(--ink-2)} ul.lim li{margin:3px 0}
+  footer{border-top:1px solid var(--hairline);padding:16px 0 40px;font-size:12px;color:var(--ink-3)}
+
+  @media (max-width:1180px){.cockpit{grid-template-columns:260px minmax(0,1fr)}.cockpit .right{grid-column:1 / -1;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+  @media (max-width:760px){
+    .cockpit{grid-template-columns:minmax(0,1fr)}
+    .cockpit .right{grid-template-columns:minmax(0,1fr)}
+    #banner{position:static}
+    header.story .top{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header class="story"><div class="wrap">
+  <div class="top">
+    <div>
+      <span class="eyebrow">Portfolio project · synthetic restaurant</span>
+      <h1>Which menu changes make a restaurant more profit, and how sure can we be?</h1>
+      <p>A 30-item bistro, simulated. Change an ingredient cost or a price and see what happens to contribution profit, the menu engineering matrix, and the experiments worth running next.</p>
+      <p><strong>Elasticity is an assumption here, not a measurement.</strong> Every number that depends on it is hatched, and shown as a range across a low, medium and high band you can edit. The ranked experiment backlog is how you would measure it.</p>
+    </div>
+    <div><span class="pill hatched">Synthetic data</span> <button class="btn" id="theme" aria-label="Toggle dark mode">Theme</button></div>
+  </div>
+</div></header>
+
+<div id="banner" class="hatched"><div class="wrap"><div class="in">
+  <span class="lead">Assumed, not measured:</span>
+  <span class="bandbox">Demand barely reacts <input type="number" step="0.1" max="-0.01" id="b-low" aria-label="Low elasticity band"></span>
+  <span class="bandbox">Medium <input type="number" step="0.1" max="-0.01" id="b-medium" aria-label="Medium elasticity band"></span>
+  <span class="bandbox">Reacts a lot <input type="number" step="0.1" max="-0.01" id="b-high" aria-label="High elasticity band"></span>
+  <span class="subbox"><label for="sub">Lost buyers who switch to a similar dish</label><input type="range" id="sub" min="0" max="100" step="5"><b class="num" id="sub-out"></b></span>
+</div></div></div>
+
+<main class="wrap">
+<div class="cockpit">
+  <!-- levers -->
+  <div class="col">
+    <div class="card" id="levers">
+      <h2>Levers</h2>
+      <div class="ctl"><label for="shock-group">Ingredient cost shock</label><select id="shock-group"></select></div>
+      <div class="ctl"><label for="shock">Change <span class="num" id="shock-out"></span></label><input type="range" id="shock" min="-20" max="60" step="5"></div>
+      <div class="ctl"><label for="price">Price change <span class="num" id="price-out"></span></label><input type="range" id="price" min="-15" max="15" step="1"></div>
+      <div class="ctl"><label for="scope-sel">Price change applies to</label><select id="scope-sel"></select></div>
+      <div class="ctl"><label>Matrix compares items</label>
+        <div class="seg" role="group" aria-label="Matrix scope"><button data-mscope="category" aria-pressed="true">Within category</button><button data-mscope="menu" aria-pressed="false">Whole menu</button></div></div>
+      <div class="ctl"><label for="pass">Pass shock into price <span class="num" id="pass-out"></span></label><input type="range" id="pass" min="0" max="100" step="25"></div>
+      <button class="btn" id="reset">Reset levers</button>
+      <p class="note">A cost shock alone does not depend on elasticity: nothing is hatched until a price changes.</p>
+    </div>
+    <div class="card">
+      <h3>How to read this</h3>
+      <div class="legend" id="legend"></div>
+      <p class="note"><span class="pill hatched">hatched</span> = depends on the assumed elasticity. Not hatched = it does not. A dashed ring means the class changes across the three bands. A dashed tail means the item moved class in the scenario.</p>
+    </div>
+  </div>
+
+  <!-- centre -->
+  <div class="col">
+    <div class="card"><h2>Menu engineering matrix</h2>
+      <p class="muted" style="margin:0 0 4px;font-size:13px" id="matrix-sub"></p>
+      <div id="matrix"></div></div>
+    <div class="card"><h2>Items</h2>
+      <p class="muted" style="margin:0 0 6px;font-size:13px">Click a row for the detail. The black line is the break-even elasticity of the price change; the hatched band is the assumed elasticity.</p>
+      <div class="scroll"><table id="items"><thead></thead><tbody></tbody></table></div></div>
+  </div>
+
+  <!-- right -->
+  <div class="col right">
+    <div class="card"><h2>Weekly contribution profit</h2>
+      <div class="muted" style="font-size:13px" id="baseline-line"></div>
+      <div class="tiles" id="tiles" style="margin-top:8px"></div>
+      <p class="note" id="tiles-note"></p></div>
+    <div class="card"><h2>Class changes</h2><div id="moves"></div></div>
+    <div class="card bl"><h2>Experiment backlog</h2>
+      <p class="muted" style="font-size:13px;margin:0 0 8px">What to test to measure elasticity instead of assuming it. Scores combine stake, how uncertain the decision is, feasibility and risk.</p>
+      <details style="margin-bottom:10px"><summary class="tiny" style="cursor:pointer">Experiment assumptions (editable)</summary>
+        <div class="ctl" style="margin-top:8px"><label for="cap">Longest acceptable test, weeks</label><input type="number" id="cap" min="1" max="520"></div>
+        <div class="ctl"><label for="carry">Carryover blocks (assumed)</label><input type="number" id="carry" min="0" max="3"></div></details>
+      <div id="backlog"></div></div>
+  </div>
+</div>
+</main>
+
+<aside id="drawer" role="dialog" aria-label="Item detail" aria-hidden="true"><button class="btn x" id="close">Close</button><div id="drawer-body"></div></aside>
+<div id="tip"></div>
+
+<section class="below"><div class="wrap">
+  <h2>How well does this work? (synthetic data)</h2>
+  <p class="muted" style="max-width:75ch">The restaurant's true demand is authored in the generator, so the simulator can be scored against it. This shows where the method works and where it fails on synthetic data. It is not real-world accuracy. Aggregates only.</p>
+  <div class="two" id="validation"></div>
+  <h2>Limitations</h2>
+  <ul class="lim" id="limits"></ul>
+</div></section>
+<footer><div class="wrap">Synthetic data, authored ground truth, demand model and experiment design documented in the repository README. Generated from <span class="mono">dashboard/template.html</span>.</div></footer>
+
+<script>/*__SIM_JS__*/</script>
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var BASE = D.baseline, V = D.validation, GROUPS = D.ingredient_groups;
+  var ITEMS = BASE.items, BYID = {};
+  ITEMS.forEach(function (i) { BYID[i.item_id] = i; });
+  var CATS = []; ITEMS.forEach(function (i) { if (CATS.indexOf(i.category) < 0) CATS.push(i.category); });
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  var DEFAULTS = { shockGroup: 'beef', shock: 20, price: 5, scope: 'item:classic_burger', pass: 0, sub: 25, mscope: 'category',
+    bands: { low: -0.5, medium: -1.0, high: -1.8 }, cap: 12, carry: 1, override: {} };
+  var S = JSON.parse(JSON.stringify(DEFAULTS));
+  var sortKey = 'profit', sortDir = 1, R = null, BL = null;
+
+  var CLS = { 'Star': ['--c-star', 'circle'], 'Plowhorse': ['--c-plow', 'square'], 'Puzzle': ['--c-puzzle', 'diamond'], 'Dog': ['--c-dog', 'triangle'] };
+  var usd0 = function (x) { return (x < 0 ? '-$' : '$') + Math.abs(Math.round(x)).toLocaleString('en-US'); };
+  var usd2 = function (x) { return (x < 0 ? '-$' : '$') + Math.abs(x).toFixed(2); };
+  var sgn0 = function (x) { return (x >= 0 ? '+' : '-') + '$' + Math.abs(Math.round(x)).toLocaleString('en-US'); };
+  var pct1 = function (x) { return (x * 100).toFixed(1) + '%'; };
+  var cls = function (x) { return x > 0.5 ? 'pos' : x < -0.5 ? 'neg' : ''; };
+
+  // ---------------------------------------------------------------- scenario
+  function scenario() {
+    var shock = {}, g = GROUPS[S.shockGroup];
+    if (g && S.shock !== 0) g.forEach(function (ing) { shock[ing] = S.shock / 100; });
+    var sc = { cost_shock: shock, substitution: S.sub / 100, bands: JSON.parse(JSON.stringify(S.bands)), scope: S.mscope };
+    if (S.price !== 0) {
+      var p = S.price / 100;
+      if (S.scope === 'all') { sc.category_price_change = {}; CATS.forEach(function (c) { sc.category_price_change[c] = p; }); }
+      else if (S.scope.indexOf('item:') === 0) sc.price_change = (function () { var o = {}; o[S.scope.slice(5)] = p; return o; })();
+      else { sc.category_price_change = {}; sc.category_price_change[S.scope.slice(4)] = p; }
+    }
+    if (S.pass > 0) sc.pass_through = S.pass / 100;
+    var ov = {}, any = false;
+    Object.keys(S.override).forEach(function (k) { ov[k] = S.override[k]; any = true; });
+    if (any) sc.elasticity_override = ov;
+    return sc;
+  }
+  function compute() {
+    R = Sim.runScenario(BASE, scenario());
+    BL = Sim.buildBacklog(BASE, R, { cap_weeks: S.cap, carryover_m: S.carry });
+  }
+
+  // ------------------------------------------------------------------ svg bits
+  var HATCH = '<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="1.5"/></pattern></defs>';
+  function marker(c, x, y, r, extra) {
+    var spec = CLS[c]; if (!spec) return '';
+    var f = 'fill="var(' + spec[0] + ')" stroke="var(--raised)" stroke-width="2" ' + (extra || '');
+    if (spec[1] === 'circle') return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" ' + f + '/>';
+    if (spec[1] === 'square') return '<rect x="' + (x - r) + '" y="' + (y - r) + '" width="' + 2 * r + '" height="' + 2 * r + '" rx="1" ' + f + '/>';
+    if (spec[1] === 'diamond') return '<polygon points="' + x + ',' + (y - r - 1) + ' ' + (x + r + 1) + ',' + y + ' ' + x + ',' + (y + r + 1) + ' ' + (x - r - 1) + ',' + y + '" ' + f + '/>';
+    return '<polygon points="' + x + ',' + (y - r - 1) + ' ' + (x + r + 1) + ',' + (y + r) + ' ' + (x - r - 1) + ',' + (y + r) + '" ' + f + '/>';
+  }
+  function clsLabel(c) {
+    if (!CLS[c]) return '<span class="tiny">' + esc(c) + '</span>';
+    return '<span class="cls"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">' + marker(c, 7, 7, 4.5) + '</svg>' + c + '</span>';
+  }
+
+  // matrix position of an item relative to its group's thresholds (1.0 = threshold)
+  function position(i, side) {
+    var key = R.matrix.scope === 'menu' ? 'menu' : BYID[i].category;
+    var t = (side === 'base' ? R.matrix.baseline_thresholds : R.matrix.scenario_thresholds)[key];
+    var weeks = BASE.window_weeks;
+    var row = side === 'base' ? R.items[i].baseline : R.items[i].by_band[headBand()];
+    var units = row.units * weeks;
+    if (!t || !t.total_units || units < BASE.min_units) return null;
+    return { x: (units / t.total_units) / t.popularity_threshold, y: row.cm / t.margin_threshold };
+  }
+  function headBand() { return R.bands.medium !== undefined ? 'medium' : Object.keys(R.bands)[0]; }
+
+  function matrixSVG() {
+    var W = 600, H = 380, m = { l: 46, r: 14, t: 14, b: 40 };
+    var X = function (v) { return m.l + (Math.min(v, 3) / 3) * (W - m.l - m.r); };
+    var Y = function (v) { return H - m.b - (Math.min(v, 2) / 2) * (H - m.t - m.b); };
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Menu engineering matrix: popularity against margin">' + HATCH;
+    s += '<line x1="' + X(1) + '" x2="' + X(1) + '" y1="' + m.t + '" y2="' + (H - m.b) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
+    s += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(1) + '" y2="' + Y(1) + '" stroke="var(--hairline)" stroke-width="1.5"/>';
+    [['Puzzle', m.l + 6, m.t + 14, 'start'], ['Star', W - m.r - 6, m.t + 14, 'end'], ['Dog', m.l + 6, H - m.b - 8, 'start'], ['Plowhorse', W - m.r - 6, H - m.b - 8, 'end']]
+      .forEach(function (q) { s += '<text x="' + q[1] + '" y="' + q[2] + '" text-anchor="' + q[3] + '" font-size="12" font-weight="700" fill="var(--ink-3)">' + q[0].toUpperCase() + '</text>'; });
+    s += '<text x="' + ((W + m.l) / 2) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="12" fill="var(--ink-2)">Popularity vs its group (1.0 = threshold) →</text>';
+    s += '<text transform="translate(13 ' + ((H - m.b) / 2) + ') rotate(-90)" text-anchor="middle" font-size="12" fill="var(--ink-2)">Margin vs group average →</text>';
+    var pts = [];
+    ITEMS.forEach(function (it) {
+      var mt = R.items[it.item_id].matrix, a = position(it.item_id, 'scen');
+      if (!a || mt.scenario_class === 'Insufficient data') return;
+      pts.push({ it: it, mt: mt, a: a, b: mt.moved ? position(it.item_id, 'base') : null });
+    });
+    pts.forEach(function (p) { if (p.b) s += '<line x1="' + X(p.b.x) + '" y1="' + Y(p.b.y) + '" x2="' + X(p.a.x) + '" y2="' + Y(p.a.y) + '" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="3 3"/>'; });
+    pts.forEach(function (p) {
+      var x = X(p.a.x), y = Y(p.a.y), mt = p.mt;
+      var tip = '<b>' + esc(p.it.name) + '</b><br>' + mt.scenario_class + (mt.moved ? ' (was ' + mt.baseline_class + ')' : '') +
+        (mt.class_uncertain ? '<br>Class depends on elasticity: ' + Object.keys(mt.class_by_band).map(function (b) { return b + ' ' + mt.class_by_band[b]; }).join(', ') : '');
+      s += '<g data-tip="' + esc(tip) + '">';
+      if (mt.class_uncertain) s += '<circle cx="' + x + '" cy="' + y + '" r="12" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/>';
+      s += marker(mt.scenario_class, x, y, 6) + '<circle cx="' + x + '" cy="' + y + '" r="13" fill="transparent"/></g>';
+      if (mt.moved || mt.class_uncertain) {
+        var flip = x > W - 130;
+        s += '<text x="' + (flip ? x - 10 : x + 10) + '" y="' + (y - 8) + '" text-anchor="' + (flip ? 'end' : 'start') + '" font-size="11" fill="var(--ink-2)" class="lbl">' + esc(p.it.name) + '</text>';
+      }
+    });
+    return s + '</svg>';
+  }
+
+  function epsAxis(test) {
+    var w = 190, lo = Math.min(S.bands.low, S.bands.medium, S.bands.high), hi = Math.max(S.bands.low, S.bands.medium, S.bands.high);
+    var X = function (e) { return 6 + ((Math.max(-2.4, Math.min(0, e)) + 2.4) / 2.4) * (w - 12); };
+    var s = '<svg viewBox="0 0 ' + w + ' 26" width="' + w + '" height="26" role="img" aria-label="Break-even elasticity against assumed band">' + HATCH;
+    s += '<line x1="6" x2="' + (w - 6) + '" y1="13" y2="13" stroke="var(--hairline)"/>';
+    s += '<rect x="' + X(lo) + '" y="6" width="' + (X(hi) - X(lo)) + '" height="14" fill="url(#hatch)" stroke="var(--hatch)"/>';
+    if (test && test.break_even_elasticity !== null) { var x = X(test.break_even_elasticity); s += '<line x1="' + x + '" x2="' + x + '" y1="2" y2="24" stroke="var(--ink)" stroke-width="2.5"/>'; }
+    return s + '</svg>';
+  }
+
+  function profitBar(row, scale) {
+    var w = 130, vals = Object.keys(row.by_band).map(function (b) { return row.by_band[b].profit_change; });
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    var X = function (v) { return w / 2 + (v / scale) * (w / 2 - 6); };
+    var s = '<svg viewBox="0 0 ' + w + ' 22" width="' + w + '" height="22" role="img" aria-label="Weekly profit change range">' + HATCH;
+    s += '<line x1="' + X(0) + '" x2="' + X(0) + '" y1="2" y2="20" stroke="var(--ink-3)"/>';
+    var med = row.by_band[headBand()].profit_change;
+    if (hi - lo > 0.5) s += '<rect x="' + X(lo) + '" y="6" width="' + Math.max(X(hi) - X(lo), 2) + '" height="10" fill="url(#hatch)" stroke="var(--hatch)"/>';
+    s += '<circle cx="' + X(med) + '" cy="11" r="4" fill="var(--accent)" stroke="var(--raised)" stroke-width="1.5"/></svg>';
+    return s;
+  }
+
+  // ------------------------------------------------------------------ panels
+  function renderMatrix() {
+    $('matrix').innerHTML = matrixSVG();
+    $('matrix-sub').textContent = (R.matrix.scope === 'menu' ? 'Items compared across the whole menu.' : 'Each item compared with its own category.') +
+      ' Class shown is the medium-band scenario.';
+  }
+
+  function tiles() {
+    var t = R.total, bnames = Object.keys(R.bands);
+    var range = t.profit_change_range, flat = Math.abs(range.high - range.low) < 1e-9;
+    $('baseline-line').textContent = 'Baseline ' + usd0(t.baseline.profit) + ' a week on ' + usd0(t.baseline.revenue) + ' of sales (food cost ' + pct1(t.baseline.ingredient_cost / t.baseline.revenue) + ').';
+    var h = '';
+    if (flat) {
+      var v = t.by_band[bnames[0]].profit_change;
+      h = '<div class="tile"><div class="k"><span>Weekly change</span></div><div class="v num ' + cls(v) + '">' + sgn0(v) + '</div><div class="tiny num">' + sgn0(v * 52) + ' a year. Does not depend on elasticity.</div></div>';
+    } else {
+      var label = { low: 'If demand barely reacts', medium: 'Medium', high: 'If demand reacts a lot' };
+      bnames.forEach(function (b) {
+        var v = t.by_band[b].profit_change;
+        h += '<div class="tile hatched"><div class="k"><span>' + (label[b] || b) + '</span><span class="pill plain">assumed ' + R.bands[b] + '</span></div><div class="v num ' + cls(v) + '">' + sgn0(v) + '</div><div class="tiny num">per week · ' + sgn0(v * 52) + ' a year</div></div>';
+      });
+    }
+    $('tiles').innerHTML = h;
+    $('tiles-note').textContent = flat ? 'A pure cost shock changes margin at current prices, with no demand response modelled.' :
+      'This assumes demand responds to price at the elasticity shown on each tile, and ' + Math.round(R.substitution * 100) + '% of lost buyers switch to a similar dish. Neither is measured.';
+  }
+
+  function moves() {
+    var rows = [];
+    ITEMS.forEach(function (it) { var m = R.items[it.item_id].matrix; if (m.moved || m.class_uncertain) rows.push([it, m]); });
+    if (!rows.length) { $('moves').innerHTML = '<p class="muted" style="margin:0;font-size:13px">No item changes class, and none depends on the elasticity band.</p>'; return; }
+    $('moves').innerHTML = '<table><tbody>' + rows.map(function (r) {
+      var it = r[0], m = r[1];
+      return '<tr data-open="' + it.item_id + '" tabindex="0"><td>' + esc(it.name) + '</td><td>' + (m.moved ? clsLabel(m.baseline_class) + ' → ' + clsLabel(m.scenario_class) : clsLabel(m.scenario_class)) + '</td><td>' + (m.class_uncertain ? '<span class="badge" data-tip="' + esc('Class differs across bands: ' + Object.keys(m.class_by_band).map(function (b) { return b + ' ' + m.class_by_band[b]; }).join(', ')) + '">class uncertain</span>' : '') + '</td></tr>';
+    }).join('') + '</tbody></table>';
+  }
+
+  function itemRows() {
+    var scale = 1;
+    ITEMS.forEach(function (it) { Object.keys(R.items[it.item_id].by_band).forEach(function (b) { scale = Math.max(scale, Math.abs(R.items[it.item_id].by_band[b].profit_change)); }); });
+    var list = ITEMS.map(function (it) {
+      var r = R.items[it.item_id], t = r.price_test, m = r.matrix, bb = r.by_band[headBand()];
+      return { it: it, r: r, t: t, m: m, name: it.name, cat: it.category, price: t ? t.p1 : r.baseline.price, cm: bb.cm, eps: t ? t.break_even_elasticity : null,
+        profit: bb.profit_change, cls: m.scenario_class };
+    });
+    list.sort(function (a, b) {
+      var va = a[sortKey], vb = b[sortKey];
+      if (va === null || va === undefined) return 1; if (vb === null || vb === undefined) return -1;
+      return (typeof va === 'string' ? va.localeCompare(vb) : va - vb) * sortDir;
+    });
+    var cols = [['name', 'Item'], ['cls', 'Class'], ['price', 'Price, CM'], ['eps', 'Break-even elasticity, verdict'], ['profit', 'Weekly profit change']];
+    $('items').querySelector('thead').innerHTML = '<tr>' + cols.map(function (c) {
+      var arrow = sortKey === c[0] ? (sortDir > 0 ? ' ▲' : ' ▼') : '';
+      return '<th scope="col" aria-sort="' + (sortKey === c[0] ? (sortDir > 0 ? 'ascending' : 'descending') : 'none') + '"><button data-sort="' + c[0] + '">' + c[1] + arrow + '</button></th>';
+    }).join('') + '</tr>';
+    $('items').querySelector('tbody').innerHTML = list.map(function (x) {
+      var m = x.m, cl = m.moved ? clsLabel(m.baseline_class) + ' → ' + clsLabel(m.scenario_class) : clsLabel(m.scenario_class);
+      if (m.class_uncertain) cl += ' <span class="badge">uncertain</span>';
+      return '<tr data-open="' + x.it.item_id + '" tabindex="0"><td>' + esc(x.name) + '<div class="tiny">' + esc(x.cat) + '</div></td><td>' + cl + '</td><td class="num">' + usd2(x.price) +
+        (x.t ? ' <span class="tiny">was ' + usd2(x.t.p0) + '</span>' : '') + '<div class="tiny">CM ' + usd2(x.cm) + '</div></td><td>' +
+        (x.t ? epsAxis(x.t) + '<div class="verdict"><span class="num">' + (x.eps === null ? 'undefined' : x.eps.toFixed(2)) + '</span> · ' + esc(x.t.verdict) + '</div>' : '<span class="tiny">no price change</span>') +
+        '</td><td>' + profitBar(x.r, scale) + '<div class="tiny num">' + sgn0(x.profit) + ' medium</div></td></tr>';
+    }).join('');
+  }
+
+  function entryHTML(e) {
+    var f = e.factors, a = e.assumptions;
+    var sub = e.type + ' · ' + e.evidence;
+    var dur = e.duration_weeks === null ? 'not estimable' : e.duration_weeks + ' weeks';
+    var assum = Object.keys(a).map(function (k) { var v = a[k].value; return k.replace(/_/g, ' ') + ': ' + (Array.isArray(v) ? v.map(function (x) { return typeof x === 'number' ? +x.toFixed(2) : x; }).join(' to ') : typeof v === 'number' ? +v.toFixed(3) : v); }).join('; ');
+    return '<details class="entry"><summary><span class="t">#' + e.rank + ' ' + esc(e.target_name) + '</span><div class="tiny">' + esc(sub) + ' · ' + dur + '</div><div style="margin-top:4px">' + esc(e.hypothesis) + '</div></summary>' +
+      '<dl><dt>Score</dt><dd class="num">' + Math.round(e.score).toLocaleString('en-US') + ' = stake ' + usd0(f.stake) + '/yr × uncertainty ' + f.decision_uncertainty.toFixed(2) + ' × feasibility ' + f.feasibility.toFixed(2) + ' ÷ (1 + risk ' + f.normalised_risk.toFixed(3) + ')</dd>' +
+      '<dt>Design</dt><dd>Two arms, ' + e.design.block + ' blocks, ' + esc(e.design.assignment) + '; carryover ' + e.design.carryover_blocks + ' block (assumed), so ' + Math.round(e.design.clean_block_share * 100) + '% of blocks are clean.</dd>' +
+      '<dt>Metric</dt><dd>' + esc(e.primary_metric) + '. Detectable effect ' + usd2(e.mde.per_block) + ' a day' + (e.mde.pct_of_block_profit !== null ? ' (' + pct1(e.mde.pct_of_block_profit) + ' of daily profit)' : '') + '.</dd>' +
+      '<dt>Guardrails</dt><dd>' + e.guardrails.metrics.map(function (g) { return esc(g.name) + (g.stop_if_down_pct ? ' (stop if down ' + g.stop_if_down_pct + '%)' : ''); }).join('; ') + ' <span class="tiny">(' + esc(e.guardrails.label) + ')</span></dd>' +
+      '<dt>Stop rules</dt><dd>' + esc(e.stop_rules.harm) + ' ' + esc(e.stop_rules.cap) + ' ' + esc(e.stop_rules.success) + '</dd>' +
+      '<dt>Decision</dt><dd>' + esc(e.decision_rule) + '</dd><dt>Assumed</dt><dd>' + esc(assum) + '</dd>' +
+      (e.feasibility_note ? '<dt>Note</dt><dd>' + esc(e.feasibility_note) + '</dd>' : '') + '</dl></details>';
+  }
+  function backlog() {
+    var f = BL.feasible_now, n = BL.needs_pooling, h = '';
+    h += '<h3>Feasible now <span class="tiny">≤ ' + S.cap + ' weeks · ' + f.length + '</span></h3>';
+    h += f.length ? f.slice(0, 8).map(entryHTML).join('') : '<div class="empty">Nothing fits in ' + S.cap + ' weeks. At this restaurant\'s daily noise, even a 15% price change takes far longer than a quarter to read. That is the finding: elasticity cannot be learned quickly from one item at one site, so the options are a bigger effect, pooled items, or a longer test.</div>';
+    h += '<h3 style="margin-top:14px">Needs pooling or a larger effect <span class="tiny">' + n.length + '</span></h3>';
+    h += n.slice(0, 8).map(entryHTML).join('') + (n.length > 8 ? '<p class="tiny">' + (n.length - 8) + ' more, lower scores.</p>' : '');
+    $('backlog').innerHTML = h;
+  }
+
+  function drawer(id) {
+    var it = BYID[id], r = R.items[id], t = r.price_test, m = r.matrix, bn = Object.keys(R.bands);
+    var h = '<h2>' + esc(it.name) + '</h2><p class="muted" style="margin:4px 0 10px">' + esc(it.category) + ' · baseline ' + usd2(r.baseline.price) + ', cost ' + usd2(r.baseline.unit_cost) + ', ' + Math.round(r.baseline.units) + ' a week</p>';
+    h += '<h3>Class</h3><p>' + clsLabel(m.baseline_class) + (m.moved ? ' → ' + clsLabel(m.scenario_class) : '') + '</p><p class="muted" style="font-size:13px">' + esc(m.action) + '</p>';
+    h += '<div class="scroll"><table><thead><tr><th>Band</th><th>Class</th><th>Weekly profit</th><th>Change</th></tr></thead><tbody>' + bn.map(function (b) {
+      var x = r.by_band[b]; return '<tr><td>' + b + ' (' + R.bands[b] + ')</td><td>' + clsLabel(m.class_by_band[b]) + '</td><td class="num">' + usd0(x.profit) + '</td><td class="num">' + sgn0(x.profit_change) + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+    if (t) {
+      h += '<h3 style="margin-top:14px">Price change ' + (t.price_change >= 0 ? '+' : '') + (t.price_change * 100).toFixed(1) + '%</h3>';
+      h += '<p><b>' + esc(t.verdict) + '.</b></p><div class="hatched" style="padding:4px;border:1px solid var(--ink-3);border-radius:6px;display:inline-block">' + epsAxis(t) + '</div>';
+      h += '<p class="tiny">Break-even elasticity ' + (t.break_even_elasticity === null ? 'undefined' : t.break_even_elasticity.toFixed(2)) + '. The change pays off if demand is ' + (t.p1 > t.p0 ? 'less' : 'more') + ' elastic than that.</p>';
+      h += '<table><tbody><tr><td>Break-even volume drop</td><td class="num">' + (t.break_even_drop === null ? '—' : pct1(t.break_even_drop)) + '</td></tr><tr><td>Net of substitution</td><td class="num">' + (t.break_even_drop_net === null ? '—' : pct1(t.break_even_drop_net)) + '</td></tr>' +
+        bn.map(function (b) { return '<tr><td>Predicted drop, ' + b + '</td><td class="num">' + pct1(t.by_band[b].predicted_drop) + '</td></tr>'; }).join('') + '</tbody></table>';
+    }
+    var mine = BL.all.filter(function (e) { return e.target === id; });
+    h += '<h3 style="margin-top:14px">Tests proposed</h3>' + (mine.length ? mine.map(entryHTML).join('') : '<p class="muted" style="font-size:13px">None: a Star is protected unless a price change is in the scenario.</p>');
+    var ov = S.override[id];
+    h += '<h3 style="margin-top:14px">Measured elasticity</h3><p class="tiny">If you have measured this item, enter it. It replaces the assumed band for this item in every band.</p>' +
+      '<div class="ctl"><input type="number" step="0.1" max="-0.01" id="ov" value="' + (ov === undefined ? '' : ov) + '" placeholder="e.g. -1.3" aria-label="Override elasticity"> <button class="btn" id="ov-clear">Clear</button></div>';
+    $('drawer-body').innerHTML = h;
+    $('drawer').classList.add('open'); $('drawer').setAttribute('aria-hidden', 'false');
+    $('drawer').dataset.item = id;
+  }
+  function closeDrawer() { $('drawer').classList.remove('open'); $('drawer').setAttribute('aria-hidden', 'true'); delete $('drawer').dataset.item; }
+
+  function validation() {
+    var b = V.band_hit, c = V.coverage, v = V.verdicts, n = V.naive, r = V.recovery;
+    var pct = function (x) { return Math.round(x * 100) + '%'; };
+    var cats = Object.keys(b.by_category).map(function (k) { return k + ' ' + b.by_category[k].inside + '/' + b.by_category[k].of; }).join(', ');
+    function card(title, big, text) { return '<div class="card"><h3>' + title + '</h3><div class="num" style="font:600 28px var(--font-display)">' + big + '</div><p class="muted" style="font-size:13px;margin:4px 0 0">' + text + '</p></div>'; }
+    $('validation').innerHTML =
+      card('Is the true elasticity inside the band?', pct(b.rate), b.inside_band + ' of ' + b.items + ' items. By category: ' + esc(cats) + '. Drinks and sides are less elastic than the low band, by construction of the global bands.') +
+      card('Does the profit range cover the truth?', pct(c.rate), 'Across ' + V.scenarios + ' price rises (+5% and +10% on each item). When it misses, the truth is better than the range\'s upper end (' + pct(c.truth_above_range) + ' of cases), never worse.') +
+      card('Does the medium-band headline have the right sign?', pct(v.medium_band_sign_accuracy), 'In ' + v.medium_band_says_pays_when_truth_loses + ' of ' + v.total + ' cases it says a price rise pays off when it loses money. ' + v.depends_on_elasticity + ' of ' + v.total + ' verdicts are "depends on elasticity": with a band this wide, the break-even usually sits inside it.') +
+      card('What does a naive before/after estimate give?', n.median_abs_error.toFixed(2), 'Median absolute error in elasticity over ' + n.events + ' historical price changes; ' + pct(n.wrong_sign_share) + ' have the wrong sign. History is confounded with seasonality and trend, which is why an experiment is needed.') +
+      card('Can a switchback test recover it?', pct(r.mean_decision_accuracy.at_cap), 'Share of simulated tests at the 12-week cap that make the right roll-out call (' + pct(r.mean_decision_accuracy.planned_duration) + ' if run for the powered duration, which is years). ' + r.reps + ' replications per entry. The 90% interval on the measured elasticity is about ' + r.mean_interval_width_at_cap.toFixed(0) + ' units wide at the cap.');
+  }
+  var LIMITS = [
+    'Synthetic data and an authored ground truth: this shows the method works and where it fails, not real-world accuracy.',
+    'Elasticity is assumed. The bands come from published ranges, item-level evidence is thin, and some research figures were not independently verified.',
+    'The global bands miss several items by design (mostly drinks and sides), so some profit ranges do not cover the truth.',
+    'Price changes are meant to stay within about ±15%. Substitution is single-pass and stays in the same category; there are no other cross-price effects.',
+    'No waste or yield modelling, and the baseline is not seasonally adjusted.',
+    'Matrix groups of four to seven items are noisy, and the 70% rule is lenient.',
+    'Total units stand in for traffic: there are no covers, satisfaction, waste or staff-load measures.',
+    'The carryover assumption (m = 1) and daily noise are assumed. Guardrail thresholds are policy choices, not evidence.',
+    'Menu-design and portion test evidence is weak, and no effect sizes are claimed. No sequential stopping boundaries are claimed.',
+    'Experiment results are not ingested back into the model; a measured elasticity can be entered by hand per item.'
+  ];
+
+  // ------------------------------------------------------------------ wiring
+  function renderAll() { compute(); renderMatrix(); tiles(); moves(); itemRows(); backlog();
+    var id = $('drawer').dataset.item; if (id) { var keep = $('drawer').scrollTop; drawer(id); $('drawer').scrollTop = keep; } }
+
+  function syncControls() {
+    $('shock-out').textContent = (S.shock >= 0 ? '+' : '') + S.shock + '%';
+    $('price-out').textContent = (S.price >= 0 ? '+' : '') + S.price + '%';
+    $('sub-out').textContent = S.sub + '%';
+    $('pass-out').textContent = S.pass + '%';
+  }
+  function init() {
+    $('shock-group').innerHTML = Object.keys(GROUPS).map(function (g) { return '<option value="' + esc(g) + '">' + esc(D.group_labels[g]) + '</option>'; }).join('');
+    $('scope-sel').innerHTML = '<option value="all">All items</option>' + CATS.map(function (c) { return '<option value="cat:' + esc(c) + '">' + esc(c) + '</option>'; }).join('') +
+      '<optgroup label="Single item">' + ITEMS.map(function (i) { return '<option value="item:' + esc(i.item_id) + '">' + esc(i.name) + '</option>'; }).join('') + '</optgroup>';
+    $('legend').innerHTML = Object.keys(CLS).map(function (c) { return clsLabel(c); }).join('');
+    $('limits').innerHTML = LIMITS.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('');
+    function load() {
+      $('shock-group').value = S.shockGroup; $('shock').value = S.shock; $('price').value = S.price; $('scope-sel').value = S.scope;
+      $('sub').value = S.sub; $('pass').value = S.pass; $('cap').value = S.cap; $('carry').value = S.carry;
+      ['low', 'medium', 'high'].forEach(function (b) { $('b-' + b).value = S.bands[b]; });
+      document.querySelectorAll('[data-mscope]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.mscope === S.mscope ? 'true' : 'false'); });
+      syncControls();
+    }
+    load();
+    $('shock-group').onchange = function () { S.shockGroup = this.value; renderAll(); };
+    $('scope-sel').onchange = function () { S.scope = this.value; renderAll(); };
+    [['shock', 'shock'], ['price', 'price'], ['sub', 'sub'], ['pass', 'pass']].forEach(function (p) {
+      $(p[0]).oninput = function () { S[p[1]] = +this.value; syncControls(); renderAll(); };
+    });
+    ['low', 'medium', 'high'].forEach(function (b) {
+      $('b-' + b).oninput = function () { var v = parseFloat(this.value); if (!isNaN(v) && v < 0) { S.bands[b] = v; renderAll(); } };
+    });
+    $('cap').oninput = function () { var v = parseInt(this.value, 10); if (v >= 1) { S.cap = v; renderAll(); } };
+    $('carry').oninput = function () { var v = parseInt(this.value, 10); if (v >= 0 && v <= 3) { S.carry = v; renderAll(); } };
+    document.querySelectorAll('[data-mscope]').forEach(function (b) { b.onclick = function () { S.mscope = b.dataset.mscope; load(); renderAll(); }; });
+    $('reset').onclick = function () { var ov = S.override; S = JSON.parse(JSON.stringify(DEFAULTS)); S.override = ov; load(); renderAll(); };
+    document.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-open]'); if (row) { drawer(row.dataset.open); return; }
+      var so = e.target.closest('[data-sort]'); if (so) { var k = so.dataset.sort; if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = k === 'name' || k === 'cls' ? 1 : -1; } itemRows(); return; }
+      if (e.target.id === 'close') closeDrawer();
+      if (e.target.id === 'ov-clear') { delete S.override[$('drawer').dataset.item]; renderAll(); }
+    });
+    document.addEventListener('input', function (e) {
+      if (e.target.id === 'ov') { var id = $('drawer').dataset.item, v = parseFloat(e.target.value);
+        if (!isNaN(v) && v < 0) S.override[id] = v; else delete S.override[id];
+        compute(); renderMatrix(); tiles(); moves(); itemRows(); backlog(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrawer();
+      if (e.key === 'Enter' && e.target.matches && e.target.matches('[data-open]')) drawer(e.target.dataset.open);
+    });
+    var tip = $('tip');
+    document.addEventListener('mouseover', function (e) { var t = e.target.closest('[data-tip]'); if (t) { tip.innerHTML = t.dataset.tip; tip.style.display = 'block'; } });
+    document.addEventListener('mousemove', function (e) { tip.style.left = Math.min(e.clientX + 14, innerWidth - 270) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+    document.addEventListener('mouseout', function (e) { if (e.target.closest('[data-tip]')) tip.style.display = 'none'; });
+    $('theme').onclick = function () {
+      var cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = cur === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (err) { /* storage can be unavailable */ }
+    };
+    try { var th = localStorage.getItem('theme'); if (th) document.documentElement.setAttribute('data-theme', th); } catch (err) { /* ignore */ }
+    validation();
+    renderAll();
+  }
+  init();
+})();
+</script>
+</body>
+</html>

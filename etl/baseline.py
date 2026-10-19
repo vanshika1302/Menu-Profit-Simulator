@@ -16,9 +16,9 @@ def baseline_from_warehouse(con: duckdb.DuckDBPyConnection) -> dict:
         ).fetchall()
     ]
     recipes: dict[str, dict[str, float]] = {}
-    for item, ing, qty in con.execute("SELECT item_id, ingredient_id, qty_per_serving FROM raw_recipes").fetchall():
+    for item, ing, qty in con.execute("SELECT item_id, ingredient_id, qty_per_serving FROM raw_recipes ORDER BY item_id, ingredient_id").fetchall():
         recipes.setdefault(item, {})[ing] = qty
-    costs = dict(con.execute("SELECT ingredient_id, unit_cost FROM v_latest_ingredient_cost").fetchall())
+    costs = dict(con.execute("SELECT ingredient_id, unit_cost FROM v_latest_ingredient_cost ORDER BY ingredient_id").fetchall())
     history: dict[str, list[float]] = {}
     for item, units in con.execute(
         "SELECT s.item_id, s.units_sold FROM raw_weekly_sales s JOIN v_window_weeks w ON w.week_start = s.week_start "
