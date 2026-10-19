@@ -77,7 +77,7 @@ def verdict(rise: bool, eps_star: float | None, pays: Mapping[str, bool]) -> str
     return f"pays off only if demand is {direction} elastic than {eps_star:.2f}"
 
 
-def _price_test(it: dict, p1: float, cost: float, eff: Mapping[str, float], substitution: float,
+def price_test(it: dict, p1: float, cost: float, eff: Mapping[str, float], substitution: float,
                 items: list[dict], new_costs: Mapping[str, float]) -> dict:
     p0 = it["price"]
     units = it["units"]
@@ -160,7 +160,7 @@ def run_scenario(baseline: Mapping, scenario: Mapping | None = None) -> dict:
         }
         if i in changes:
             eff = {b: _effective_elasticity([it], e, override)[i] for b, e in bands.items()}
-            row["price_test"] = _price_test(it, it["price"] * (1 + changes[i]), new_costs[i], eff, s, items, new_costs)
+            row["price_test"] = price_test(it, it["price"] * (1 + changes[i]), new_costs[i], eff, s, items, new_costs)
             row["price_test"]["price_change"] = changes[i]
         out_items[i] = row
 

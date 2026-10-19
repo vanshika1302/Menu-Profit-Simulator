@@ -19,6 +19,12 @@ def baseline_from_warehouse(con: duckdb.DuckDBPyConnection) -> dict:
     for item, ing, qty in con.execute("SELECT item_id, ingredient_id, qty_per_serving FROM raw_recipes").fetchall():
         recipes.setdefault(item, {})[ing] = qty
     costs = dict(con.execute("SELECT ingredient_id, unit_cost FROM v_latest_ingredient_cost").fetchall())
+    history: dict[str, list[float]] = {}
+    for item, units in con.execute(
+        "SELECT s.item_id, s.units_sold FROM raw_weekly_sales s JOIN v_window_weeks w ON w.week_start = s.week_start "
+        "ORDER BY s.item_id, s.week_start"
+    ).fetchall():
+        history.setdefault(item, []).append(float(units))
     window_weeks, min_units, factor = con.execute(
         "SELECT window_weeks, min_units, popularity_factor FROM config"
     ).fetchone()
@@ -26,6 +32,7 @@ def baseline_from_warehouse(con: duckdb.DuckDBPyConnection) -> dict:
         "items": items,
         "recipes": recipes,
         "ingredient_costs": costs,
+        "weekly_units_history": history,
         "window_weeks": window_weeks,
         "min_units": min_units,
         "popularity_factor": factor,
