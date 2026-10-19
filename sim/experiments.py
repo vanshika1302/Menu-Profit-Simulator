@@ -183,8 +183,9 @@ def build_backlog(baseline: Mapping, result: Mapping, params: Mapping | None = N
     history = baseline.get("weekly_units_history", {})
     items = {i["item_id"]: i for i in baseline["items"]}
     costs = model.unit_costs(baseline["recipes"], baseline["ingredient_costs"])
+    head = "medium" if "medium" in bands else next(iter(bands))
     new_costs = {
-        i: row["by_band"]["medium"]["ingredient_cost"] / row["by_band"]["medium"]["units"] if row["by_band"]["medium"]["units"] else costs[i]
+        i: row["by_band"][head]["ingredient_cost"] / row["by_band"][head]["units"] if row["by_band"][head]["units"] else costs[i]
         for i, row in result["items"].items()
     }
 

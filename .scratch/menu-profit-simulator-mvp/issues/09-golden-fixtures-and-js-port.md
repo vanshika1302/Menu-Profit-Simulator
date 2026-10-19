@@ -1,6 +1,6 @@
 # Golden fixtures, JS port and parity test
 
-Status: ready-for-agent
+Status: done
 Blocked by: 05, 06
 
 ## What to build
