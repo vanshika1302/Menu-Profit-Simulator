@@ -1,6 +1,6 @@
 # Load the warehouse and build the SQL descriptive layer
 
-Status: ready-for-agent
+Status: done
 Blocked by: 01
 
 ## What to build
