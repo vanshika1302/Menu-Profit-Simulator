@@ -61,7 +61,7 @@ def test_every_scorecard_row_matches_its_committed_snapshot():
 def test_the_readme_records_that_the_model_ran_through_claude_code_not_the_api():
     text = SECTION.lower()
     for phrase in ("claude code", "headless mode", "not through the anthropic api", 'all tools disabled', "not been run against the real api",
-                   "prompt was **not changed**", "variance check", "was **not** done"):
+                   "prompt was **not changed**", "run to run", "8 of 284", "2.8%"):
         assert phrase in text, phrase
     assert "not yet recorded" not in text
 
@@ -72,3 +72,12 @@ def test_the_committed_snapshots_say_how_the_model_ran():
     assert "not through the Anthropic API" in live["note"] and live["model"] == "claude-code:claude-sonnet-5-5"
     replay = json.loads((ROOT / "ingest_eval_results.json").read_text())
     assert replay["backend"] == "claude-code" and replay["report"]["cases"] == 60
+
+
+def test_the_variance_file_backs_the_readme_numbers():
+    import json
+    v = json.loads((ROOT / "ingest_eval_variance.json").read_text())
+    c = v["run_to_run_change"]
+    assert v["repeats"] == 3 and v["split"] == "dev" and v["backend"] == "claude-code" and v["calls"] == 135
+    assert f"{c['rows_changed']} of {c['rows_compared']}" in SECTION and f"{c['share_changed'] * 100:.1f}%" in SECTION
+    assert all(p["silent_error_rate"] == 0 and p["buckets"]["silent_error"] == 0 for p in v["per_pass"])

@@ -1,0 +1,54 @@
+{
+  "backend": "claude-code",
+  "calls": 135,
+  "mode": "live",
+  "model": "claude-code:claude-sonnet-5-5",
+  "note": "The same development cases run several times with the same prompt, to see how often the output changes. Nothing was recorded; the committed recordings are from a single earlier pass.",
+  "per_pass": [
+    {
+      "buckets": {
+        "clean_hit": 225,
+        "correct_flagged": 31,
+        "fabricated": 0,
+        "omitted": 0,
+        "silent_error": 0,
+        "wrong_flagged": 0
+      },
+      "rows_f1": 1.0,
+      "silent_error_rate": 0.0
+    },
+    {
+      "buckets": {
+        "clean_hit": 225,
+        "correct_flagged": 31,
+        "fabricated": 0,
+        "omitted": 0,
+        "silent_error": 0,
+        "wrong_flagged": 0
+      },
+      "rows_f1": 1.0,
+      "silent_error_rate": 0.0
+    },
+    {
+      "buckets": {
+        "clean_hit": 226,
+        "correct_flagged": 30,
+        "fabricated": 0,
+        "omitted": 0,
+        "silent_error": 0,
+        "wrong_flagged": 0
+      },
+      "rows_f1": 1.0,
+      "silent_error_rate": 0.0
+    }
+  ],
+  "repeats": 3,
+  "run_to_run_change": {
+    "cases_with_any_change": 5,
+    "repeats": 3,
+    "rows_changed": 8,
+    "rows_compared": 284,
+    "share_changed": 0.028169014
+  },
+  "split": "dev"
+}

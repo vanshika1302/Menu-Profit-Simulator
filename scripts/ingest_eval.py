@@ -164,6 +164,18 @@ def main(argv=None) -> int:
     print_card(snap)
 
     path = args.out_dir / SNAPSHOTS[mode]
+    if args.write and mode == "live" and args.repeats > 1 and split == "dev":
+        passes = [sc.summarise(o.scores) for o in outcomes]
+        vpath = args.out_dir / "ingest_eval_variance.json"
+        vpath.write_text(json.dumps(_round({
+            "mode": "live", "backend": backend, "model": model, "split": "dev", "repeats": args.repeats,
+            "note": "The same development cases run several times with the same prompt, to see how often the output changes. "
+                    "Nothing was recorded; the committed recordings are from a single earlier pass.",
+            "run_to_run_change": variance,
+            "per_pass": [{"rows_f1": p["rows"]["f1"], "silent_error_rate": p["silent_error_rate"], "buckets": p["buckets"]} for p in passes],
+            "calls": budget.used}), indent=2, sort_keys=True) + "\n")
+        print(f"\nwrote {vpath}")
+        return 0
     if args.write:
         if mode == "live" and not (split == "test" and args.final):
             print("The live snapshot covers the test set: use --split test --final.", file=sys.stderr)
